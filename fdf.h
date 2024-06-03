@@ -6,15 +6,15 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/03 15:38:29 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:51:26 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "mlx.h"
-# include "libft/libft.h"
+# include "./mlx/mlx.h"
+# include "./libft/libft.h"
 
 typedef struct s_data
 {

@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/06/03 15:40:46 by msavelie         ###   ########.fr        #
+#    Updated: 2024/06/03 17:13:59 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ ${MLX_NAME}:
 	make -C ${MLX_DIR}
 
 ${NAME}: ${OBJS}
+	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 	cp ${LIBFT_DIR}/libft.a .
 	mv libft.a ${NAME}
 	cp ${MLX_DIR}/libmlx.a .
@@ -59,4 +60,4 @@ fclean: clean
 re: fclean all
 
 %.o : %.c
-	cc ${CFLAGS} -c $< -o $@
+	cc ${CFLAGS} -Imlx -c $< -o $@
