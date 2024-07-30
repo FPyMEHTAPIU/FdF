@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:41:04 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/30 14:25:34 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/07/30 20:29:03 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ static int	check_doubles(t_map *map)
 		{
 			if (map->strs[lines][i] == ' ')
 			{
-				if (map->strs[lines][i + 1] == ' ' 
-					|| (map->strs[lines][i + 1] >= 9 
+				if ((map->strs[lines][i + 1] >= 9 
 					&& map->strs[lines][i + 1] <= 13))
 					return (1);
 			}
@@ -71,8 +70,10 @@ int	check_map(t_map *map)
 		// check double spaces or tabs
 	if (check_doubles(map))
 		return (1);
+	ft_printf("Problem isn't after check_doubles\n");
 		// check invalid chars (letters, signs (except of '+' and '-'))
 	if (check_chars(map))
 		return (1);
+	ft_printf("Problem isn't after check_chars\n");
 	return (0);	
 }
