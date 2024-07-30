@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/30 15:43:54 by msavelie         ###   ########.fr       */
+/*   Created: 2024/07/30 13:11:30 by msavelie          #+#    #+#             */
+/*   Updated: 2024/07/30 13:29:05 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int argc, char **argv)
+t_map	*free_map(t_map *map)
 {
-	t_map	*map;
-	int		fd;
-
-	if (argc != 2)
-		return (0);
-	ft_printf("Before open\n");
-	ft_printf("argv[1] = %s\n", argv[1]);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (1);
-	ft_printf("After open fd = %d\n", fd);
-	map = parse_map(fd);
 	if (!map)
-		return (1);
-	map->lines = 1;
-	
-	return (0);
+		return (NULL);
+	if (map->alloc_lines > 0)
+		// free strs
+	free(map);
+	return (NULL);
 }

@@ -5,52 +5,41 @@
 #                                                     +:+ +:+         +:+      #
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/07/30 15:37:18 by msavelie         ###   ########.fr        #
+#    Created: 2024/05/15 09:09:46 by msavelie          #+#    #+#              #
+#    Updated: 2024/07/15 18:14:19 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME = libftprintf.a
 
 SRCS = \
-	main.c \
-	check_map.c \
-	free_map.c \
-	parse_map.c
+	ft_printf.c \
+	ft_putstr.c \
+	ft_putchar.c \
+	ft_print_hex.c 
 
-OBJS = $(SRCS:.c=.o)
+OBJS = ${SRCS:.c=.o}
 
-CFLAGS = -Wall -Werror -Wextra
-
-LIBFT_NAME = ./libft/libft.a
-LIBFT_DIR = ./libft
-
-MLX_DIR = ./MLX42/build
-
+FLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 AR = ar -rcs
 LIB = ranlib
 
 .PHONY = all clean fclean re
 
-all: ${LIBFT_NAME} ${NAME}
-
-${LIBFT_NAME}:
-	@make -C ${LIBFT_DIR}
+all: ${NAME}
 
 ${NAME}: ${OBJS}
-	@cp ${LIBFT_DIR}/libft.a .
-	@cp ${MLX_DIR}/libmlx42.a .
-	@cc -g $(CFLAGS) $(OBJS) libft.a libmlx42.a -Iinclude -ldl -lglfw -pthread -lm -o $(NAME)
+	@${AR} ${NAME} ${OBJS}
+	@${LIB} ${NAME}
 
 clean: 
 	@${RM} ${OBJS}
-	@make clean -C ${LIBFT_DIR}
 
 fclean: clean
 	@${RM} ${NAME}
-	@make fclean -C ${LIBFT_DIR}
-	@${RM} libft.a
-	@${RM} libmlx42.a
 
 re: fclean all
+
+%.o : %.c
+	@cc ${FLAGS} -c $< -o $@

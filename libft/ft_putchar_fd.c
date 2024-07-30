@@ -6,13 +6,15 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:08:37 by msavelie          #+#    #+#             */
-/*   Updated: 2024/04/22 16:14:15 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:26:50 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	if (write(fd, &c, 1) < 0)
+		return (-1);
+	return (1);
 }

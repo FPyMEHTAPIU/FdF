@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/30 15:43:54 by msavelie         ###   ########.fr       */
+/*   Created: 2024/05/09 15:48:47 by msavelie          #+#    #+#             */
+/*   Updated: 2024/07/15 18:13:46 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	main(int argc, char **argv)
-{
-	t_map	*map;
-	int		fd;
+# include <stdarg.h>
+# include <unistd.h>
 
-	if (argc != 2)
-		return (0);
-	ft_printf("Before open\n");
-	ft_printf("argv[1] = %s\n", argv[1]);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (1);
-	ft_printf("After open fd = %d\n", fd);
-	map = parse_map(fd);
-	if (!map)
-		return (1);
-	map->lines = 1;
-	
-	return (0);
-}
+# define UP_HEX_BASE "0123456789ABCDEF"
+# define LOW_HEX_BASE "0123456789abcdef"
+
+int		ft_printf(const char *data, ...);
+int		ft_putchar(char c);
+int		ft_putstr(const char *str);
+int		ft_print_hex(long nbr, int base, char c);
+int		print_p(unsigned long num);
+
+#endif

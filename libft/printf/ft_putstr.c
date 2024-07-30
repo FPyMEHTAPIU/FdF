@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/30 15:43:54 by msavelie         ###   ########.fr       */
+/*   Created: 2024/05/14 12:17:21 by msavelie          #+#    #+#             */
+/*   Updated: 2024/05/14 12:58:39 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_putstr(const char *str)
 {
-	t_map	*map;
-	int		fd;
+	int	i;
 
-	if (argc != 2)
-		return (0);
-	ft_printf("Before open\n");
-	ft_printf("argv[1] = %s\n", argv[1]);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (1);
-	ft_printf("After open fd = %d\n", fd);
-	map = parse_map(fd);
-	if (!map)
-		return (1);
-	map->lines = 1;
-	
-	return (0);
+	i = 0;
+	if (!str)
+	{
+		if (write(1, "(null)", 6) < 0)
+			return (-1);
+		return (6);
+	}
+	while (str[i])
+	{
+		i += ft_putchar(str[i]);
+		if (i < 0)
+			return (-1);
+	}
+	return (i);
 }
