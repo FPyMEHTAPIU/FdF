@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:29:45 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/15 18:13:54 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:42:26 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_fprintf(int fd, const char *data, ...);
 int		ft_fprint_hex(long nbr, int base, char c, int fd);
 int		fprint_p(unsigned long num, int fd);
+int		ft_free_strs(char **strs, int index);
 
 #endif

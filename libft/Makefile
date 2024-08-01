@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 09:23:09 by msavelie          #+#    #+#              #
-#    Updated: 2024/07/15 18:14:25 by msavelie         ###   ########.fr        #
+#    Updated: 2024/08/01 13:41:18 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ SRCS = \
 	get_next_line_bonus.c \
 	get_next_line_utils_bonus.c \
 	ft_fprintf.c \
-	ft_fprint_hex.c
+	ft_fprint_hex.c \
+	ft_free_strs.c
 
 CFLAGS = -Wall -Wextra -Werror
 

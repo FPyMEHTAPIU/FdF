@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/30 20:22:47 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/01 14:02:52 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,8 @@ typedef struct	s_map
 t_map	*free_map(t_map *map);
 t_map	*parse_map(int fd);
 int		check_map(t_map *map);
+
+void	free_arr(int **arr, int index);
+int		**convert_map(t_map *map);
 
 #endif

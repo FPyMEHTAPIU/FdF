@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 11:57:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/30 20:28:18 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/01 14:14:59 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_map	*parse_map(int fd)
 		map->strs[i] = temp;
 		ft_printf("map line: %s", map->strs[i]);
 		i++;
+		map->lines++;
 		temp = get_next_line(fd);
 	}
 	map->strs[i] = NULL;

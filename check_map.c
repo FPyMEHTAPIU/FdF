@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:41:04 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/30 20:29:03 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/01 14:28:50 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ static int	check_chars(t_map *map)
 	lines = 0;
 	while (lines < map->lines)
 	{
-		i = 0;
 		line_len = ft_strlen(map->strs[lines]);
+		i = 0;
 		while (i < line_len)
 		{
 			if (map->strs[lines][i] == '-')
 				if (!ft_isdigit(map->strs[lines][i + 1]))
 					return (1);
-			if (!ft_isdigit(map->strs[lines][i]) || map->strs[lines][i] != '-' 
-				|| map->strs[lines][i] != ' ')
+			if (!ft_isdigit(map->strs[lines][i]) && map->strs[lines][i] != '-' 
+				&& map->strs[lines][i] != ' ' && map->strs[lines][i] != '\n')
 				return (1);
 			i++;
 		}

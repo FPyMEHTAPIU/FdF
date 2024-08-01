@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/30 20:25:45 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/01 14:31:00 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_map	*map;
+	int		**nums;
 	int		fd;
 
 	if (argc != 2)
@@ -28,7 +29,16 @@ int	main(int argc, char **argv)
 	map = parse_map(fd);
 	if (!map)
 		return (1);
-	map->lines = 1;
-	
+	nums = convert_map(map);
+
+	for (int i = 0; i < 11; i++)
+	{
+		ft_printf("nums line: ");
+		for (int j = 0; j < 19; j++)
+		{
+			ft_printf("%d ", nums[i][j]);
+		}
+		ft_printf("\n");
+	}
 	return (0);
 }
