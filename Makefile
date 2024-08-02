@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/08/01 14:20:23 by msavelie         ###   ########.fr        #
+#    Updated: 2024/08/02 15:20:44 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS = \
 	free_map.c \
 	parse_map.c \
 	convert_map.c \
-	free_arr.c
+	free_arr.c \
+	map_to_mlx.c
 
 OBJS = $(SRCS:.c=.o)
 

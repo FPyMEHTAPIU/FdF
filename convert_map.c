@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/01 14:30:38 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:35:54 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,15 @@ int	**convert_map(t_map *map)
 	i = 0;
 	arr = create_num_arr(map);
 	strs = ft_split(map->strs[i], ' ');
-	ft_printf("lines: %d\n", map->lines);	
-	ft_printf("BEFORE FIRST COUNT\n");
 	num_count = count_nums(strs);
-	ft_printf("AFTER FIRST COUNT\n");
 	while (map->strs[i])
 	{
-		ft_printf("BEFORE SECOND COUNT\n");
 		if (count_nums(strs) != num_count)
 		{
 			ft_free_strs(strs, count_nums(&strs[i]));
 			free_arr(arr, i);
 			exit (1);
 		}
-		ft_printf("AFTER SECOND COUNT\n");
 		arr[i] = alloc_and_convert(strs, num_count);
 		ft_free_strs(strs, num_count);
 		i++;
