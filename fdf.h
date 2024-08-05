@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/02 15:34:45 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/05 10:58:32 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct	s_map
 	char	**strs;
 	int		alloc_lines;
 	int		lines;
+	int		nums_in_line;
 }	t_map;
 
 /*--------------------MAP HANDLING--------------------*/
@@ -38,6 +39,6 @@ int		check_map(t_map *map);
 
 void	free_arr(int **arr, int index);
 int		**convert_map(t_map *map);
-void	map_to_mlx(void);
+void	map_to_mlx(t_map *map); //, int **nums);
 
 #endif
