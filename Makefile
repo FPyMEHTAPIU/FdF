@@ -6,20 +6,22 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/08/05 11:00:44 by msavelie         ###   ########.fr        #
+#    Updated: 2024/08/05 15:19:07 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
+SRC_DIR = ./srsc
+
 SRCS = \
-	main.c \
-	check_map.c \
-	free_map.c \
-	parse_map.c \
-	convert_map.c \
-	free_arr.c \
-	map_to_mlx.c
+	$(SRC_DIR)/main.c \
+	$(SRC_DIR)/check_map.c \
+	$(SRC_DIR)/free_map.c \
+	$(SRC_DIR)/parse_map.c \
+	$(SRC_DIR)/convert_map.c \
+	$(SRC_DIR)/free_arr.c \
+	$(SRC_DIR)/map_to_mlx.c
 
 OBJS = $(SRCS:.c=.o)
 

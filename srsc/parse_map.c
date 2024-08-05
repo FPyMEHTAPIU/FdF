@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 11:57:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/01 14:14:59 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:19:49 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 static t_map	*create_map(void)
 {

@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   free_arr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 13:11:30 by msavelie          #+#    #+#             */
-/*   Updated: 2024/07/30 13:29:05 by msavelie         ###   ########.fr       */
+/*   Created: 2024/08/01 13:44:29 by msavelie          #+#    #+#             */
+/*   Updated: 2024/08/05 15:19:39 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
-t_map	*free_map(t_map *map)
+void	free_arr(int **arr, int index)
 {
-	if (!map)
-		return (NULL);
-	if (map->alloc_lines > 0)
-		// free strs
-	free(map);
-	return (NULL);
+	if (!arr)
+		return ;
+	while (index >= 0)
+	{
+		free(arr[index]);
+		arr[index] = NULL;
+		index--;
+	}
+	free(arr);
+	arr = NULL;
 }

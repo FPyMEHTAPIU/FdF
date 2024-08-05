@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/05 10:49:00 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:19:37 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 static int	count_nums(char **strs)
 {

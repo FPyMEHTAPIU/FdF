@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/05 13:43:29 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:19:45 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 int	main(int argc, char **argv)
 {
