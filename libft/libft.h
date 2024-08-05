@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:29:45 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/05 11:55:10 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:29:28 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ int				ft_fprint_hex(long nbr, int base, char c, int fd);
 int				fprint_p(unsigned long num, int fd);
 int				ft_free_strs(char **strs, int index);
 unsigned int	ft_atoi_base(const char *str, const char *base);
+int				ft_abs(int num);
 
 #endif
