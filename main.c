@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/05 12:01:56 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/05 13:43:29 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int	main(int argc, char **argv)
 		}
 		ft_printf("\n");
 	}
-	map_to_mlx(map);//, nums);
+	map_to_mlx(map, nums);
 	return (0);
 }
