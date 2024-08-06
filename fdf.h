@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/05 15:37:29 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/06 10:00:25 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "./MLX42/include/MLX42/MLX42.h"
 # include "./libft/libft.h"
 # include <fcntl.h>
+# include <math.h>
 
 # ifndef MAP_LINES
 #  define MAP_LINES 10
