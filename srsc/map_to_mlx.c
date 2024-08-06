@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/05 15:38:36 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:44:28 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,23 @@ static void	fill_image(mlx_image_t *img, t_map *map, int **nums)
 				pos_x += space;
 			else
 				pos_x = j; 
-			mlx_inst[i + j].x = pos_x;
-			mlx_inst[i + j].y = pos_y;
+			mlx_inst[(i * map->nums_in_line) + j].x = pos_x;
+			mlx_inst[(i * map->nums_in_line) + j].y = pos_y;
 			mlx_set_instance_depth(mlx_inst, nums[i][j]);
-			mlx_put_pixel(img, mlx_inst[i + j].x, mlx_inst[i + j].y, 0xFFFFF);
+			mlx_put_pixel(img, mlx_inst[(i * map->nums_in_line) + j].x, mlx_inst[(i * map->nums_in_line) + j].y, 0xFFFFF);
+			ft_printf("mlx_inst[%d].x = %d\nmlx_inst[%d].y = %d\nmlx_inst[%d].z = %d\n\n", 
+				i + j, mlx_inst[i + j].x, i + j, mlx_inst[i + j].y, i + j, mlx_inst[i + j].z);
 			j++;
 		}
 		i++;
 	}
 	img->instances = mlx_inst;
+
+	for (int i = 0; i < map->nums_in_line * map->lines; i++)
+	{
+		ft_printf("img->instances[%d].x = %d\nimg->instances[%d].y = %d\nimg->instances[%d].z = %d\n\n", 
+		i, img->instances[i].x, i, img->instances[i].y, i, img->instances[i].z);
+	}
 }
 
 void	map_to_mlx(t_map *map, int **nums)
