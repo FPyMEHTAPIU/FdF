@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:21:56 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/06 16:04:56 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:02:56 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	draw_row(mlx_image_t *img, t_map *map, int row)
 		x = (float)(img->instances[index].x);
 		while (step--)
 		{
-			mlx_put_pixel(img, round(x), img->instances[col].y, 0xFFFFFF);
+			mlx_put_pixel(img, round(x), img->instances[index].y, 0xFFFFFF);
 			x += dx;
 		}
 		col++;
@@ -53,7 +53,7 @@ static void	draw_column(mlx_image_t *img, t_map *map, int col)
 	row = 0;
 	while (row < map->lines - 1)
 	{
-		index = row * map->nums_in_line + col;
+		index = row * (map->nums_in_line) + col;
 		if (index > (map->nums_in_line * map->lines) - 1)
 		{
 			ft_printf("FUCK YOU in column!\n");
@@ -65,7 +65,7 @@ static void	draw_column(mlx_image_t *img, t_map *map, int col)
 		y = (float)(img->instances[index].y);
 		while (step--)
 		{
-			mlx_put_pixel(img, img->instances[row].x, round(y), 0xFFFFFFF);
+			mlx_put_pixel(img, img->instances[index].x, round(y), 0xFFFFFFF);
 			y += dy;
 		}
 		row++;
