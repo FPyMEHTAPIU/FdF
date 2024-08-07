@@ -6,18 +6,18 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:21:56 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/07 14:36:56 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:25:14 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static void	draw_row(mlx_image_t *img, t_map *map, int row)
+/*static void	draw_row(mlx_image_t *img, t_map *map, int row)
 {
 	int		col;
 	int		step;
-	float	dx;
-	float	x;
+	double	dx;
+	double	x;
 	int		index;
 
 	col = 0;
@@ -31,8 +31,8 @@ static void	draw_row(mlx_image_t *img, t_map *map, int row)
 		}
 		dx = ft_abs(img->instances[index + 1].x - img->instances[index].x);
 		step = dx;
-		dx /= (float)step--;
-		x = (float)(img->instances[index].x) + dx;
+		dx /= (double)step--;
+		x = (double)(img->instances[index].x) + dx;
 		while (step--)
 		{
 			mlx_put_pixel(img, round(x), img->instances[index].y, 0xFFFFFF);
@@ -46,8 +46,8 @@ static void	draw_column(mlx_image_t *img, t_map *map, int col)
 {
 	int		row;
 	int		step;
-	float	dy;
-	float	y;
+	double	dy;
+	double	y;
 	int		index;
 
 	row = 0;
@@ -61,8 +61,8 @@ static void	draw_column(mlx_image_t *img, t_map *map, int col)
 		}
 		dy = ft_abs(img->instances[index + map->nums_in_line].y - img->instances[index].y);
 		step = dy;
-		dy /= (float)step--;
-		y = (float)(img->instances[index].y) + dy;
+		dy /= (double)step--;
+		y = (double)(img->instances[index].y) + dy;
 		while (step--)
 		{
 			mlx_put_pixel(img, img->instances[index].x, round(y), 0xFFFFFFF);
@@ -88,5 +88,31 @@ void	draw_line(mlx_image_t *img, t_map *map)
 	{
 		draw_column(img, map, col);
 		col++;
+	}
+}*/
+
+void	draw_line(mlx_image_t *img, t_isom *isom)
+{
+	int		step;
+	double	dx;
+	double	dy;
+	double	x;
+	double	y;
+
+	dx = ft_abs(isom[1].x - isom->x);
+	dy = ft_abs(isom[1].y - isom->y);
+	if (dx >= dy)
+		step = dx;
+	else
+		step = dy;
+	dx /= step;
+	dy /= step;
+	x = isom->x;
+	y = isom->y;
+	while (step--)
+	{
+		mlx_put_pixel(img, round(x), round(y), 0xFFFFFFF);
+		x += dx;
+		y += dy;
 	}
 }
