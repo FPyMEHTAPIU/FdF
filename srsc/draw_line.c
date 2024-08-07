@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:21:56 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/07 17:25:14 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/07 20:45:08 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ void	draw_line(mlx_image_t *img, t_map *map)
 		col++;
 	}
 }*/
-
-void	draw_line(mlx_image_t *img, t_isom *isom)
+// v2
+void	draw_line_row(mlx_image_t *img, t_isom *isom)
 {
 	int		step;
 	double	dx;
@@ -99,16 +99,17 @@ void	draw_line(mlx_image_t *img, t_isom *isom)
 	double	x;
 	double	y;
 
-	dx = ft_abs(isom[1].x - isom->x);
-	dy = ft_abs(isom[1].y - isom->y);
-	if (dx >= dy)
-		step = dx;
+	dx = isom[1].x - isom[0].x;
+	dy = isom[1].y - isom[0].y;
+	if (ft_abs(dx) >= ft_abs(dy))
+		step = ft_abs(dx);
 	else
-		step = dy;
-	dx /= step;
-	dy /= step;
-	x = isom->x;
-	y = isom->y;
+		step = ft_abs(dy);
+	dx /= (double)step;
+	dy /= (double)step;
+	x = isom[0].x;
+	y = isom[0].y;
+	//step++;
 	while (step--)
 	{
 		mlx_put_pixel(img, round(x), round(y), 0xFFFFFFF);
@@ -116,3 +117,31 @@ void	draw_line(mlx_image_t *img, t_isom *isom)
 		y += dy;
 	}
 }
+
+void	draw_line_col(mlx_image_t *img, t_isom *isom, t_map *map)
+{
+	int		step;
+	double	dx;
+	double	dy;
+	double	x;
+	double	y;
+
+	dx = isom[map->nums_in_line].x - isom[0].x;
+	dy = isom[map->nums_in_line].y - isom[0].y;
+	if (ft_abs(dx) >= ft_abs(dy))
+		step = ft_abs(dx);
+	else
+		step = ft_abs(dy);
+	dx /= (double)step;
+	dy /= (double)step;
+	x = isom[0].x;
+	y = isom[0].y;
+	//step++;
+	while (step--)
+	{
+		mlx_put_pixel(img, round(x), round(y), 0xFFFFFFF);
+		x += dx;
+		y += dy;
+	}
+}
+

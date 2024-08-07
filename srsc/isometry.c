@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/07 17:25:43 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/07 20:36:48 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ static void	to_2d(mlx_instance_t *instance, t_isom *isom)
 	isom->y = (instance->x + instance->y) / 2 - instance->z;
 }
 
-t_isom	*to_isometry(mlx_image_t *img)
+t_isom	*to_isometry(mlx_image_t *img, t_map *map)
 {
 	t_isom	*isom;
-	size_t	i;
+	int		i;
+	int		j;
 
 	isom = malloc(sizeof(t_isom) * img->count);
 	if (!isom)
@@ -30,15 +31,31 @@ t_isom	*to_isometry(mlx_image_t *img)
 		return (NULL);
 	}
 	i = 0;
-	while (i < img->count)
+	while ((size_t)i < img->count)
 	{
 		to_2d(&img->instances[i], &isom[i]);
 		i++;
 	}
 	i = 0;
-	while (i < img->count - 1)
+	while (i < map->lines)
 	{
-		draw_line(img, isom);
+		j = 0;
+		while (j < map->nums_in_line - 1)
+		{
+			draw_line_row(img, &isom[i * map->nums_in_line + j]);
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	while (i < map->nums_in_line)
+	{
+		j = 0;
+		while (j < map->lines - 1)
+		{
+			draw_line_col(img, &isom[i * map->nums_in_line + j], map);
+			j++;
+		}
 		i++;
 	}
 	return (isom);
