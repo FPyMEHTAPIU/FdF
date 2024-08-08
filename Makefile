@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/08/07 17:24:01 by msavelie         ###   ########.fr        #
+#    Updated: 2024/08/08 09:58:59 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,10 +48,10 @@ ${LIBFT_NAME}:
 ${NAME}: ${OBJS}
 	@cp ${LIBFT_DIR}/libft.a .
 	@cp ${MLX_DIR}/libmlx42.a .
-	@gcc ${CFLAGS} ${OBJS} libft.a libmlx42.a -ldl -lglfw -pthread -lm -o ${NAME}
+	@cc ${CFLAGS} ${OBJS} libft.a libmlx42.a -ldl -lglfw -pthread -lm -o ${NAME}
 
 %.o: %.c
-	gcc $(CFLAGS) -Iinclude -c $< -o $@
+	cc $(CFLAGS) -Iinclude -c $< -o $@
 
 clean: 
 	@${RM} ${OBJS}
