@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/08 18:02:13 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:08:13 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_isom
 {
 	double	x;
 	double	y;
+	int		color;
 }	t_isom;
 
 /*--------------------MAP HANDLING--------------------*/
