@@ -6,19 +6,25 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/08 11:03:53 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:40:01 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static void	to_2d(mlx_instance_t *instance, t_isom *isom)
+// static void	to_2d(mlx_instance_t *instance, t_isom *isom)
+// {
+// 	isom->x = instance->x - instance->y + 500;
+// 	isom->y = (instance->x + instance->y) / 2 - instance->z + 250;
+// }
+
+static void	to_2d(t_point *point, t_isom *isom)
 {
-	isom->x = instance->x - instance->y + 500;
-	isom->y = (instance->x + instance->y) / 2 - instance->z + 250;
+	isom->x = point->x - point->y + 500;
+	isom->y = (point->x + point->y) / 2 - point->z + 250;
 }
 
-t_isom	*to_isometry(mlx_image_t *img, t_map *map)
+t_isom	*to_isometry(mlx_image_t *img, t_map *map, t_point *point)
 {
 	t_isom	*isom;
 	int		i;
@@ -33,7 +39,8 @@ t_isom	*to_isometry(mlx_image_t *img, t_map *map)
 	i = 0;
 	while ((size_t)i < img->count)
 	{
-		to_2d(&img->instances[i], &isom[i]);
+		//to_2d(&img->instances[i], &isom[i]);
+		to_2d(&point[i], &isom[i]);
 		i++;
 	}
 	i = 0;

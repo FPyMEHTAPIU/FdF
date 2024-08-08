@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/07 20:30:17 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:38:29 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,16 @@ typedef struct	s_map
 	int		alloc_lines;
 	int		lines;
 	int		nums_in_line;
+	//int		*colors;
 }	t_map;
+
+typedef struct	s_point
+{
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+}	t_point;
 
 typedef struct s_isom
 {
@@ -47,11 +56,8 @@ int		check_map(t_map *map);
 void	free_arr(int **arr, int index);
 int		**convert_map(t_map *map);
 void	map_to_mlx(t_map *map, int **nums);
-//void	draw_line(mlx_image_t *img, t_map *map);
-//void	draw_line(mlx_image_t *img, t_isom *isom);
-//void	draw_line(mlx_image_t *img, t_map *map, t_isom *isom);
-//t_isom	*to_isometry(mlx_image_t *img);
-t_isom	*to_isometry(mlx_image_t *img, t_map *map);
+//t_isom	*to_isometry(mlx_image_t *img, t_map *map);
+t_isom	*to_isometry(mlx_image_t *img, t_map *map, t_point *point);
 void	draw_line_row(mlx_image_t *img, t_isom *isom);
 void	draw_line_col(mlx_image_t *img, t_isom *isom, t_map *map);
 
