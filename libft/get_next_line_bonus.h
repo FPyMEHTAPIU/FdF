@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:32:01 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/03 14:51:54 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:25:18 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 char	*get_next_line(int fd);
 int		ft_strlen_gnl(const char *s);
-char	*ft_strchr(const char *s, int c);
-void	*ft_memmove(void *dst, const void *src, size_t len);
+char	*ft_strchr_gnl(const char *s, int c);
+void	*ft_memmove_gnl(void *dst, const void *src, size_t len);
 
 #endif

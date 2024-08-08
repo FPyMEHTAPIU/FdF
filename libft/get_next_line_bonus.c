@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:31:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/06/03 14:52:27 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:25:45 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static char	*create_str(char *line, char *buf, char *next_line)
 		line = ft_crealloc(buf, next_line - buf + 1, line);
 		bytes = ft_strlen_gnl(next_line + 1) + 1;
 	}
-	ft_memmove(buf, next_line + 1, bytes);
+	ft_memmove_gnl(buf, next_line + 1, bytes);
 	if (!line)
 		return (ft_exit(line, buf, 0));
 	return (line);
@@ -104,9 +104,9 @@ char	*get_next_line(int fd)
 				return (ft_exit(line, buffer[fd], 1));
 			buffer[fd][bytes] = '\0';
 		}
-		next_line = ft_strchr(buffer[fd], '\n');
+		next_line = ft_strchr_gnl(buffer[fd], '\n');
 		if (next_line)
 			return (create_str(line, buffer[fd], next_line));
-		line = create_str(line, buffer[fd], ft_strchr(buffer[fd], '\0'));
+		line = create_str(line, buffer[fd], ft_strchr_gnl(buffer[fd], '\0'));
 	}
 }

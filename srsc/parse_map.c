@@ -6,11 +6,28 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 11:57:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/05 15:19:49 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:01:05 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+static int	count_nums(char *map_str)
+{
+	int		i;
+	char	**strs;
+
+	if (!map_str)
+		return (-1);
+	strs = ft_split(map_str, ' ');
+	if (!strs || !(*strs))
+		return (-1);
+	i = 0;
+	while (strs[i])
+		i++;
+	ft_free_strs(strs, i - 1);
+	return (i);
+}
 
 static t_map	*create_map(void)
 {
@@ -72,7 +89,7 @@ t_map	*parse_map(int fd)
 		temp = get_next_line(fd);
 	}
 	map->strs[i] = NULL;
-	
+	map->nums_in_line = count_nums(map->strs[0]);
 	if (check_map(map))
 		return (free_map(map));
 	return (map);

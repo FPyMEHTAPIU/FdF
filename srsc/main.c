@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/08 14:33:23 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:38:39 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 int	main(int argc, char **argv)
 {
 	t_map	*map;
-	int		**nums;
+	//int		**nums;
 	int		fd;
+	t_point	*point;
 
 	if (argc != 2)
 		return (0);
@@ -26,9 +27,13 @@ int	main(int argc, char **argv)
 	map = parse_map(fd);
 	if (!map)
 		return (1);
-	nums = convert_map(map);
+	ft_printf("size: %d\n", map->lines * map->nums_in_line);
+	point = malloc(sizeof(t_point) * map->lines * map->nums_in_line);
+	if (!point)
+		return (1);
+	point = convert_map(map, point);
 
-	for (int i = 0; i < map->lines; i++)
+	/*for (int i = 0; i < map->lines; i++)
 	{
 		ft_printf("nums line: ");
 		for (int j = 0; j < map->nums_in_line; j++)
@@ -36,7 +41,8 @@ int	main(int argc, char **argv)
 			ft_printf("%d ", nums[i][j]);
 		}
 		ft_printf("\n");
-	}
-	map_to_mlx(map, nums);
+	}*/
+	//map_to_mlx(map, nums);
+	map_to_mlx(map, point);
 	return (0);
 }
