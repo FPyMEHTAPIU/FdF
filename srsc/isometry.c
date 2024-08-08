@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/08 10:05:06 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:03:53 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	to_2d(mlx_instance_t *instance, t_isom *isom)
 {
-	isom->x = instance->x - instance->y;
-	isom->y = (instance->x + instance->y) / 2 - instance->z;
+	isom->x = instance->x - instance->y + 500;
+	isom->y = (instance->x + instance->y) / 2 - instance->z + 250;
 }
 
 t_isom	*to_isometry(mlx_image_t *img, t_map *map)
