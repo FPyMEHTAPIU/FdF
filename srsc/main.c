@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/05 15:19:45 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:33:23 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,18 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (0);
-	ft_printf("Before open\n");
-	ft_printf("argv[1] = %s\n", argv[1]);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (1);
-	ft_printf("After open fd = %d\n", fd);
 	map = parse_map(fd);
 	if (!map)
 		return (1);
 	nums = convert_map(map);
 
-	for (int i = 0; i < 11; i++)
+	for (int i = 0; i < map->lines; i++)
 	{
 		ft_printf("nums line: ");
-		for (int j = 0; j < 19; j++)
+		for (int j = 0; j < map->nums_in_line; j++)
 		{
 			ft_printf("%d ", nums[i][j]);
 		}

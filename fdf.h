@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/08 12:38:29 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:38:04 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,28 @@ typedef struct	s_map
 
 typedef struct	s_point
 {
-	int	x;
-	int	y;
-	int	z;
-	int	color;
+	int		x;
+	int		y;
+	int		z;
+	int		color;
+	t_color	*color;
 }	t_point;
+
+typedef struct	s_color
+{
+	unsigned int	start_col;
+	unsigned int	end_col;
+	unsigned int	a_start;
+	unsigned int	r_start;
+	unsigned int	g_start;
+	unsigned int	b_start;
+	unsigned int	a_end;
+	unsigned int	r_end;
+	unsigned int	g_end;
+	unsigned int	b_end;
+	unsigned int	cur_color;
+}	t_color;
+
 
 typedef struct s_isom
 {
@@ -56,7 +73,6 @@ int		check_map(t_map *map);
 void	free_arr(int **arr, int index);
 int		**convert_map(t_map *map);
 void	map_to_mlx(t_map *map, int **nums);
-//t_isom	*to_isometry(mlx_image_t *img, t_map *map);
 t_isom	*to_isometry(mlx_image_t *img, t_map *map, t_point *point);
 void	draw_line_row(mlx_image_t *img, t_isom *isom);
 void	draw_line_col(mlx_image_t *img, t_isom *isom, t_map *map);

@@ -6,13 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:41:04 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/05 15:19:29 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:07:06 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static int	check_doubles(t_map *map)
+/*static int	check_doubles(t_map *map)
 {
 	int	i;
 	int	lines;
@@ -36,7 +36,7 @@ static int	check_doubles(t_map *map)
 		lines++;
 	}
 	return (0);
-}
+}*/
 
 static int	check_chars(t_map *map)
 {
@@ -68,8 +68,8 @@ int	check_map(t_map *map)
 {
 	// TODO
 		// check double spaces or tabs
-	if (check_doubles(map))
-		return (1);
+	//if (check_doubles(map))
+	//	return (1);
 	ft_printf("Problem isn't after check_doubles\n");
 		// check invalid chars (letters, signs (except of '+' and '-'))
 	if (check_chars(map))
