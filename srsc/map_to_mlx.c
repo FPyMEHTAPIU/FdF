@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/08 17:24:16 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:01:52 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	map_to_mlx(t_map *map, t_point *point) // int **nums)
 	mlx_t	*obj;
 	//t_point	*point;
 
-	obj = mlx_init(1024, 1024, "FDF", 1);
+	obj = mlx_init(2000, 2000, "FDF", 1);
 	if (!obj)
 		mlx_terminate(obj);
-	mlx_image_t	*img = mlx_new_image(obj, 1000, 1000);
+	mlx_image_t	*img = mlx_new_image(obj, 2000, 2000);
 	point = fill_image(img, map, point); // nums);
 	to_isometry(img, map, point);
 	mlx_image_to_window(obj, img, 0, 0);

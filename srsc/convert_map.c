@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/08 17:58:54 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:04:22 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ t_point	*convert_map(t_map *map, t_point *point)
 		if (map->strs[i])
 			strs = ft_split(map->strs[i], ' ');
 	}
-	for (int j = 0; j < map->lines * map->nums_in_line; j++)
-		ft_printf("num[%d] = %d\n", j, temp[j].z);
+	/*for (int j = 0; j < map->lines * map->nums_in_line; j++)
+		ft_printf("num[%d] = %d\n", j, temp[j].z);*/
 	ft_free_strs(map->strs, map->lines);
 	return (temp);
 }

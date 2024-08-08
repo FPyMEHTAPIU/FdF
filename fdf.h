@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/08 17:22:23 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:02:13 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #  define MAP_LINES 10
 # endif
 
-# define SPACE 20
+# define SPACE 50
 
 /*--------------------STRUCTS--------------------*/
 
