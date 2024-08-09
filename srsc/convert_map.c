@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/09 14:11:58 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:25:53 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,19 @@ static int	count_nums(char **strs)
 	return (i);
 }
 
-static char	*choose_base(char *color)
-{
-	int	i;
+// static char	*choose_base(char *color)
+// {
+// 	int	i;
 
-	i = 'a';
-	while (i <= 'z')
-	{
-		if (ft_strchr(color, i))
-			return (LOW_HEX_BASE);
-		i++;
-	}
-	return (UP_HEX_BASE);
-	
-}
+// 	i = 'a';
+// 	while (i <= 'z')
+// 	{
+// 		if (ft_strchr(color, i))
+// 			return (LOW_HEX_BASE);
+// 		i++;
+// 	}
+// 	return (UP_HEX_BASE);
+// }
 
 static t_point *alloc_and_convert(char **strs, int num_count, t_point *point)
 {
@@ -52,7 +51,7 @@ static t_point *alloc_and_convert(char **strs, int num_count, t_point *point)
 		{
 			num_color = ft_split(strs[i], ',');
 			point->z = ft_atoi(num_color[0]);
-			point->color = (int)ft_atoi_base(num_color[1], choose_base(num_color[1]));
+			point->color = rgb_to_agbr(ft_atoi_base(num_color[1], UP_HEX_BASE));
 			ft_free_strs(num_color, 2);
 		}
 		else

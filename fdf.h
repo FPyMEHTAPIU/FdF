@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/09 14:12:15 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:16:35 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ t_isom		*to_isometry(mlx_image_t *img, t_map *map, t_point *point);
 void		draw_line_row(mlx_image_t *img, t_isom *isom);
 void		draw_line_col(mlx_image_t *img, t_isom *isom, t_map *map);
 uint32_t	gradient(int fst_color, int lst_color, int steps, int cur_step);
+uint32_t 	rgb_to_agbr(uint32_t color);
 
 #endif
