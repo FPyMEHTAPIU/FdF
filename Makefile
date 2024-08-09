@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/08/08 09:58:59 by msavelie         ###   ########.fr        #
+#    Updated: 2024/08/09 11:50:27 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS = \
 	${SRC_DIR}/free_arr.c \
 	${SRC_DIR}/map_to_mlx.c \
 	${SRC_DIR}/draw_line.c \
-	${SRC_DIR}/isometry.c
+	${SRC_DIR}/isometry.c \
+	${SRC_DIR}/colors.c
 
 OBJS = ${SRCS:.c=.o}
 

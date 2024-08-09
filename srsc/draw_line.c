@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:21:56 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/08 18:16:15 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/09 12:35:04 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ void	draw_line_row(mlx_image_t *img, t_isom *isom)
 	x = isom[0].x;
 	y = isom[0].y;
 	step++;
+	isom->steps = step;
 	while (step--)
 	{
-		mlx_put_pixel(img, round(x), round(y), isom[0].color);
+		mlx_put_pixel(img, round(x), round(y), gradient(isom[0].color, isom[1].color, isom->steps, step));
 		x += dx;
 		y += dy;
 	}
@@ -58,9 +59,10 @@ void	draw_line_col(mlx_image_t *img, t_isom *isom, t_map *map)
 	x = isom[0].x;
 	y = isom[0].y;
 	step++;
+	isom->steps = step;
 	while (step--)
 	{
-		mlx_put_pixel(img, round(x), round(y), isom[0].color);
+		mlx_put_pixel(img, round(x), round(y), gradient(isom[0].color, isom[map->nums_in_line].color, isom->steps, step));
 		x += dx;
 		y += dy;
 	}

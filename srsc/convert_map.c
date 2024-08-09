@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/08 18:15:51 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/09 12:48:32 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,13 @@ static t_point *alloc_and_convert(char **strs, int num_count, t_point *point)
 		else
 		{
 			point->z = ft_atoi(strs[i]);
-			point->color = 0xFFFFFFFF;
+			if (point->z == 0)
+				point->color = 0xFFFFFFFF;
+			else if (point->z > 0)
+				point->color = 0xFF20F0A0;
+			else
+				point->color = 0xFFFF00DD;
+				//point->color = 0xFFA020F0;
 		}
 		i++;
 		point++;
