@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/09 12:35:18 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/09 14:12:15 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ t_map		*parse_map(int fd);
 int			check_map(t_map *map);
 	
 void		free_arr(int **arr, int index);
-//int			**convert_map(t_map *map);
 t_point		*convert_map(t_map *map, t_point *point);
 //void		map_to_mlx(t_map *map, int **nums);
 void		map_to_mlx(t_map *map, t_point *point);

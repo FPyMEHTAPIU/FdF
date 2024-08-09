@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/09 12:50:43 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/09 14:34:52 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,7 @@ void	map_to_mlx(t_map *map, t_point *point)
 	to_isometry(img, map, point);
 	mlx_image_to_window(obj, img, 0, 0);
 	mlx_loop(obj);
+	//mlx_delete_image(obj, img);
+	mlx_terminate(obj);
 }
+

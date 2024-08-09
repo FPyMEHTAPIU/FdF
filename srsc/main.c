@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/08 17:38:39 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/09 14:28:14 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int argc, char **argv)
 {
 	t_map	*map;
-	//int		**nums;
 	int		fd;
 	t_point	*point;
 
@@ -44,5 +43,7 @@ int	main(int argc, char **argv)
 	}*/
 	//map_to_mlx(map, nums);
 	map_to_mlx(map, point);
+	free(point);
+	free(map);
 	return (0);
 }

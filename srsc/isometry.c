@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/09 12:51:14 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/09 14:26:00 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ t_isom	*to_isometry(mlx_image_t *img, t_map *map, t_point *point)
 		}
 		i++;
 	}
-	return (isom);
+	free(isom);
+	return (NULL);
 }
