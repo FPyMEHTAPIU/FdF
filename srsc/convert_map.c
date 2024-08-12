@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/09 16:25:53 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/12 10:21:06 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static int	count_nums(char **strs)
 
 static t_point *alloc_and_convert(char **strs, int num_count, t_point *point)
 {
-	//int	*sub_arr;
 	int	i;
 	char	**num_color;
 
@@ -63,7 +62,6 @@ static t_point *alloc_and_convert(char **strs, int num_count, t_point *point)
 				point->color = 0xFF20F0A0;
 			else
 				point->color = 0xFFFF00DD;
-				//point->color = 0xFFA020F0;
 		}
 		i++;
 		point++;
@@ -84,12 +82,13 @@ t_point	*convert_map(t_map *map, t_point *point)
 	{
 		if (count_nums(strs) != map->nums_in_line)
 		{
+			ft_printf("Lines aren't equal!\n");
 			ft_free_strs(strs, count_nums(&strs[i]));
 			//free_arr(arr, i);
 			exit (1);
 		}
-		point = alloc_and_convert(strs, map->nums_in_line, point);
-		ft_free_strs(strs, map->nums_in_line);
+		point = alloc_and_convert(strs, map->nums_in_line, /*count_nums(&strs[i]),*/ point);
+		ft_free_strs(strs, map->nums_in_line); //count_nums(&strs[i]));
 		i++;
 		if (map->strs[i])
 			strs = ft_split(map->strs[i], ' ');
