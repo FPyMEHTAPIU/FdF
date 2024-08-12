@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/12 10:02:46 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:16:33 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static t_point	*fill_image(mlx_image_t *img, t_map *map, t_point *point)
 	int	pos_y;
 
 	i = 0;
-	img->count = (size_t)(map->nums_in_line * map->lines);
+	//img->count = (size_t)(map->nums_in_line * map->lines);
+	img->count = (size_t)(map->total_nums);
 	while (i < map->lines)
 	{
 		if (i > 0)
@@ -28,15 +29,15 @@ static t_point	*fill_image(mlx_image_t *img, t_map *map, t_point *point)
 		else
 			pos_y = i;
 		j = 0;
-		while (j < map->nums_in_line)
+		while (j < map->nums_in_line[i])
 		{
 			if (j > 0)
 				pos_x += SPACE;
 			else
 				pos_x = j; 
-			point[(i * map->nums_in_line) + j].x = pos_x;
-			point[(i * map->nums_in_line) + j].y = pos_y;
-			point[(i * map->nums_in_line) + j].z *= 3;
+			point[(i * map->nums_in_line[i]) + j].x = pos_x;
+			point[(i * map->nums_in_line[i]) + j].y = pos_y;
+			point[(i * map->nums_in_line[i]) + j].z *= 3;
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/12 09:45:41 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:10:55 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,29 @@ t_isom	*to_isometry(mlx_image_t *img, t_map *map, t_point *point)
 	while (i < map->lines)
 	{
 		j = 0;
-		while (j < map->nums_in_line - 1)
+		while (j < map->nums_in_line[i] - 1)
 		{
-			draw_line_row(img, &isom[i * map->nums_in_line + j]);
+			draw_line_row(img, &isom[i * map->nums_in_line[i] + j]);
 			j++;
 		}
 		i++;
 	}
-	i = 0;
-	while (i < map->nums_in_line)
+	
+	int k = 0;
+	while (k < map->lines - 1)
 	{
-		j = 0;
-		while (j < map->lines - 1)
+		i = 0;
+		while (i < map->nums_in_line[k])
 		{
-			draw_line_col(img, &isom[i + map->nums_in_line * j], map);
-			j++;
+			j = 0;
+			while (j < map->lines - 1)
+			{
+				draw_line_col(img, &isom[i + map->nums_in_line[k] * j], map->nums_in_line[k]);
+				j++;
+			}
+			i++;
 		}
-		i++;
+		k++;
 	}
 	free(isom);
 	return (NULL);

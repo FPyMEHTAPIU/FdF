@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/12 09:28:41 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/12 10:42:18 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct	s_map
 	char	**strs;
 	int		alloc_lines;
 	int		lines;
-	int		nums_in_line;
+	int		*nums_in_line;
+	int		total_nums;
 }	t_map;
 
 typedef struct	s_point
@@ -77,7 +78,7 @@ t_point		*convert_map(t_map *map, t_point *point);
 void		map_to_mlx(t_map *map, t_point *point);
 t_isom		*to_isometry(mlx_image_t *img, t_map *map, t_point *point);
 void		draw_line_row(mlx_image_t *img, t_isom *isom);
-void		draw_line_col(mlx_image_t *img, t_isom *isom, t_map *map);
+void		draw_line_col(mlx_image_t *img, t_isom *isom, int nums_in_line);
 uint32_t	gradient(int fst_color, int lst_color, int steps, int cur_step);
 uint32_t 	rgb_to_agbr(uint32_t color);
 
