@@ -6,37 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/12 10:39:30 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:19:17 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-/*static int	count_nums(char **strs)
-{
-	int	i;
-
-	if (!strs || !(*strs))
-		return (-1);
-	i = 0;
-	while (strs[i])
-		i++;
-	return (i);
-}*/
-
-// static char	*choose_base(char *color)
-// {
-// 	int	i;
-
-// 	i = 'a';
-// 	while (i <= 'z')
-// 	{
-// 		if (ft_strchr(color, i))
-// 			return (LOW_HEX_BASE);
-// 		i++;
-// 	}
-// 	return (UP_HEX_BASE);
-// }
 
 static t_point *alloc_and_convert(char **strs, int num_count, t_point *point)
 {

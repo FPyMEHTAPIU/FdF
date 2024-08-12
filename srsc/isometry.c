@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/12 11:10:55 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:17:46 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,10 @@ t_isom	*to_isometry(mlx_image_t *img, t_map *map, t_point *point)
 		}
 		i++;
 	}
-	
+	i = 0;
 	int k = 0;
 	while (k < map->lines - 1)
 	{
-		i = 0;
 		while (i < map->nums_in_line[k])
 		{
 			j = 0;

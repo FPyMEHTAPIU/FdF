@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/12 11:16:33 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:19:26 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_point	*fill_image(mlx_image_t *img, t_map *map, t_point *point)
 				pos_x = j; 
 			point[(i * map->nums_in_line[i]) + j].x = pos_x;
 			point[(i * map->nums_in_line[i]) + j].y = pos_y;
-			point[(i * map->nums_in_line[i]) + j].z *= 3;
+			point[(i * map->nums_in_line[i]) + j].z *= 2;
 			j++;
 		}
 		i++;
