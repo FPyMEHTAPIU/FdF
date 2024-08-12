@@ -6,11 +6,25 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/12 12:19:26 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:53:37 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+static int	set_space(t_map *map)
+{
+	int	space;
+
+	space = 1;
+	if (map->total_nums < 1000)
+		space = 20;
+	else if (map->total_nums >= 1000 && map->total_nums <= 5000)
+		space = 10;
+	else if (map->total_nums > 5000 && map->total_nums <= 20000)
+		space = 5;
+	return (space);
+}
 
 static t_point	*fill_image(mlx_image_t *img, t_map *map, t_point *point)
 {
@@ -18,21 +32,23 @@ static t_point	*fill_image(mlx_image_t *img, t_map *map, t_point *point)
 	int	j;
 	int	pos_x;
 	int	pos_y;
+	int space;
 
 	i = 0;
 	//img->count = (size_t)(map->nums_in_line * map->lines);
 	img->count = (size_t)(map->total_nums);
+	space = set_space(map);
 	while (i < map->lines)
 	{
 		if (i > 0)
-			pos_y += SPACE;
+			pos_y += space;
 		else
 			pos_y = i;
 		j = 0;
 		while (j < map->nums_in_line[i])
 		{
 			if (j > 0)
-				pos_x += SPACE;
+				pos_x += space;
 			else
 				pos_x = j; 
 			point[(i * map->nums_in_line[i]) + j].x = pos_x;
