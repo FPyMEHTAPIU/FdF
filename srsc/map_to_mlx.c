@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/12 12:53:37 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:48:58 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	set_space(t_map *map)
 		space = 10;
 	else if (map->total_nums > 5000 && map->total_nums <= 20000)
 		space = 5;
+	else if (map->total_nums > 20000 && map->total_nums <= 40000)
+		space = 2;
 	return (space);
 }
 
@@ -65,10 +67,10 @@ void	map_to_mlx(t_map *map, t_point *point)
 {
 	mlx_t	*obj;
 
-	obj = mlx_init(3000, 1500, "FDF", 1);
+	obj = mlx_init(800, 600, "FDF", 1);
 	if (!obj)
 		mlx_terminate(obj);
-	mlx_image_t	*img = mlx_new_image(obj, 12000, 12000);
+	mlx_image_t	*img = mlx_new_image(obj, 3000, 2000);
 	point = fill_image(img, map, point);
 	to_isometry(img, map, point);
 	mlx_image_to_window(obj, img, 0, 0);
