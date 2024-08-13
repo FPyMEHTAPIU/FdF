@@ -6,26 +6,76 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:26:29 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/09 16:26:23 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:09:41 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-uint32_t rgb_to_agbr(uint32_t color)
+uint32_t	set_pos_color(int num)
+{
+	uint32_t	color;
+
+	if (num > 0 && num <= 5)
+		color = 0x15FF00FF;
+	else if (num > 5 && num <= 10)
+		color = 0x00FF00FF;
+	else if (num > 10 && num <= 15)
+		color = 0x00D9FFFF;
+	else if (num > 15 && num <= 30)
+		color = 0x2B00FFFF;
+	else if (num > 30 && num <= 50)
+		color = 0xD900FFFF;
+	else if (num > 50)
+		color = 0xFF00EAFF;
+	return (color);
+}
+
+uint32_t	set_neg_color(int num)
+{
+	uint32_t	color;
+
+	if (num < 0 && num >= -5)
+		color = 0xDDFF00FF;
+	else if (num < -5 && num >= -10)
+		color = 0xFFC800FF;
+	else if (num < -10 && num >= -15)
+		color = 0xFF9100FF;
+	else if (num < -15 && num >= -30)
+		color = 0xFF5100FF;
+	else if (num < -30 && num >= -50)
+		color = 0xFF0400FF;
+	else if (num < -50)
+		color = 0xFF0000FF;
+	return (color);
+}
+
+uint32_t	set_color(int num)
+{
+	uint32_t	color;
+
+	if (num == 0)
+		color = 0xFFFFFFFF;
+	else if (num > 0)
+		color = set_pos_color(num);
+	else
+		color = set_neg_color(num);
+	return (color);
+}
+
+
+uint32_t rgb_to_rgba(uint32_t color)
 {
 	uint8_t r;
 	uint8_t g;
 	uint8_t b;
-	uint32_t	agbr;
+	uint32_t	rgba;
 
-	//ft_printf("color before = %u\n", color);
 	r = (color >> 16) & 0xFF;
 	g = (color >> 8) & 0xFF;
 	b = color & 0xFF;
-	agbr = (0xFF << 24) | (g << 16) | (b << 8) | r;
-	//ft_printf("color after = %u\n", agbr);
-    return (agbr);
+	rgba = r | (g << 16) | (b << 8) | (0xFF << 24);
+    return (rgba);
 }
 
 static t_color	init_color(int start_col, int end_col)
