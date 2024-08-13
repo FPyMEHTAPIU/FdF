@@ -6,13 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 11:57:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/12 11:15:56 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:58:05 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static int	count_nums(char *map_str)
+int	count_nums(char *map_str)
 {
 	int		i;
 	char	**strs;
@@ -42,40 +42,28 @@ static t_map	*create_map(void)
 		free(map);
 		return (NULL);
 	}
-	map->nums_in_line = malloc(sizeof(int) * MAP_LINES);
-	if (!map->nums_in_line)
-	{
-		free(map);
-		return (NULL);
-	}
 	map->alloc_lines = MAP_LINES;
 	map->lines = 0;
-	map->total_nums = 0;
 	return (map);
 }
 
 static t_map	*realloc_map(t_map *map)
 {
 	char	**strs;
-	int		*num_arr;
 	int		i;
 
 	map->alloc_lines *= 2;
 	strs = (char **)malloc(sizeof(char *) * map->alloc_lines);
-	num_arr = malloc(sizeof(int) * map->alloc_lines);
-	if (!strs || !num_arr)
+	if (!strs)
 		return (free_map(map));
 	i = 0;
 	while (i < map->lines)
 	{
 		strs[i] = map->strs[i];
-		num_arr[i] = map->nums_in_line[i];
 		i++;
 	}
 	free(map->strs);
-	free(map->nums_in_line);
 	map->strs = strs;
-	map->nums_in_line = num_arr;
 	return (map);
 }
 /*static int	total_nums(t_map *map)
@@ -101,13 +89,14 @@ t_map	*parse_map(int fd)
 		return (NULL);
 	i = 0;
 	temp = get_next_line(fd);
+	map->nums_in_line = count_nums(temp);
 	while (temp)
 	{
 		if (map->alloc_lines == map->lines)
 			map = realloc_map(map);
 		map->strs[i] = temp;
-		map->nums_in_line[i] = count_nums(temp);
-		map->total_nums += map->nums_in_line[i];
+		//map->nums_in_line = count_nums(temp);
+		//map->total_nums += map->nums_in_line[i];
 		//ft_printf("map line: %s", map->strs[i]);
 		i++;
 		map->lines++;

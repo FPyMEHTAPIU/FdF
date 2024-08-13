@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/13 10:10:01 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:58:15 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef struct	s_map
 	char	**strs;
 	int		alloc_lines;
 	int		lines;
-	int		*nums_in_line;
-	int		total_nums;
+	int		nums_in_line;
+	//int		total_nums;
 }	t_map;
 
 typedef struct	s_point
@@ -74,6 +74,7 @@ typedef struct s_isom
 t_map		*free_map(t_map *map);
 t_map		*parse_map(int fd);
 int			check_map(t_map *map);
+int			count_nums(char *map_str);
 	
 void		free_arr(int **arr, int index);
 t_point		*convert_map(t_map *map, t_point *point);
