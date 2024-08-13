@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/13 11:58:15 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/13 13:11:34 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ uint32_t 	rgb_to_rgba(uint32_t color);
 uint32_t	set_pos_color(int num);
 uint32_t	set_neg_color(int num);
 uint32_t	set_color(int num);
+void		fdf_keys(void *obj);
 
 #endif
