@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/12 09:46:53 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:55:49 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	main(int argc, char **argv)
 		return (1);
 	ft_printf("size: %d\n", map->lines * map->nums_in_line);
 	point = malloc(sizeof(t_point) * map->lines * map->nums_in_line);
+	// ft_printf("size: %d\n", map->total_nums);
+	// point = malloc(sizeof(t_point) * map->total_nums);
 	if (!point)
 		return (1);
 	point = convert_map(map, point);

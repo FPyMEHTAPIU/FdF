@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/12 09:45:41 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:55:05 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	to_2d(t_point *point, t_isom *isom)
 {
-	isom->x = point->x - point->y + 2000;
+	isom->x = point->x - point->y + 500;
 	isom->y = (point->x + point->y) / 2 - point->z + 500;
 	isom->color = point->color;
 }
@@ -54,7 +54,7 @@ t_isom	*to_isometry(mlx_image_t *img, t_map *map, t_point *point)
 		j = 0;
 		while (j < map->lines - 1)
 		{
-			draw_line_col(img, &isom[i + map->nums_in_line * j], map);
+			draw_line_col(img, &isom[i + map->nums_in_line * j], map->nums_in_line);
 			j++;
 		}
 		i++;
