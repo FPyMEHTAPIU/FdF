@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/14 13:47:56 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:52:30 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,26 @@ static void	move_img(int x, int y, t_image *img)
 	//mlx_image_to_window(img->obj, img->img, img->x, img->y);
 }
 
-static void	zoom_img(t_image *img, float val)
+static void	zoom_img(t_image *img, int space, int win_size)
 {
-	//uint32_t	width;
-	//uint32_t	height;
-
-	if (img->zoom <= 0.01 && val < 0)
-		img->zoom = 0.01;
+	if (img->point->space >= 100 && space > 0)
+		img->point->space = 100;
+	if (img->point->space <= 1 && space < 0)
+		img->point->space = 1;
 	else
-		img->zoom += val;
-	if (val > 0)
-	{
-		img->point->space++;
-		img->width++;
-		img->height++;
-	}
-	else
-	{
-		if (img->width > 1 && img->height > 1)
-		{
-			img->width--;
-			img->height--;
-		}
-		if (img->point->space <= 1)
-			img->point->space = 1;
-		else
-			img->point->space--;
-	}
+		img->point->space += space;
 	clear_img(img->img);
-	mlx_resize_image(img->img, img->width, img->height);
+	if (win_size < 0 && (img->width <= 2000 || img->height <= 1000))
+	{
+		img->width = 2000;
+		img->height = 1000;
+	}
+	else
+	{
+		img->width += win_size;
+		img->height += win_size;
+		mlx_resize_image(img->img, img->width, img->height);
+	}
 	img->point = fill_image(img->img, img->map, img->point);
 	to_isometry(img->img, img->map, img->point);
 }
@@ -81,15 +72,16 @@ void	fdf_keys(void *obj)
 	if (mlx_is_key_down(img->obj, MLX_KEY_ESCAPE))
 		mlx_close_window(img->obj);
 	if (mlx_is_key_down(img->obj, MLX_KEY_UP))
-		move_img(0, -1, img);
+		move_img(-5, -5, img);
 	if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
-		move_img(1, 0, img);
+		move_img(5, -5, img);
 	if (mlx_is_key_down(img->obj, MLX_KEY_DOWN))
-		move_img(0, 1, img);
+		move_img(5, 5, img);
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
-		move_img(-1, 0, img);
+		move_img(-5, 5, img);
 	if (mlx_is_key_down(img->obj, MLX_KEY_KP_ADD))
-		zoom_img(img, 0.01);
+		zoom_img(img, 1, 200);
 	if (mlx_is_key_down(img->obj, MLX_KEY_KP_SUBTRACT))
-		zoom_img(img, -0.01);
+		zoom_img(img, -1, -200);
+	//ft_printf("space = %d\n", img->point->space);
 }
