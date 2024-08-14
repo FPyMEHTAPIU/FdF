@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/14 15:44:18 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:03:29 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ static int	set_space(t_map *map)
 	int	space;
 	int total_nums;
 
-	space = 1;
+	space = 1 + map->space_incr;
 	total_nums = map->lines * map->nums_in_line;
 	if (total_nums < 700)
-		space = 20;
+		space = 20 + map->space_incr;
 	else if (total_nums >= 700 && total_nums <= 5000)
-		space = 10;
+		space = 10 + map->space_incr;
 	else if (total_nums > 700 && total_nums <= 20000)
-		space = 5;
+		space = 5 + map->space_incr;
 	else if (total_nums > 20000 && total_nums <= 40000)
-		space = 2;
+		space = 2 + map->space_incr;
 	return (space);
 }
 

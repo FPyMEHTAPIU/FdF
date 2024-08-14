@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/14 13:44:02 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:59:08 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct	s_map
 	int		alloc_lines;
 	int		lines;
 	int		nums_in_line;
+	int		space_incr;
 }	t_map;
 
 typedef struct	s_point

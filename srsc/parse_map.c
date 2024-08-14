@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 11:57:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/13 11:58:05 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:59:27 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ t_map	*parse_map(int fd)
 		temp = get_next_line(fd);
 	}
 	map->strs[i] = NULL;
+	map->space_incr = 0;
 	//map->nums_in_line = count_nums(map->strs[0]);
 	/*if (check_map(map))
 		return (free_map(map));*/
