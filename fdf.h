@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/13 13:11:34 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/14 13:44:02 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct	s_map
 	int		alloc_lines;
 	int		lines;
 	int		nums_in_line;
-	//int		total_nums;
 }	t_map;
 
 typedef struct	s_point
@@ -43,6 +42,9 @@ typedef struct	s_point
 	int			y;
 	int			z;
 	uint32_t	color;
+	int			space;
+	int			move_x;
+	int			move_y;
 }	t_point;
 
 typedef struct	s_color
@@ -61,13 +63,26 @@ typedef struct	s_color
 }	t_color;
 
 
-typedef struct s_isom
+typedef struct	s_isom
 {
 	double		x;
 	double		y;
 	uint32_t	color;
 	int			steps;
 }	t_isom;
+
+typedef struct	s_image
+{
+	int			x;
+	int			y;
+	uint32_t	width;
+	uint32_t	height;
+	float		zoom;
+	mlx_t		*obj;
+	mlx_image_t	*img;
+	t_point		*point;
+	t_map		*map;
+}	t_image;
 
 /*--------------------MAP HANDLING--------------------*/
 
@@ -79,6 +94,7 @@ int			count_nums(char *map_str);
 void		free_arr(int **arr, int index);
 t_point		*convert_map(t_map *map, t_point *point);
 void		map_to_mlx(t_map *map, t_point *point);
+t_point		*fill_image(mlx_image_t *img, t_map *map, t_point *point);
 t_isom		*to_isometry(mlx_image_t *img, t_map *map, t_point *point);
 void		draw_line_row(mlx_image_t *img, t_isom *isom);
 void		draw_line_col(mlx_image_t *img, t_isom *isom, int nums_in_line);
