@@ -6,15 +6,15 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/14 16:03:29 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:03:12 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static int	set_space(t_map *map)
+static double	set_space(t_map *map)
 {
-	int	space;
+	double	space;
 	int total_nums;
 
 	space = 1 + map->space_incr;
@@ -34,8 +34,8 @@ t_point	*fill_image(mlx_image_t *img, t_map *map, t_point *point)
 {
 	int	i;
 	int	j;
-	int	pos_x;
-	int	pos_y;
+	double	pos_x;
+	double	pos_y;
 	//int space;
 
 	i = 0;
