@@ -6,13 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/15 12:32:04 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/15 14:58:25 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static void	clear_img(mlx_image_t *img)
+void	clear_img(mlx_image_t *img)
 {
 	uint32_t	x;
 	uint32_t	y;
@@ -79,6 +79,9 @@ static void	zoom_img(t_image *img, double space, int win_size)
 void	fdf_keys(void *obj)
 {
 	t_image	*img;
+	double	rot_x;
+	double	rot_y;
+	double	rot_z;
 
 	img = (t_image *) obj;
 	if (mlx_is_key_down(img->obj, MLX_KEY_ESCAPE))
@@ -95,5 +98,10 @@ void	fdf_keys(void *obj)
 		zoom_img(img, 0.05, 0.1);
 	if (mlx_is_key_down(img->obj, MLX_KEY_KP_SUBTRACT))
 		zoom_img(img, -0.05, -0.1);
-	//ft_printf("space = %d\n", img->point->space);
+	if (mlx_is_key_down(img->obj, MLX_KEY_Z))
+		rotate_z(img->point, img->map, img, &rot_z);
+	if (mlx_is_key_down(img->obj, MLX_KEY_X))
+		rotate_x(img->point, img->map, img, &rot_x);
+	if (mlx_is_key_down(img->obj, MLX_KEY_C))
+		rotate_y(img->point, img->map, img, &rot_y);
 }
