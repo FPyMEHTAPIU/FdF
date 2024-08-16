@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/15 14:58:25 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:10:30 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ void	fdf_keys(void *obj)
 		move_img(5, 5, img);
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
 		move_img(-5, 5, img);
-	if (mlx_is_key_down(img->obj, MLX_KEY_KP_ADD))
+	if (mlx_is_key_down(img->obj, MLX_KEY_EQUAL))
 		zoom_img(img, 0.05, 0.1);
-	if (mlx_is_key_down(img->obj, MLX_KEY_KP_SUBTRACT))
+	if (mlx_is_key_down(img->obj, MLX_KEY_MINUS))
 		zoom_img(img, -0.05, -0.1);
 	if (mlx_is_key_down(img->obj, MLX_KEY_Z))
 		rotate_z(img->point, img->map, img, &rot_z);
@@ -104,4 +104,14 @@ void	fdf_keys(void *obj)
 		rotate_x(img->point, img->map, img, &rot_x);
 	if (mlx_is_key_down(img->obj, MLX_KEY_C))
 		rotate_y(img->point, img->map, img, &rot_y);
+}
+#include <stdio.h>
+
+void	zoom(double xdelta, double ydelta, void *param)
+{
+	t_image	*img;
+
+	img = (t_image *) param;
+	printf("xdelta = %f\tydelta = %f\n", xdelta, ydelta);
+	zoom_img(img, 0.2 * ydelta, 0.3 * ydelta);
 }
