@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/20 11:25:04 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:35:13 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ void	fdf_keys(void *obj)
 	double	rot_z;
 
 	img = (t_image *) obj;
-	rot_x = 0;
-	rot_y = 0;
-	rot_z = 0;
+	rot_x = 0.0;
+	rot_y = 0.0;
+	rot_z = 0.0;
 	if (mlx_is_key_down(img->obj, MLX_KEY_ESCAPE))
 		mlx_close_window(img->obj);
 	if (mlx_is_key_down(img->obj, MLX_KEY_UP))
