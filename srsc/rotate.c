@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/20 14:47:48 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:39:38 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@ void	rotate_x(t_point *point, t_map *map, t_image *img, double *rot_x)
 		draw = true;
 		*rot_x += 0.01;
 	}
-
-	const double TWO_PI = 2.0 * M_PI;
-    if (*rot_x >= TWO_PI) {
-        *rot_x -= TWO_PI;
-    } else if (*rot_x < 0) {
-        *rot_x += TWO_PI;
-    }
 
 	if (draw)
 	{
@@ -70,11 +63,11 @@ void	rotate_x(t_point *point, t_map *map, t_image *img, double *rot_x)
 
 void	rotate_y(t_point *point, t_map *map, t_image *img, double *rot_y)
 {
-	uint32_t	i;
-	uint32_t	total;
+	//uint32_t	i;
+	//uint32_t	total;
 	bool		draw;
-	double		x;
-	double		z;
+	//double		x;
+	//double		z;
 
 	draw = false;
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
@@ -89,16 +82,29 @@ void	rotate_y(t_point *point, t_map *map, t_image *img, double *rot_y)
 	}
 	if (draw)
 	{
-		total = map->lines * map->nums_in_line;
-		i = 0;
-		while (i < total)
-		{
-			x = point[i].x;
-			z = point[i].z;
-			point[i].x = x * cos(*rot_y) + z * sin(*rot_y);
-			point[i].z = -x * sin(*rot_y) + z * cos(*rot_y);
-			i++;
-		}
+		double center_x;
+        if (map->nums_in_line % 2 == 0) {
+            center_x = (point[map->nums_in_line / 2].x + point[map->nums_in_line / 2 - 1].x) / 2.0;
+        } else {
+            center_x = point[map->nums_in_line / 2].x;
+        }
+
+        // Вращаем каждую точку вокруг оси Y
+        for (int i = 0; i < map->lines; i++) {
+            for (int j = 0; j < map->nums_in_line; j++) {
+                int index = i * map->nums_in_line + j;
+                double x = point[index].x - center_x;
+                double z = point[index].z;
+
+                // Вращаем по оси Y
+                double rotated_x = x * cos(*rot_y) + z * sin(*rot_y);
+                double rotated_z = -x * sin(*rot_y) + z * cos(*rot_y);
+
+                point[index].x = rotated_x + center_x;
+                point[index].z = rotated_z;
+            }
+        }
+		
 		clear_img(img->img);
 		img->point = fill_image(img->img, img->map, img->point);
 		to_isometry(img->img, img->map, img->point);
@@ -107,26 +113,25 @@ void	rotate_y(t_point *point, t_map *map, t_image *img, double *rot_y)
 
 void	rotate_z(t_point *point, t_map *map, t_image *img, double *rot_z)
 {
-	uint32_t	i;
-	uint32_t	total;
+	//uint32_t	i;
+	//uint32_t	total;
 	bool		draw;
-	double		x;
-	double		y;
-
+	//double		x;
+	//double		y;
 	draw = false;
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
 	{
 		draw = true;
-		*rot_z -= 0.1;
+		*rot_z -= 10;
 	}
 	else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
 	{
 		draw = true;
-		*rot_z += 0.1;
+		*rot_z += 10;
 	}
 	if (draw)
 	{
-		total = map->lines * map->nums_in_line;
+		/*total = map->lines * map->nums_in_line;
 		i = 0;
 		while (i < total)
 		{
@@ -135,65 +140,36 @@ void	rotate_z(t_point *point, t_map *map, t_image *img, double *rot_z)
 			point[i].x = x * cos(*rot_z) - y * sin(*rot_z);
 			point[i].y = x * sin(*rot_z) + y * cos(*rot_z);
 			i++;
+		}*/
+		double center_x = 0;
+    	double center_y = 0;
+    	int total_points = map->lines * map->nums_in_line;
+	
+    	for (int i = 0; i < total_points; i++) {
+    	    center_x += point[i].x;
+    	    center_y += point[i].y;
+    	}
+	
+    	center_x /= total_points;
+    	center_y /= total_points;
+	
+    	// Вращаем каждую точку относительно центра модели
+    	for (int i = 0; i < total_points; i++) {
+    	    // Перемещаем точку так, чтобы центр вращения был в начале координат
+    	    double temp_x = point[i].x - center_x;
+    	    double temp_y = point[i].y - center_y;
+	
+    	    // Применяем стандартное вращение
+    	    double rotated_x = temp_x * cos(*rot_z) - temp_y * sin(*rot_z);
+    	    double rotated_y = temp_x * sin(*rot_z) + temp_y * cos(*rot_z);
+	
+    	    // Возвращаем точку обратно, с учётом центра
+    	    point[i].x = rotated_x + center_x;
+    	    point[i].y = rotated_y + center_y;
 		}
+		printf("rot_z = %f\n", M_PI / 4);
 		clear_img(img->img);
 		img->point = fill_image(img->img, img->map, img->point);
 		to_isometry(img->img, img->map, img->point);
 	}
-}
-
-void	rotate_img(t_image *img, char c)
-{
-	double	rot_x;
-	double	rot_y;
-	double	rot_z;
-	
-	if (c == 'x')
-	{
-		rotate_x(img->point, img->map, img, &rot_x);
-		clear_img(img->img);
-		img->point = fill_image(img->img, img->map, img->point);
-		to_isometry(img->img, img->map, img->point);
-	}
-		
-	/*{
-		if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
-			angle = -1;
-		else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
-			angle = 1;
-		img->point->y = img->point->y * cos(angle) - img->point->z * sin(angle);
-		img->point->z = img->point->y * sin(angle) + img->point->z * cos(angle);
-	}*/
-	else if (c == 'y')
-	{
-		rotate_y(img->point, img->map, img, &rot_y);
-		clear_img(img->img);
-		img->point = fill_image(img->img, img->map, img->point);
-		to_isometry(img->img, img->map, img->point);
-	}
-		
-	/*{
-		if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
-			angle = -1;
-		else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
-			angle = 1;
-		img->point->x = img->point->x * cos(angle) + img->point->z * sin(angle);
-		img->point->z = -img->point->x * sin(angle) + img->point->z * cos(angle);
-	}*/
-	else if (c == 'z')
-	{
-		rotate_z(img->point, img->map, img, &rot_z);
-		clear_img(img->img);
-		img->point = fill_image(img->img, img->map, img->point);
-		to_isometry(img->img, img->map, img->point);
-	}
-	/*{
-		if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
-			angle = -1;
-		else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
-			angle = 1;
-		img->point->x = img->point->x * cos(angle) - img->point->y * sin(angle);
-		img->point->y = img->point->x * sin(angle) + img->point->y * cos(angle);
-	}*/
-	
 }

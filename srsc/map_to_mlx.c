@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/16 13:30:25 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/22 13:18:35 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_point	*fill_image(mlx_image_t *img, t_map *map, t_point *point)
 			else
 				pos_x = j; 
 			point[(i * map->nums_in_line) + j].x = pos_x + point->move_x;
-			point[(i * map->nums_in_line) + j].y = pos_y + point->move_y ;
+			point[(i * map->nums_in_line) + j].y = pos_y + point->move_y;
 			//point[(i * map->nums_in_line) + j].z += point->rot_z;
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/20 11:35:13 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/21 10:59:29 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	move_img(int x, int y, t_image *img)
 	img->point->move_x += x;
 	img->point->move_y += y;
 	clear_img(img->img);
+	ft_printf("width = %u\theight = %u\n", img->width, img->height);
 	img->point = fill_image(img->img, img->map, img->point);
 	to_isometry(img->img, img->map, img->point);
 }

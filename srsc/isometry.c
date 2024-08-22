@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/13 11:55:05 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:45:47 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	to_2d(t_point *point, t_isom *isom)
 {
-	isom->x = point->x - point->y + 500;
-	isom->y = (point->x + point->y) / 2 - point->z + 500;
+	isom->x = point->x - point->y + 400;
+	isom->y = (point->x + point->y) / 2 - point->z + 150;
 	isom->color = point->color;
 }
 
