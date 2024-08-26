@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/21 10:59:29 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/26 10:07:36 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	move_img(int x, int y, t_image *img)
 	to_isometry(img->img, img->map, img->point);
 }
 
-static void	zoom_img(t_image *img, double space, double win_size)
+static void	zoom_img(t_image *img, double space)
 {
 	printf("space = %f\tspace_incr = %f\n", img->point->space, img->map->space_incr);
 	if (img->point->space + img->map->space_incr >= 500.0 && space > 0.0)
@@ -53,32 +53,11 @@ static void	zoom_img(t_image *img, double space, double win_size)
 	}
 	else if (img->point->space <= 0.4 && space < 0.0)
 	{
-		img->point->space = 0.4;
-		img->map->space_incr = -0.2;
+		// DO NOTHING
 	}
 	else
 		img->map->space_incr += space;
 	clear_img(img->img);
-	if (win_size < 0 && (img->width <= 1000 || img->height <= 500))
-	{
-		img->width = 1000;
-		img->height = 500;
-	}
-	else
-	{
-		if (win_size < 0)
-		{
-			img->width -= win_size * -1 * img->width;
-			img->height -= win_size * -1 * img->height;
-		}
-		else
-		{
-			img->width += win_size * img->width;
-			img->height += win_size * img->height;
-		}
-		printf("width = %u\theight = %u\n", img->width, img->height);
-		mlx_resize_image(img->img, img->width, img->height);
-	}
 	img->point = fill_image(img->img, img->map, img->point);
 	to_isometry(img->img, img->map, img->point);
 }
@@ -105,9 +84,9 @@ void	fdf_keys(void *obj)
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
 		move_img(-5, 5, img);
 	if (mlx_is_key_down(img->obj, MLX_KEY_EQUAL))
-		zoom_img(img, 0.2, 0.01);
+		zoom_img(img, 0.2);
 	if (mlx_is_key_down(img->obj, MLX_KEY_MINUS))
-		zoom_img(img, -0.2, -0.01);
+		zoom_img(img, -0.2);
 	if (mlx_is_key_down(img->obj, MLX_KEY_Z))
 		rotate_z(img->point, img->map, img, &rot_z);
 	if (mlx_is_key_down(img->obj, MLX_KEY_X))
@@ -122,5 +101,5 @@ void	zoom(double xdelta, double ydelta, void *param)
 
 	img = (t_image *) param;
 	printf("xdelta = %f\tydelta = %f\n", xdelta, ydelta);
-	zoom_img(img, 0.2 * ydelta, 0.01 * ydelta);
+	zoom_img(img, 0.2 * ydelta);
 }

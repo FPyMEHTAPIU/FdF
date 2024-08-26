@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:21:56 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/12 10:42:04 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/26 10:01:55 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	draw_line_row(mlx_image_t *img, t_isom *isom)
 	isom->steps = step;
 	while (step--)
 	{
-		mlx_put_pixel(img, round(x), round(y), gradient(isom[0].color, isom[1].color, isom->steps, step));
+		if (round(x) >= 1 && round(y) >= 1)
+			mlx_put_pixel(img, round(x), round(y), gradient(isom[0].color, isom[1].color, isom->steps, step));
 		x += dx;
 		y += dy;
 	}
@@ -62,7 +63,8 @@ void	draw_line_col(mlx_image_t *img, t_isom *isom, int nums_in_line)
 	isom->steps = step;
 	while (step--)
 	{
-		mlx_put_pixel(img, round(x), round(y), gradient(isom[0].color, isom[nums_in_line].color, isom->steps, step));
+		if ((round(x) >= 1 && round(y) >= 1) && (round(x) <= 1999 && round(y) <= 999))
+			mlx_put_pixel(img, round(x), round(y), gradient(isom[0].color, isom[nums_in_line].color, isom->steps, step));
 		x += dx;
 		y += dy;
 	}
