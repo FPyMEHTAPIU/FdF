@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/22 17:39:38 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:01:10 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	rotate_x(t_point *point, t_map *map, t_image *img, double *rot_x)
                 point[index].z = rotated_z;
             }
         }
-		printf("rot_x = %f\n", *rot_x);
+		printf("pos[0].x = %f\tpos[0].y = %f\tpos[0].z = %f\n", point[0].x, point[0].y, point[0].z);
 		clear_img(img->img);
 		img->point = fill_image(img->img, img->map, img->point);
 		to_isometry(img->img, img->map, img->point);
@@ -63,11 +63,7 @@ void	rotate_x(t_point *point, t_map *map, t_image *img, double *rot_x)
 
 void	rotate_y(t_point *point, t_map *map, t_image *img, double *rot_y)
 {
-	//uint32_t	i;
-	//uint32_t	total;
-	bool		draw;
-	//double		x;
-	//double		z;
+	bool	draw;
 
 	draw = false;
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
@@ -96,15 +92,18 @@ void	rotate_y(t_point *point, t_map *map, t_image *img, double *rot_y)
                 double x = point[index].x - center_x;
                 double z = point[index].z;
 
+				double rotated_x = x;
+				double rotated_z = z;
                 // Вращаем по оси Y
-                double rotated_x = x * cos(*rot_y) + z * sin(*rot_y);
-                double rotated_z = -x * sin(*rot_y) + z * cos(*rot_y);
+				
+                rotated_x = x * cos(*rot_y) + z * sin(*rot_y);
+               	rotated_z = -x * sin(*rot_y) + z * cos(*rot_y);
 
                 point[index].x = rotated_x + center_x;
                 point[index].z = rotated_z;
             }
         }
-		
+		printf("pos[0].x = %f\tpos[0].y = %f\tpos[0].z = %f\n", point[0].x, point[0].y, point[0].z);
 		clear_img(img->img);
 		img->point = fill_image(img->img, img->map, img->point);
 		to_isometry(img->img, img->map, img->point);
@@ -113,34 +112,24 @@ void	rotate_y(t_point *point, t_map *map, t_image *img, double *rot_y)
 
 void	rotate_z(t_point *point, t_map *map, t_image *img, double *rot_z)
 {
-	//uint32_t	i;
-	//uint32_t	total;
-	bool		draw;
-	//double		x;
-	//double		y;
+	bool	draw;
+	double	angle;
+
 	draw = false;
+	angle = 5;
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
 	{
 		draw = true;
-		*rot_z -= 10;
+		*rot_z -= angle;
 	}
 	else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
 	{
 		draw = true;
-		*rot_z += 10;
+		*rot_z += angle;
 	}
+	angle = *rot_z * M_PI / 180;
 	if (draw)
 	{
-		/*total = map->lines * map->nums_in_line;
-		i = 0;
-		while (i < total)
-		{
-			x = point[i].x;
-			y = point[i].y;
-			point[i].x = x * cos(*rot_z) - y * sin(*rot_z);
-			point[i].y = x * sin(*rot_z) + y * cos(*rot_z);
-			i++;
-		}*/
 		double center_x = 0;
     	double center_y = 0;
     	int total_points = map->lines * map->nums_in_line;
@@ -160,14 +149,13 @@ void	rotate_z(t_point *point, t_map *map, t_image *img, double *rot_z)
     	    double temp_y = point[i].y - center_y;
 	
     	    // Применяем стандартное вращение
-    	    double rotated_x = temp_x * cos(*rot_z) - temp_y * sin(*rot_z);
-    	    double rotated_y = temp_x * sin(*rot_z) + temp_y * cos(*rot_z);
+    	    double rotated_x = temp_x * cos(angle) - temp_y * sin(angle);
+    	    double rotated_y = temp_x * sin(angle) + temp_y * cos(angle);
 	
     	    // Возвращаем точку обратно, с учётом центра
     	    point[i].x = rotated_x + center_x;
     	    point[i].y = rotated_y + center_y;
 		}
-		printf("rot_z = %f\n", M_PI / 4);
 		clear_img(img->img);
 		img->point = fill_image(img->img, img->map, img->point);
 		to_isometry(img->img, img->map, img->point);

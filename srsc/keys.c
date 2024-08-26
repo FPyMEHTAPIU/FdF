@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/26 10:07:36 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:52:42 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,8 @@ static void	move_img(int x, int y, t_image *img)
 static void	zoom_img(t_image *img, double space)
 {
 	printf("space = %f\tspace_incr = %f\n", img->point->space, img->map->space_incr);
-	if (img->point->space + img->map->space_incr >= 500.0 && space > 0.0)
-	{
-		img->point->space = 500.0;
-		img->map->space_incr = 0.2;
-	}
-	else if (img->point->space <= 0.4 && space < 0.0)
-	{
-		// DO NOTHING
-	}
+	if (img->point->space + img->map->space_incr >= 500.0 && space > 0.0) {}
+	else if (img->point->space <= 0.4 && space < 0.0) {}
 	else
 		img->map->space_incr += space;
 	clear_img(img->img);
