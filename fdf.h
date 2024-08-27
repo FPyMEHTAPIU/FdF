@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/26 16:52:11 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:09:28 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct	s_image
 	mlx_t		*obj;
 	mlx_image_t	*img;
 	t_point		*point;
+	t_point		*orig_point;
 	t_map		*map;
 }	t_image;
 
@@ -106,9 +107,11 @@ uint32_t	set_neg_color(int num);
 uint32_t	set_color(int num);
 void		fdf_keys(void *obj);
 void		clear_img(mlx_image_t *img);
-void		rotate_x(t_point *point, t_map *map, t_image *img, double *rot_x);
-void		rotate_y(t_point *point, t_map *map, t_image *img, double *rot_y);
-void		rotate_z(t_point *point, t_map *map, t_image *img, double *rot_z);
+void		rotate_x(t_point *point, t_map *map, t_image *img); //, double *rot_x);
+void		rotate_y(t_point *point, t_map *map, t_image *img); //, double *rot_y);
+void		rotate_z(t_point *point, t_map *map, t_image *img); //, double *rot_z);
 void		zoom(double xdelta, double ydelta, void *param);
+void		reset_point(t_point *orig_point, t_point *point, t_map *map);
+t_point		*copy_point(t_point *point, t_map *map);
 
 #endif

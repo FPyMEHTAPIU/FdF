@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/26 19:27:27 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/27 12:42:10 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static t_image	*set_size(mlx_t *obj, mlx_image_t *img, t_point *point, t_map *ma
 	t_img->obj = obj;
 	t_img->img = img;
 	t_img->point = point;
+	t_img->orig_point = copy_point(point, map);
 	t_img->map = map;
 	return (t_img);
 }

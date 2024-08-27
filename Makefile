@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/08/15 14:17:04 by msavelie         ###   ########.fr        #
+#    Updated: 2024/08/27 12:42:50 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS = \
 	${SRC_DIR}/isometry.c \
 	${SRC_DIR}/colors.c \
 	${SRC_DIR}/keys.c \
-	${SRC_DIR}/rotate.c
+	${SRC_DIR}/rotate.c \
+	${SRC_DIR}/point_handle.c
 
 OBJS = ${SRCS:.c=.o}
 
