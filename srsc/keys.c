@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/27 13:10:00 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:44:03 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	clear_img(mlx_image_t *img)
 
 static void	move_img(int x, int y, t_image *img)
 {
-	reset_point(img->orig_point, img->point, img->map);
+	//reset_point(img->orig_point, img->point, img->map);
 	if (mlx_is_key_down(img->obj, MLX_KEY_Z) || mlx_is_key_down(img->obj, MLX_KEY_X)
 		|| mlx_is_key_down(img->obj, MLX_KEY_C))
 		return ;
@@ -41,35 +41,35 @@ static void	move_img(int x, int y, t_image *img)
 	clear_img(img->img);
 	//ft_printf("width = %u\theight = %u\n", img->width, img->height);
 	img->point = fill_image(img->img, img->map, img->point);
-	reset_point(img->orig_point, img->point, img->map);
-	to_isometry(img->img, img->map, img->point);
+	//reset_point(img->orig_point, img->point, img->map);
+	to_2d(img->img, img->map, img->point);
 }
 
 static void	zoom_img(t_image *img, double space)
 {
 	//printf("space = %f\tspace_incr = %f\n", img->point->space, img->map->space_incr);
-	reset_point(img->orig_point, img->point, img->map);
+	//reset_point(img->orig_point, img->point, img->map);
 	if (img->point->space + img->map->space_incr >= 500.0 && space > 0.0) {}
 	else if (img->point->space <= 0.4 && space < 0.0) {}
 	else
 		img->map->space_incr += space;
 	clear_img(img->img);
 	img->point = fill_image(img->img, img->map, img->point);
-	reset_point(img->orig_point, img->point, img->map);
-	to_isometry(img->img, img->map, img->point);
+	//reset_point(img->orig_point, img->point, img->map);
+	to_2d(img->img, img->map, img->point);
 }
 
 void	fdf_keys(void *obj)
 {
 	t_image	*img;
-	// double	rot_x;
-	// double	rot_y;
-	// double	rot_z;
+	double	rot_x;
+	double	rot_y;
+	double	rot_z;
 
 	img = (t_image *) obj;
-	// rot_x = 0.0;
-	// rot_y = 0.0;
-	// rot_z = 0.0;
+	rot_x = 0.0;
+	rot_y = 0.0;
+	rot_z = 0.0;
 	if (mlx_is_key_down(img->obj, MLX_KEY_ESCAPE))
 		mlx_close_window(img->obj);
 	if (mlx_is_key_down(img->obj, MLX_KEY_UP))
@@ -85,11 +85,14 @@ void	fdf_keys(void *obj)
 	if (mlx_is_key_down(img->obj, MLX_KEY_MINUS))
 		zoom_img(img, -0.2);
 	if (mlx_is_key_down(img->obj, MLX_KEY_Z))
-		rotate_z(img->point, img->map, img); //, &rot_z);
+		//rotate_obj(img->point, img->map, 'z', img);
+		rotate_z(img->point, img->map, img, &rot_z);
 	if (mlx_is_key_down(img->obj, MLX_KEY_X))
-		rotate_x(img->point, img->map, img); //, &rot_x);
+		//rotate_obj(img->point, img->map, 'x', img);
+		rotate_x(img->point, img->map, img, &rot_x);
 	if (mlx_is_key_down(img->obj, MLX_KEY_C))
-		rotate_y(img->point, img->map, img); //, &rot_y);
+		//rotate_obj(img->point, img->map, 'y', img);
+		rotate_y(img->point, img->map, img, &rot_y);
 }
 
 void	zoom(double xdelta, double ydelta, void *param)

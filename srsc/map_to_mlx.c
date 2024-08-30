@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/27 12:42:10 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/30 13:57:51 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static t_image	*set_size(mlx_t *obj, mlx_image_t *img, t_point *point, t_map *ma
 	t_img->obj = obj;
 	t_img->img = img;
 	t_img->point = point;
-	t_img->orig_point = copy_point(point, map);
+	//t_img->orig_point = copy_point(point, map);
 	t_img->map = map;
 	return (t_img);
 }
@@ -97,7 +97,7 @@ void	map_to_mlx(t_map *map, t_point *point)
 		mlx_terminate(obj);
 	mlx_image_t	*img = mlx_new_image(obj, 2000, 1000);
 	point = fill_image(img, map, point);
-	to_isometry(img, map, point);
+	to_2d(img, map, point);
 	img_size = set_size(obj, img, point, map);
 	mlx_image_to_window(obj, img, img_size->x, img_size->y);
 	mlx_scroll_hook(obj, zoom, img_size);

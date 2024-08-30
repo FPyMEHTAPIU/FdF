@@ -6,31 +6,30 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/27 14:27:32 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:25:45 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 #include <stdio.h>
 
-void	rotate_x(t_point *point, t_map *map, t_image *img) //, double rot_x)
+void	rotate_x(t_point *point, t_map *map, t_image *img, double *rot_x)
 {
 	bool		draw;
-	static double	rot_x;
 
 	draw = false;
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
 	{
 		draw = true;
-		rot_x -= 0.01;
+		*rot_x -= 0.01;
 	}
 	else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
 	{
 		draw = true;
-		rot_x += 0.01;
+		*rot_x += 0.01;
 	}
-	if (rot_x >= 360 || rot_x <= -360)
-		rot_x = 0.0;
+	if (*rot_x >= 360 || *rot_x <= -360)
+		*rot_x = 0.0;
 	if (draw)
 	{
 		double center_y;
@@ -49,8 +48,8 @@ void	rotate_x(t_point *point, t_map *map, t_image *img) //, double rot_x)
                 double z = point[index].z;
 
                 // Вращаем по оси X
-                double rotated_y = y * cos(rot_x) - z * sin(rot_x);
-                double rotated_z = y * sin(rot_x) + z * cos(rot_x);
+                double rotated_y = y * cos(*rot_x) - z * sin(*rot_x);
+                double rotated_z = y * sin(*rot_x) + z * cos(*rot_x);
 
                 point[index].y = rotated_y + center_y;
                 point[index].z = rotated_z;
@@ -59,28 +58,27 @@ void	rotate_x(t_point *point, t_map *map, t_image *img) //, double rot_x)
 		printf("pos[0].x = %f\tpos[0].y = %f\tpos[0].z = %f\n", point[0].x, point[0].y, point[0].z);
 		clear_img(img->img);
 		img->point = fill_image(img->img, img->map, img->point);
-		to_isometry(img->img, img->map, img->point);
+		to_2d(img->img, img->map, img->point);
 	}
 }
 
-void	rotate_y(t_point *point, t_map *map, t_image *img) //, double rot_y)
+void	rotate_y(t_point *point, t_map *map, t_image *img, double *rot_y)
 {
 	bool	draw;
-	static double	rot_y;
 
 	draw = false;
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
 	{
 		draw = true;
-		rot_y -= 0.01;
+		*rot_y -= 0.01;
 	}
 	else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
 	{
 		draw = true;
-		rot_y += 0.01;
+		*rot_y += 0.01;
 	}
-	if (rot_y >= 360 || rot_y <= -360)
-		rot_y = 0.0;
+	if (*rot_y >= 360 || *rot_y <= -360)
+		*rot_y = 0.0;
 	if (draw)
 	{
 		double center_x;
@@ -101,8 +99,8 @@ void	rotate_y(t_point *point, t_map *map, t_image *img) //, double rot_y)
 				double rotated_z = z;
                 // Вращаем по оси Y
 				
-                rotated_x = x * cos(rot_y) + z * sin(rot_y);
-               	rotated_z = -x * sin(rot_y) + z * cos(rot_y);
+                rotated_x = x * cos(*rot_y) + z * sin(*rot_y);
+               	rotated_z = -x * sin(*rot_y) + z * cos(*rot_y);
 
                 point[index].x = rotated_x + center_x;
                 point[index].z = rotated_z;
@@ -111,29 +109,28 @@ void	rotate_y(t_point *point, t_map *map, t_image *img) //, double rot_y)
 		printf("pos[0].x = %f\tpos[0].y = %f\tpos[0].z = %f\n", point[0].x, point[0].y, point[0].z);
 		clear_img(img->img);
 		img->point = fill_image(img->img, img->map, img->point);
-		to_isometry(img->img, img->map, img->point);
+		to_2d(img->img, img->map, img->point);
 	}
 }
 
-void	rotate_z(t_point *point, t_map *map, t_image *img) //, double rot_z)
+void	rotate_z(t_point *point, t_map *map, t_image *img, double *rot_z)
 {
 	bool	draw;
 	double	angle;
-	static double rot_z;
 
 	draw = false;
 	angle = 5;
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
 	{
 		draw = true;
-		rot_z -= angle;
+		*rot_z -= angle;
 	}
 	else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
 	{
 		draw = true;
-		rot_z += angle;
+		*rot_z += angle;
 	}
-	angle = rot_z * M_PI / 180;
+	angle = *rot_z * M_PI / 180;
 	if (draw)
 	{
 		double center_x = 0;
@@ -164,6 +161,42 @@ void	rotate_z(t_point *point, t_map *map, t_image *img) //, double rot_z)
 		}
 		clear_img(img->img);
 		img->point = fill_image(img->img, img->map, img->point);
-		to_isometry(img->img, img->map, img->point);
+		to_2d(img->img, img->map, img->point);
 	}
 }
+
+/*void	rotate_obj(t_point	*point, t_map *map, char type, t_image *img)
+{
+	t_matrix	matrix;
+	int			i;
+
+	i = 0;
+	while (i < map->nums_in_line * map->lines)
+	{
+		matrix.i = (double [3]){point[i].x, point[i].y, point[i].z};
+		matrix.j = (double [3]){point[i].x, point[i].y, point[i].z};
+		matrix.k = (double [3]){point[i].x, point[i].y, point[i].z};
+		if (type == 'x')
+		{
+			point[i].x = matrix.i[0] * 1 + matrix.i[1] * 0 + matrix.i[2] * 0;
+			point[i].y = matrix.j[0] * 0 + matrix.j[1] * cos(.01) + matrix.j[2] * -sin(.01);
+			point[i].z = matrix.k[0] * 0 + matrix.k[1] * sin(.01) + matrix.k[2] * cos(.01);
+		}
+		else if (type == 'y')
+		{
+			point[i].x = matrix.i[0] * cos(.01) + matrix.i[1] * 0 + matrix.i[2] * sin(.01);
+			point[i].y = matrix.j[0] * 0 + matrix.j[1] * 1 + matrix.j[2] * 0;
+			point[i].z = matrix.k[0] * -sin(.01) + matrix.k[1] * 0 + matrix.k[2] * cos(.01);
+		}
+		else if (type == 'z')
+		{
+			point[i].x = matrix.i[0] * cos(.01) + matrix.i[1] * -sin(.01) + matrix.i[2] * 0;
+			point[i].y = matrix.j[0] * sin(.01) + matrix.j[1] * cos(.01) + matrix.j[2] * 0;
+			point[i].z = matrix.k[0] * 0 + matrix.k[1] * 0 + matrix.k[2] * 1;
+		}
+		i++;
+	}
+	clear_img(img->img);
+	img->point = fill_image(img->img, img->map, img->point);
+	to_2d(img->img, img->map, img->point);
+}*/

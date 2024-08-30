@@ -6,20 +6,34 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/22 17:45:47 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:28:12 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static void	to_2d(t_point *point, t_isom *isom)
+static void	to_isometry(t_point *point, t_isom *isom)
 {
 	isom->x = point->x - point->y + 400;
 	isom->y = (point->x + point->y) / 2 - point->z + 150;
 	isom->color = point->color;
 }
 
-t_isom	*to_isometry(mlx_image_t *img, t_map *map, t_point *point)
+/*static void	to_perspective(t_point *point, t_isom *isom)
+{
+	if (point->z != 0)
+	{
+		isom->x = point->x / point->z;
+		isom->y = point->y / point->z;
+	}
+	else
+	{
+		isom->x = 0;
+		isom->y = 0;
+	}
+}*/
+
+t_isom	*to_2d(mlx_image_t *img, t_map *map, t_point *point)
 {
 	t_isom	*isom;
 	int		i;
@@ -34,7 +48,7 @@ t_isom	*to_isometry(mlx_image_t *img, t_map *map, t_point *point)
 	i = 0;
 	while ((size_t)i < img->count)
 	{
-		to_2d(&point[i], &isom[i]);
+		to_isometry(&point[i], &isom[i]);
 		i++;
 	}
 	i = 0;
