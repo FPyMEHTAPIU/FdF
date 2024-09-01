@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/30 14:28:12 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/01 19:14:00 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	to_isometry(t_point *point, t_isom *isom)
 {
+	
 	isom->x = point->x - point->y + 400;
 	isom->y = (point->x + point->y) / 2 - point->z + 150;
 	isom->color = point->color;
@@ -42,7 +43,7 @@ t_isom	*to_2d(mlx_image_t *img, t_map *map, t_point *point)
 	isom = malloc(sizeof(t_isom) * img->count);
 	if (!isom)
 	{
-		ft_printf("FUCK YOU in creation t_isom!\n");
+		ft_printf("Error in creation t_isom!\n");
 		return (NULL);
 	}
 	i = 0;

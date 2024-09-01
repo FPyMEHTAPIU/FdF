@@ -6,14 +6,14 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/30 15:25:45 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/01 19:26:33 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 #include <stdio.h>
 
-void	rotate_x(t_point *point, t_map *map, t_image *img, double *rot_x)
+/*void	rotate_x(t_point *point, t_map *map, t_image *img, double *rot_x)
 {
 	bool		draw;
 
@@ -163,9 +163,9 @@ void	rotate_z(t_point *point, t_map *map, t_image *img, double *rot_z)
 		img->point = fill_image(img->img, img->map, img->point);
 		to_2d(img->img, img->map, img->point);
 	}
-}
+}*/
 
-/*void	rotate_obj(t_point	*point, t_map *map, char type, t_image *img)
+void	rotate_obj(t_point	*point, t_map *map, char type, t_image *img, double val)
 {
 	t_matrix	matrix;
 	int			i;
@@ -173,25 +173,28 @@ void	rotate_z(t_point *point, t_map *map, t_image *img, double *rot_z)
 	i = 0;
 	while (i < map->nums_in_line * map->lines)
 	{
-		matrix.i = (double [3]){point[i].x, point[i].y, point[i].z};
-		matrix.j = (double [3]){point[i].x, point[i].y, point[i].z};
-		matrix.k = (double [3]){point[i].x, point[i].y, point[i].z};
+		matrix.i = (double [3]){img->orig_point[i].x, img->orig_point[i].y, img->orig_point[i].z};
+		matrix.j = (double [3]){img->orig_point[i].x, img->orig_point[i].y, img->orig_point[i].z};
+		matrix.k = (double [3]){img->orig_point[i].x, img->orig_point[i].y, img->orig_point[i].z};
 		if (type == 'x')
 		{
+			point[i].angle_x += val;
 			point[i].x = matrix.i[0] * 1 + matrix.i[1] * 0 + matrix.i[2] * 0;
-			point[i].y = matrix.j[0] * 0 + matrix.j[1] * cos(.01) + matrix.j[2] * -sin(.01);
-			point[i].z = matrix.k[0] * 0 + matrix.k[1] * sin(.01) + matrix.k[2] * cos(.01);
+			point[i].y = matrix.j[0] * 0 + matrix.j[1] * cos(point[i].angle_x) + matrix.j[2] * -sin(point[i].angle_x);
+			point[i].z = matrix.k[0] * 0 + matrix.k[1] * sin(point[i].angle_x) + matrix.k[2] * cos(point[i].angle_x);
 		}
 		else if (type == 'y')
 		{
-			point[i].x = matrix.i[0] * cos(.01) + matrix.i[1] * 0 + matrix.i[2] * sin(.01);
+			point[i].angle_y += val;
+			point[i].x = matrix.i[0] * cos(point[i].angle_y) + matrix.i[1] * 0 + matrix.i[2] * sin(point[i].angle_y);
 			point[i].y = matrix.j[0] * 0 + matrix.j[1] * 1 + matrix.j[2] * 0;
-			point[i].z = matrix.k[0] * -sin(.01) + matrix.k[1] * 0 + matrix.k[2] * cos(.01);
+			point[i].z = matrix.k[0] * -sin(point[i].angle_y) + matrix.k[1] * 0 + matrix.k[2] * cos(point[i].angle_y);
 		}
 		else if (type == 'z')
 		{
-			point[i].x = matrix.i[0] * cos(.01) + matrix.i[1] * -sin(.01) + matrix.i[2] * 0;
-			point[i].y = matrix.j[0] * sin(.01) + matrix.j[1] * cos(.01) + matrix.j[2] * 0;
+			point[i].angle_z += val;
+			point[i].x = matrix.i[0] * cos(point[i].angle_z) + matrix.i[1] * -sin(point[i].angle_z) + matrix.i[2] * 0;
+			point[i].y = matrix.j[0] * sin(point[i].angle_z) + matrix.j[1] * cos(point[i].angle_z) + matrix.j[2] * 0;
 			point[i].z = matrix.k[0] * 0 + matrix.k[1] * 0 + matrix.k[2] * 1;
 		}
 		i++;
@@ -199,4 +202,4 @@ void	rotate_z(t_point *point, t_map *map, t_image *img, double *rot_z)
 	clear_img(img->img);
 	img->point = fill_image(img->img, img->map, img->point);
 	to_2d(img->img, img->map, img->point);
-}*/
+}

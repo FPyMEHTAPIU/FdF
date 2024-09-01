@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/30 14:44:03 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/01 19:27:09 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ static void	zoom_img(t_image *img, double space)
 void	fdf_keys(void *obj)
 {
 	t_image	*img;
-	double	rot_x;
-	double	rot_y;
-	double	rot_z;
+	//double	rot_x;
+	//double	rot_y;
+	//double	rot_z;
 
 	img = (t_image *) obj;
-	rot_x = 0.0;
-	rot_y = 0.0;
-	rot_z = 0.0;
+	//rot_x = 0.0;
+	//rot_y = 0.0;
+	//rot_z = 0.0;
 	if (mlx_is_key_down(img->obj, MLX_KEY_ESCAPE))
 		mlx_close_window(img->obj);
 	if (mlx_is_key_down(img->obj, MLX_KEY_UP))
@@ -85,14 +85,14 @@ void	fdf_keys(void *obj)
 	if (mlx_is_key_down(img->obj, MLX_KEY_MINUS))
 		zoom_img(img, -0.2);
 	if (mlx_is_key_down(img->obj, MLX_KEY_Z))
-		//rotate_obj(img->point, img->map, 'z', img);
-		rotate_z(img->point, img->map, img, &rot_z);
+		rotate_obj(img->point, img->map, 'z', img, .01);
+		//rotate_z(img->point, img->map, img, &rot_z);
 	if (mlx_is_key_down(img->obj, MLX_KEY_X))
-		//rotate_obj(img->point, img->map, 'x', img);
-		rotate_x(img->point, img->map, img, &rot_x);
+		rotate_obj(img->point, img->map, 'x', img, .01);
+		//rotate_x(img->point, img->map, img, &rot_x);
 	if (mlx_is_key_down(img->obj, MLX_KEY_C))
-		//rotate_obj(img->point, img->map, 'y', img);
-		rotate_y(img->point, img->map, img, &rot_y);
+		rotate_obj(img->point, img->map, 'y', img, .01);
+		//rotate_y(img->point, img->map, img, &rot_y);
 }
 
 void	zoom(double xdelta, double ydelta, void *param)

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/30 13:57:51 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/01 19:19:26 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static t_image	*set_size(mlx_t *obj, mlx_image_t *img, t_point *point, t_map *ma
 	t_img = malloc(sizeof(t_image));
 	if (!t_img)
 	{
-		ft_printf("FUCK YOU in alloc t_image size struct!\n");
+		ft_printf("Error in allocation t_image size struct!\n");
 		return (NULL);
 	}
 	t_img->x = 0;
@@ -82,7 +82,7 @@ static t_image	*set_size(mlx_t *obj, mlx_image_t *img, t_point *point, t_map *ma
 	t_img->obj = obj;
 	t_img->img = img;
 	t_img->point = point;
-	//t_img->orig_point = copy_point(point, map);
+	t_img->orig_point = copy_point(point, map);
 	t_img->map = map;
 	return (t_img);
 }
