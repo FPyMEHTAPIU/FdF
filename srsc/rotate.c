@@ -6,40 +6,42 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/01 19:26:33 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/01 19:47:26 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 #include <stdio.h>
 
-/*void	rotate_x(t_point *point, t_map *map, t_image *img, double *rot_x)
+void	rotate_x(t_point *point, t_map *map, t_image *img, double rot_x)
 {
 	bool		draw;
+	t_matrix	matrix;
+	int			i;
 
 	draw = false;
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
 	{
 		draw = true;
-		*rot_x -= 0.01;
+		rot_x = -0.01;
 	}
 	else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
 	{
 		draw = true;
-		*rot_x += 0.01;
+		rot_x = 0.01;
 	}
-	if (*rot_x >= 360 || *rot_x <= -360)
-		*rot_x = 0.0;
+	/*if (*rot_x >= 360 || *rot_x <= -360)
+		rot_x = 0.0;*/
 	if (draw)
 	{
 		double center_y;
-        if (map->lines % 2 == 0) {
+        /*if (map->lines % 2 == 0) {
             center_y = (point[(map->lines / 2) * map->nums_in_line].y +
                         point[(map->lines / 2 - 1) * map->nums_in_line].y) / 2.0;
         } else {
             center_y = point[(map->lines / 2) * map->nums_in_line].y;
         }
-
+		
         // Вращаем каждую точку вокруг оси X
         for (int i = 0; i < map->lines; i++) {
             for (int j = 0; j < map->nums_in_line; j++) {
@@ -54,7 +56,28 @@
                 point[index].y = rotated_y + center_y;
                 point[index].z = rotated_z;
             }
+        }*/
+
+	   	if (map->lines % 2 == 0) {
+            center_y = (img->orig_point[(map->lines / 2) * map->nums_in_line].y +
+                        img->orig_point[(map->lines / 2 - 1) * map->nums_in_line].y) / 2.0;
+        } else {
+            center_y = img->orig_point[(map->lines / 2) * map->nums_in_line].y;
         }
+		i = 0;
+		while (i < map->nums_in_line * map->lines)
+		{
+			matrix.i = (double [3]){img->orig_point[i].x, img->orig_point[i].y - center_y, img->orig_point[i].z};
+			matrix.j = (double [3]){img->orig_point[i].x, img->orig_point[i].y - center_y, img->orig_point[i].z};
+			matrix.k = (double [3]){img->orig_point[i].x, img->orig_point[i].y - center_y, img->orig_point[i].z};
+				
+			point[i].angle_x += rot_x;
+			point[i].x = matrix.i[0] * 1 + matrix.i[1] * 0 + matrix.i[2] * 0;
+			point[i].y = (matrix.j[0] * 0 + matrix.j[1] * cos(point[i].angle_x) + matrix.j[2] * -sin(point[i].angle_x)) + center_y;
+			point[i].z = matrix.k[0] * 0 + matrix.k[1] * sin(point[i].angle_x) + matrix.k[2] * cos(point[i].angle_x);
+			
+			i++;
+		}
 		printf("pos[0].x = %f\tpos[0].y = %f\tpos[0].z = %f\n", point[0].x, point[0].y, point[0].z);
 		clear_img(img->img);
 		img->point = fill_image(img->img, img->map, img->point);
@@ -163,7 +186,7 @@ void	rotate_z(t_point *point, t_map *map, t_image *img, double *rot_z)
 		img->point = fill_image(img->img, img->map, img->point);
 		to_2d(img->img, img->map, img->point);
 	}
-}*/
+}
 
 void	rotate_obj(t_point	*point, t_map *map, char type, t_image *img, double val)
 {
@@ -193,8 +216,8 @@ void	rotate_obj(t_point	*point, t_map *map, char type, t_image *img, double val)
 		else if (type == 'z')
 		{
 			point[i].angle_z += val;
-			point[i].x = matrix.i[0] * cos(point[i].angle_z) + matrix.i[1] * -sin(point[i].angle_z) + matrix.i[2] * 0;
-			point[i].y = matrix.j[0] * sin(point[i].angle_z) + matrix.j[1] * cos(point[i].angle_z) + matrix.j[2] * 0;
+			point[i].x = matrix.i[0] * cos(to_rad(point[i].angle_z)) + matrix.i[1] * -sin(to_rad(point[i].angle_z)) + matrix.i[2] * 0;
+			point[i].y = matrix.j[0] * sin(to_rad(point[i].angle_z)) + matrix.j[1] * cos(to_rad(point[i].angle_z)) + matrix.j[2] * 0;
 			point[i].z = matrix.k[0] * 0 + matrix.k[1] * 0 + matrix.k[2] * 1;
 		}
 		i++;

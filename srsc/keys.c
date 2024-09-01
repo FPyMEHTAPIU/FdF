@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/01 19:27:09 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/01 19:45:24 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void	fdf_keys(void *obj)
 		rotate_obj(img->point, img->map, 'z', img, .01);
 		//rotate_z(img->point, img->map, img, &rot_z);
 	if (mlx_is_key_down(img->obj, MLX_KEY_X))
-		rotate_obj(img->point, img->map, 'x', img, .01);
-		//rotate_x(img->point, img->map, img, &rot_x);
+		//rotate_obj(img->point, img->map, 'x', img, .01);
+		rotate_x(img->point, img->map, img, .01);
 	if (mlx_is_key_down(img->obj, MLX_KEY_C))
 		rotate_obj(img->point, img->map, 'y', img, .01);
 		//rotate_y(img->point, img->map, img, &rot_y);

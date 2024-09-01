@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/01 19:26:54 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/01 19:45:42 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,13 @@ uint32_t	set_neg_color(int num);
 uint32_t	set_color(int num);
 void		fdf_keys(void *obj);
 void		clear_img(mlx_image_t *img);
-//void		rotate_x(t_point *point, t_map *map, t_image *img, double *rot_x);
+void		rotate_x(t_point *point, t_map *map, t_image *img, double rot_x);
 //void		rotate_y(t_point *point, t_map *map, t_image *img, double *rot_y);
 //void		rotate_z(t_point *point, t_map *map, t_image *img, double *rot_z);
 void		zoom(double xdelta, double ydelta, void *param);
 void		reset_point(t_point *orig_point, t_point *point, t_map *map);
 t_point		*copy_point(t_point *point, t_map *map);
 void		rotate_obj(t_point	*point, t_map *map, char type, t_image *img, double val);
+double		to_rad(double angle);
 
 #endif
