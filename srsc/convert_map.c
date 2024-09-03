@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/01 19:21:35 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:12:21 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static t_point *alloc_and_convert(char **strs, int num_count, t_point *point)
 		point->move_y = 0.0;
 		point->angle_x = 0.0;
 		point->angle_y = 0.0;
-		point->angle_z = 0.0;
 		i++;
 		point++;
 	}

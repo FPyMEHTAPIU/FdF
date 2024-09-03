@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/01 19:36:59 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:10:22 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,26 @@ static void	to_isometry(t_point *point, t_isom *isom)
 	}
 }*/
 
+void	change_perspective(mlx_image_t *img, t_point *point, t_isom *isom)
+{
+	int			i;
+
+	i = 0;
+	if (point->type == 'P') 
+	{
+		
+	}
+	else
+	{
+		while ((size_t)i < img->count)
+		{
+			to_isometry(&point[i], &isom[i]);
+			i++;
+		}
+	}
+}
+	
+
 t_isom	*to_2d(mlx_image_t *img, t_map *map, t_point *point)
 {
 	t_isom	*isom;
@@ -46,12 +66,13 @@ t_isom	*to_2d(mlx_image_t *img, t_map *map, t_point *point)
 		ft_printf("Error in creation t_isom!\n");
 		return (NULL);
 	}
-	i = 0;
+	change_perspective(img, point, isom);
+	/*i = 0;
 	while ((size_t)i < img->count)
 	{
 		to_isometry(&point[i], &isom[i]);
 		i++;
-	}
+	}*/
 	i = 0;
 	while (i < map->lines)
 	{

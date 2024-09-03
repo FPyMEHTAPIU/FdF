@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:40:03 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/27 12:42:17 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:48:17 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	reset_point(t_point *orig_point, t_point *point, t_map *map)
 	total = map->lines * map->nums_in_line;
 	while (i < total)
 	{
-		orig_point[i].x = point[i].x;
-		orig_point[i].y = point[i].y;
-		orig_point[i].z = point[i].z;
-		orig_point[i].color = point[i].color;
-		orig_point[i].space = point[i].space;
-		orig_point[i].move_x = point[i].move_x;
-		orig_point[i].move_y = point[i].move_y;
+		point[i].x = orig_point[i].x;
+		point[i].y = orig_point[i].y;
+		point[i].z = orig_point[i].z;
+		point[i].color = orig_point[i].color;
+		point[i].space = orig_point[i].space;
+		// point[i].move_x = orig_point[i].move_x;
+		// point[i].move_y = orig_point[i].move_y;
 		i++;
 	}
 }

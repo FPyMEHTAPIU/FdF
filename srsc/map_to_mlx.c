@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/01 19:19:26 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:57:04 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_point	*fill_image(mlx_image_t *img, t_map *map, t_point *point)
 	int	j;
 	double	pos_x;
 	double	pos_y;
-	//int space;
 
 	i = 0;
 	img->count = (size_t)(map->nums_in_line * map->lines);

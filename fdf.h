@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/03 12:56:26 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:05:01 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct	s_point
 	double		move_y;
 	double		angle_x;
 	double		angle_y;
-	double		angle_z;
+	char		type;
 }	t_point;
 
 typedef struct	s_color

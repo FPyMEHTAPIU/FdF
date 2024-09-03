@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/03 12:56:20 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:00:45 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,12 @@ static void	multiply_matrix(t_point *point, t_image *img, t_matrix mtx, double *
 		point[i].x = mtx.i[0] * 1 + (mtx.i[1] - center[1]) * 0 + mtx.i[2] * 0;
 		point[i].y = mtx.j[0] * 0 + (mtx.j[1] - center[1]) * cos(point[i].angle_x) + mtx.j[2] * -sin(point[i].angle_x) + center[1];
 		point[i].z = mtx.k[0] * 0 + (mtx.k[1] - center[1]) * sin(point[i].angle_x) + mtx.k[2] * cos(point[i].angle_x);
-		
 		mtx.i = (double [3]){point[i].x, point[i].y, point[i].z};
 		mtx.j = (double [3]){point[i].x, point[i].y, point[i].z};
 		mtx.k = (double [3]){point[i].x, point[i].y, point[i].z};
-		
 		point[i].x = (mtx.i[0] - center[0]) * cos(point[i].angle_y) + mtx.i[1] * 0 + mtx.i[2] * sin(point[i].angle_y) + center[0];
 		point[i].y = (mtx.j[0] - center[0]) * 0 + mtx.j[1] * 1 + mtx.j[2] * 0;
 		point[i].z = (mtx.k[0] - center[0]) * -sin(point[i].angle_y) + mtx.k[1] * 0 + mtx.k[2] * cos(point[i].angle_y);
-		
 		i++;
 	}
 }
@@ -75,7 +72,8 @@ void	rotate_obj(t_point	*point, t_map *map, char type, t_image *img)
         if (map->nums_in_line % 2 == 0)
 		{
             center[0] = (img->orig_point[map->nums_in_line / 2].x + img->orig_point[map->nums_in_line / 2 - 1].x) / 2.0;
-			center[1] = (img->orig_point[(map->lines / 2) * map->nums_in_line].y + img->orig_point[(map->lines / 2 - 1) * map->nums_in_line].y) / 2.0;
+			center[1] = (img->orig_point[(map->lines / 2) * map->nums_in_line].y \
+				+ img->orig_point[(map->lines / 2 - 1) * map->nums_in_line].y) / 2.0;
         } 
 		else
 		{
