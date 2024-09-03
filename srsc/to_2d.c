@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/03 14:10:22 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:23:44 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,22 @@ static void	to_isometry(t_point *point, t_isom *isom)
 
 void	change_perspective(mlx_image_t *img, t_point *point, t_isom *isom)
 {
-	int			i;
+	size_t	i;
 
 	i = 0;
 	if (point->type == 'P') 
 	{
-		
+		while (i < img->count)
+		{
+			isom[i].x = point[i].x + 400;
+			isom[i].y = point[i].y + 150;
+			isom[i].color = point[i].color;
+			i++;
+		}
 	}
 	else
 	{
-		while ((size_t)i < img->count)
+		while (i < img->count)
 		{
 			to_isometry(&point[i], &isom[i]);
 			i++;

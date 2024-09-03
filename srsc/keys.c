@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/03 14:11:58 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:29:11 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,15 @@ void	clear_img(mlx_image_t *img)
 	}
 }
 
-static void	move_img(int x, int y, t_image *img)
+static void	move_img(int x, int y, t_image *img, char dir)
 {
 	if (mlx_is_key_down(img->obj, MLX_KEY_Z) || mlx_is_key_down(img->obj, MLX_KEY_X)
 		|| mlx_is_key_down(img->obj, MLX_KEY_C))
 		return ;
+	if ((dir == 'u' || dir == 'd') && img->point->type == 'P')
+		x = 0;
+	else if ((dir == 'l' || dir == 'r') && img->point->type == 'P')
+		y = 0;
 	img->point->move_x += x;
 	img->point->move_y += y;
 	clear_img(img->img);
@@ -69,13 +73,13 @@ void	fdf_keys(void *obj)
 	if (mlx_is_key_down(img->obj, MLX_KEY_ESCAPE))
 		mlx_close_window(img->obj);
 	if (mlx_is_key_down(img->obj, MLX_KEY_UP))
-		move_img(-5, -5, img);
+		move_img(-5, -5, img, 'u');
 	if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
-		move_img(5, -5, img);
+		move_img(5, -5, img, 'r');
 	if (mlx_is_key_down(img->obj, MLX_KEY_DOWN))
-		move_img(5, 5, img);
+		move_img(5, 5, img, 'd');
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
-		move_img(-5, 5, img);
+		move_img(-5, 5, img, 'l');
 	if (mlx_is_key_down(img->obj, MLX_KEY_EQUAL))
 		zoom_img(img, 0.2);
 	if (mlx_is_key_down(img->obj, MLX_KEY_MINUS))
