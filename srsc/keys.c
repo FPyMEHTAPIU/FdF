@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/02 15:38:12 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:56:44 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,12 @@ void	fdf_keys(void *obj)
 		zoom_img(img, 0.2);
 	if (mlx_is_key_down(img->obj, MLX_KEY_MINUS))
 		zoom_img(img, -0.2);
-	if (mlx_is_key_down(img->obj, MLX_KEY_Z))
-		rotate_obj(img->point, img->map, 'z', img, .01);
-		//rotate_z(img->point, img->map, img, &rot_z);
+	/*if (mlx_is_key_down(img->obj, MLX_KEY_Z))
+		rotate_obj(img->point, img->map, 'z', img);*/
 	if (mlx_is_key_down(img->obj, MLX_KEY_X))
-		rotate_x(img->point, img->map, img);
+		rotate_obj(img->point, img->map, 'x', img);
 	if (mlx_is_key_down(img->obj, MLX_KEY_C))
-		rotate_y(img->point, img->map, img);
+		rotate_obj(img->point, img->map, 'y', img);
 }
 
 void	zoom(double xdelta, double ydelta, void *param)
