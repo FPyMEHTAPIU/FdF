@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/27 12:42:10 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:57:04 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_point	*fill_image(mlx_image_t *img, t_map *map, t_point *point)
 	int	j;
 	double	pos_x;
 	double	pos_y;
-	//int space;
 
 	i = 0;
 	img->count = (size_t)(map->nums_in_line * map->lines);
@@ -71,7 +70,7 @@ static t_image	*set_size(mlx_t *obj, mlx_image_t *img, t_point *point, t_map *ma
 	t_img = malloc(sizeof(t_image));
 	if (!t_img)
 	{
-		ft_printf("FUCK YOU in alloc t_image size struct!\n");
+		ft_printf("Error in allocation t_image size struct!\n");
 		return (NULL);
 	}
 	t_img->x = 0;
@@ -97,7 +96,7 @@ void	map_to_mlx(t_map *map, t_point *point)
 		mlx_terminate(obj);
 	mlx_image_t	*img = mlx_new_image(obj, 2000, 1000);
 	point = fill_image(img, map, point);
-	to_isometry(img, map, point);
+	to_2d(img, map, point);
 	img_size = set_size(obj, img, point, map);
 	mlx_image_to_window(obj, img, img_size->x, img_size->y);
 	mlx_scroll_hook(obj, zoom, img_size);
