@@ -6,9 +6,21 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/04 11:54:00 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/04 13:21:40 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# Colors
+
+DEF_COLOR = \033[0;39m
+GRAY = \033[0;90m
+RED = \033[0;91m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
+BLUE = \033[0;94m
+MAGENTA = \033[0;95m
+CYAN = \033[0;96m
+WHITE = \033[0;97m
 
 NAME = fdf
 
@@ -49,24 +61,35 @@ LIB = ranlib
 all: ${LIBFT_NAME} ${NAME}
 
 ${LIBFT_NAME}:
-	@make -C ${LIBFT_DIR}
+	@echo "$(CYAN)🛠  Compiling libft... 🛠$(DEF_COLOR)"
+	@make -C ${LIBFT_DIR} --no-print-directory
 
 ${NAME}: ${OBJS}
+	@echo "$(MAGENTA)🗂  Copying libft 🗂$(DEF_COLOR)"
 	@cp ${LIBFT_DIR}/libft.a .
+	@echo "$(MAGENTA)🗂  Copying mlx 🗂$(DEF_COLOR)"
 	@cp ${MLX_DIR}/libmlx42.a .
+	@echo "$(BLUE)🛠  Compiling FdF... 🛠$(DEF_COLOR)"
 	@cc ${CFLAGS} ${OBJS} libft.a libmlx42.a -ldl -lglfw -pthread -lm -o ${NAME}
+	@echo "$(GREEN)🥳 Success!🥳$(DEF_COLOR)"
 
 %.o: %.c
-	cc $(CFLAGS) -Iinclude -c $< -o $@
+	@cc $(CFLAGS) -Iinclude -c $< -o $@
 
-clean: 
+clean:
+	@echo "$(YELLOW)🚽 Deleting object files... 🚽$(DEF_COLOR)"
 	@${RM} ${OBJS}
-	@make clean -C ${LIBFT_DIR}
+	@echo "$(YELLOW)🚽 Deleting object files in libft dir... 🚽$(DEF_COLOR)"
+	@make clean -C ${LIBFT_DIR} --no-print-directory
 
 fclean: clean
+	@echo "$(RED)🪦  Deleting FdF... 🪦$(DEF_COLOR)"
 	@${RM} ${NAME}
-	@make fclean -C ${LIBFT_DIR}
+	@echo "$(RED)🪦  Deleting libft... 🪦$(DEF_COLOR)"
+	@make fclean -C ${LIBFT_DIR} --no-print-directory
 	@${RM} libft.a
+	@echo "$(RED)🪦  Deleting mlx... 🪦$(DEF_COLOR)"
 	@${RM} libmlx42.a
+	@echo "$(RED)☣️  CLEAR ☣️$(DEF_COLOR)"
 
 re: fclean all
