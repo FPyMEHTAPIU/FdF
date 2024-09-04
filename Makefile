@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/01 19:37:15 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/04 11:54:00 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRCS = \
 	${SRC_DIR}/keys.c \
 	${SRC_DIR}/rotate.c \
 	${SRC_DIR}/point_handle.c \
-	${SRC_DIR}/utils.c
+	${SRC_DIR}/utils.c \
+	${SRC_DIR}/gui.c
 
 OBJS = ${SRCS:.c=.o}
 

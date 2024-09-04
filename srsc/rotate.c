@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/03 13:00:45 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:30:18 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,25 @@ static bool	does_rotate(double *angle, t_image *img)
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
 	{
 		*angle = -0.01;
-		/*if (point[0].angle_x <= -1.5)
-			*angle = 0.0;*/
+		/*if (img->point[0].angle_x <= -3.0)
+		{
+			img->point[0].angle_x = 0.0;
+			*angle = 0.01;
+		}
+		else if (img->point[0].angle_x <= -1.5)
+			*angle = 0.01;*/
 		return (true);
 	}
 	else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
 	{
 		*angle = 0.01;
-		/*if (point[0].angle_x >= 1.5)
-			*angle = 0.0;*/
+		/*if (img->point[0].angle_x >= 3.0)
+		{
+			img->point[0].angle_x = 0.0;
+			*angle = -0.01;
+		}
+		else if (img->point[0].angle_x >= -1.5)
+			*angle = -0.01;*/
 		return (true);
 	}
 	return (false);

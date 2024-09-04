@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/03 13:57:04 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:19:22 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static t_image	*set_size(mlx_t *obj, mlx_image_t *img, t_point *point, t_map *ma
 		ft_printf("Error in allocation t_image size struct!\n");
 		return (NULL);
 	}
-	t_img->x = 0;
+	t_img->x = WIN_WIDTH / 4;
 	t_img->y = 0;
 	t_img->width = img->width;
 	t_img->height = img->height;
@@ -90,14 +90,19 @@ void	map_to_mlx(t_map *map, t_point *point)
 {
 	mlx_t	*obj;
 	t_image	*img_size;
+	mlx_image_t	*img;
+	mlx_image_t	*gui;
 
-	obj = mlx_init(800, 600, "FDF", 1);
+	obj = mlx_init(1600, 800, "FDF", 1);
 	if (!obj)
 		mlx_terminate(obj);
-	mlx_image_t	*img = mlx_new_image(obj, 2000, 1000);
+	img = mlx_new_image(obj, WIN_WIDTH, WIN_HEIGHT);
 	point = fill_image(img, map, point);
 	to_2d(img, map, point);
 	img_size = set_size(obj, img, point, map);
+	gui = draw_gui(obj);
+	mlx_image_to_window(obj, gui, 0, 0);
+	draw_instructions(obj);
 	mlx_image_to_window(obj, img, img_size->x, img_size->y);
 	mlx_scroll_hook(obj, zoom, img_size);
 	mlx_loop_hook(obj, fdf_keys, img_size);

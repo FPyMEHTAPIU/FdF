@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/03 14:05:01 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:19:42 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 #  define SPACE 20
 # endif
 
+# ifndef WIN_WIDTH
+#  define WIN_WIDTH 2000
+# endif
+
+# ifndef WIN_HEIGHT
+#  define WIN_HEIGHT 1000
+# endif
 /*--------------------STRUCTS--------------------*/
 
 typedef struct	s_map
@@ -122,5 +129,7 @@ void		reset_point(t_point *orig_point, t_point *point, t_map *map);
 t_point		*copy_point(t_point *point, t_map *map);
 void		rotate_obj(t_point	*point, t_map *map, char type, t_image *img);
 double		to_rad(double angle);
+mlx_image_t	*draw_gui(mlx_t *obj);
+void		draw_instructions(mlx_t *obj);
 
 #endif

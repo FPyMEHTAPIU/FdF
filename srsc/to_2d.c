@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/03 14:23:44 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:50:44 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	to_isometry(t_point *point, t_isom *isom)
 {
 	
-	isom->x = point->x - point->y + 400;
+	isom->x = point->x - point->y + 550;
 	isom->y = (point->x + point->y) / 2 - point->z + 150;
 	isom->color = point->color;
 }
