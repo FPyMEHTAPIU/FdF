@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 13:41:42 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:29:18 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,17 @@ void	rotate_obj(t_point	*point, t_map *map, char type, t_image *img)
 	draw = does_rotate(&center[2], img);
 	if (draw)
 	{
-        if (map->nums_in_line % 2 == 0)
+		if (map->nums_in_line % 2 == 0)
 		{
-            center[0] = (img->orig_point[map->nums_in_line / 2].x + img->orig_point[map->nums_in_line / 2 - 1].x) / 2.0;
+			center[0] = (img->orig_point[map->nums_in_line / 2].x + img->orig_point[map->nums_in_line / 2 - 1].x) / 2.0;
 			center[1] = (img->orig_point[(map->lines / 2) * map->nums_in_line].y \
 				+ img->orig_point[(map->lines / 2 - 1) * map->nums_in_line].y) / 2.0;
-        } 
+		}
 		else
 		{
-            center[0] = img->orig_point[map->nums_in_line / 2].x;
+			center[0] = img->orig_point[map->nums_in_line / 2].x;
 			center[1] = img->orig_point[(map->lines / 2) * map->nums_in_line].y;
-        }
+		}
 		multiply_matrix(point, img, matrix, center, type);
 		clear_img(img->img);
 		img->point = fill_image(img->img, img->map, img->point);

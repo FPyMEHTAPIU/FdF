@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:40:03 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/03 13:48:17 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:33:10 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	reset_point(t_point *orig_point, t_point *point, t_map *map)
 		point[i].z = orig_point[i].z;
 		point[i].color = orig_point[i].color;
 		point[i].space = orig_point[i].space;
-		// point[i].move_x = orig_point[i].move_x;
-		// point[i].move_y = orig_point[i].move_y;
 		i++;
 	}
 }
@@ -37,7 +35,7 @@ t_point	*copy_point(t_point *point, t_map *map)
 	t_point	*copy;
 	int		i;
 	int		total;
-	
+
 	total = map->lines * map->nums_in_line;
 	copy = malloc(sizeof(t_point) * total);
 	if (!copy)

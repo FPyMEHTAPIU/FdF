@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 15:14:12 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:43:40 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,3 @@ void	map_to_mlx(t_map *map, t_point *point)
 	mlx_terminate(obj);
 	free_img(img_size);
 }
-

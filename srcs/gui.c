@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:31:15 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 14:47:00 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:36:09 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	draw_back(mlx_image_t *image)
 {
 	uint32_t	i;
 	uint32_t	j;
-	
+
 	i = 0;
 	while (i < image->height)
 	{
@@ -33,7 +33,7 @@ static void	draw_back(mlx_image_t *image)
 static void	put_fdf(mlx_t *obj)
 {
 	mlx_image_t	*img;
-	int	start_point;
+	int			start_point;
 
 	start_point = 600;
 	img = mlx_put_string(obj, "FFFFF DDDDD   FFFFF", 135, start_point);
@@ -72,13 +72,16 @@ void	draw_instructions(mlx_t *obj)
 	img = mlx_put_string(obj, "- Arrows to move", 25, start_point);
 	mlx_image_to_window(obj, img, 25, start_point);
 	start_point += line_gap;
-	img = mlx_put_string(obj, "- '=', '-' and mouse wheel to zoom", 25, start_point);
+	img = mlx_put_string(obj, "- '=', '-' and mouse wheel to zoom",
+			25, start_point);
 	mlx_image_to_window(obj, img, 25, start_point);
 	start_point += line_gap;
-	img = mlx_put_string(obj, "- Hold 'x' or 'c' and use <- or -> to rotate", 25, start_point);
+	img = mlx_put_string(obj, "- Hold 'x' or 'c' and use <- or -> to rotate",
+			25, start_point);
 	mlx_image_to_window(obj, img, 25, start_point);
 	start_point += line_gap;
-	img = mlx_put_string(obj, "- Press 'P' or 'I' to change projection", 25, start_point);
+	img = mlx_put_string(obj, "- Press 'P' or 'I' to change projection",
+			25, start_point);
 	mlx_image_to_window(obj, img, 25, start_point);
 	put_fdf(obj);
 }

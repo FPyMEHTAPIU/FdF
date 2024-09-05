@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 15:06:59 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:45:31 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@
 
 /*--------------------STRUCTS--------------------*/
 
-typedef struct	s_map
+typedef struct s_map
 {
 	char	**strs;
 	int		alloc_lines;
 	int		lines;
 	int		nums_in_line;
-	double		space_incr;
+	double	space_incr;
 }	t_map;
 
-typedef struct	s_point
+typedef struct s_point
 {
 	double		x;
 	double		y;
@@ -59,7 +59,7 @@ typedef struct	s_point
 	char		type;
 }	t_point;
 
-typedef struct	s_color
+typedef struct s_color
 {
 	uint32_t	start_col;
 	uint32_t	end_col;
@@ -74,8 +74,7 @@ typedef struct	s_color
 	uint32_t	cur_color;
 }	t_color;
 
-
-typedef struct	s_isom
+typedef struct s_isom
 {
 	double		x;
 	double		y;
@@ -83,7 +82,7 @@ typedef struct	s_isom
 	int			steps;
 }	t_isom;
 
-typedef struct	s_image
+typedef struct s_image
 {
 	int			x;
 	int			y;
@@ -119,7 +118,7 @@ bool		to_2d(mlx_image_t *img, t_map *map, t_point *point);
 void		draw_line_row(mlx_image_t *img, t_isom *isom);
 void		draw_line_col(mlx_image_t *img, t_isom *isom, int nums_in_line);
 uint32_t	gradient(int fst_color, int lst_color, int steps, int cur_step);
-uint32_t 	rgb_to_rgba(uint32_t color);
+uint32_t	rgb_to_rgba(uint32_t color);
 uint32_t	set_pos_color(int num);
 uint32_t	set_neg_color(int num);
 uint32_t	set_color(int num);

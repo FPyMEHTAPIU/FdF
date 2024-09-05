@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 14:17:43 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:21:47 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	set_def_values(t_point *point)
 	point->angle_y = 0.0;
 }
 
-static t_point *alloc_and_convert(char **strs, int num_count, t_point *point)
+static t_point	*alloc_and_convert(char **strs, int num_count, t_point *point)
 {
-	int	i;
+	int		i;
 	char	**num_color;
 
 	i = 0;

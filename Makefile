@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/05 14:53:05 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/05 15:19:44 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ WHITE = \033[0;97m
 
 NAME = fdf
 
-SRC_DIR = ./srsc
+SRC_DIR = ./srcs
 
 SRCS = \
 	${SRC_DIR}/main.c \
