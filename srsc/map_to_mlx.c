@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 14:35:48 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:14:12 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ static t_image	*set_size(mlx_t *obj, mlx_image_t *img, t_point *point, t_map *ma
 	if (!t_img)
 	{
 		ft_printf("Error in allocation t_image size struct!\n");
-		return (NULL);
+		free_ret(map, point);
+		mlx_terminate(obj);
+		exit (1);
 	}
 	t_img->x = WIN_WIDTH / 4;
 	t_img->y = 0;
@@ -113,5 +115,6 @@ void	map_to_mlx(t_map *map, t_point *point)
 	mlx_loop_hook(obj, fdf_keys, img_size);
 	mlx_loop(obj);
 	mlx_terminate(obj);
+	free_img(img_size);
 }
 

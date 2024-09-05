@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 14:32:05 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:06:59 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,9 @@ double		to_rad(double angle);
 mlx_image_t	*draw_gui(mlx_t *obj);
 void		draw_instructions(mlx_t *obj);
 int			free_ret(t_map *map, t_point *point);
+void		move_img(int x, int y, t_image *img, char dir);
+void		zoom_img(t_image *img, double space);
+void		redraw(t_image *img, char type);
+void		free_img(t_image *img);
 
 #endif

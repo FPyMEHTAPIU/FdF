@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/05 14:04:53 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/05 14:53:05 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,12 @@ SRCS = \
 	${SRC_DIR}/draw_line.c \
 	${SRC_DIR}/to_2d.c \
 	${SRC_DIR}/colors.c \
-	${SRC_DIR}/keys.c \
+	${SRC_DIR}/actions.c \
 	${SRC_DIR}/rotate.c \
 	${SRC_DIR}/point_handle.c \
 	${SRC_DIR}/utils.c \
-	${SRC_DIR}/gui.c
+	${SRC_DIR}/gui.c \
+	${SRC_DIR}/hooks.c
 
 OBJS = ${SRCS:.c=.o}
 

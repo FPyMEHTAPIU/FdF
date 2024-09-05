@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:11:30 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 14:16:08 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:05:40 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,13 @@ int	free_ret(t_map *map, t_point *point)
 		free(point);
 	free_map(map);
 	return (1);
+}
+
+void	free_img(t_image *img)
+{
+	if (!img)
+		return ;
+	if (img->orig_point)
+		free(img->orig_point);
+	free(img);
 }

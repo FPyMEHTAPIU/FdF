@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:31:15 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/04 12:47:07 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:47:00 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ static void	put_fdf(mlx_t *obj)
 
 void	draw_instructions(mlx_t *obj)
 {
-	int	line_gap;
-	int	start_point;
+	int			line_gap;
+	int			start_point;
 	mlx_image_t	*img;
 
 	start_point = 50;
