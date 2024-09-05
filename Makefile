@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/04 13:21:40 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/05 14:04:53 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,9 @@ SRC_DIR = ./srsc
 SRCS = \
 	${SRC_DIR}/main.c \
 	${SRC_DIR}/check_map.c \
-	${SRC_DIR}/free_map.c \
+	${SRC_DIR}/free_ret.c \
 	${SRC_DIR}/parse_map.c \
 	${SRC_DIR}/convert_map.c \
-	${SRC_DIR}/free_arr.c \
 	${SRC_DIR}/map_to_mlx.c \
 	${SRC_DIR}/draw_line.c \
 	${SRC_DIR}/to_2d.c \

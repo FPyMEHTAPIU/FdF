@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/04 12:19:22 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:35:48 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static double	set_space(t_map *map)
 {
 	double	space;
-	int total_nums;
+	int		total_nums;
 
 	space = 1 + map->space_incr;
 	total_nums = map->lines * map->nums_in_line;
@@ -30,37 +30,12 @@ static double	set_space(t_map *map)
 	return (space);
 }
 
-t_point	*fill_image(mlx_image_t *img, t_map *map, t_point *point)
+static void	set_pos(t_point *point, int n, double *pos)
 {
-	int	i;
-	int	j;
-	double	pos_x;
-	double	pos_y;
-
-	i = 0;
-	img->count = (size_t)(map->nums_in_line * map->lines);
-	point->space = set_space(map);
-	while (i < map->lines)
-	{
-		if (i > 0)
-			pos_y += point->space;
-		else
-			pos_y = i;
-		j = 0;
-		while (j < map->nums_in_line)
-		{
-			if (j > 0)
-				pos_x += point->space;
-			else
-				pos_x = j; 
-			point[(i * map->nums_in_line) + j].x = pos_x + point->move_x;
-			point[(i * map->nums_in_line) + j].y = pos_y + point->move_y;
-			//point[(i * map->nums_in_line) + j].z += point->rot_z;
-			j++;
-		}
-		i++;
-	}
-	return (point);
+	if (n > 0)
+		*pos += point->space;
+	else
+		*pos = n;
 }
 
 static t_image	*set_size(mlx_t *obj, mlx_image_t *img, t_point *point, t_map *map)
@@ -86,10 +61,36 @@ static t_image	*set_size(mlx_t *obj, mlx_image_t *img, t_point *point, t_map *ma
 	return (t_img);
 }
 
+t_point	*fill_image(mlx_image_t *img, t_map *map, t_point *point)
+{
+	int		i;
+	int		j;
+	double	pos_x;
+	double	pos_y;
+
+	i = 0;
+	img->count = (size_t)(map->nums_in_line * map->lines);
+	point->space = set_space(map);
+	while (i < map->lines)
+	{
+		set_pos(point, i, &pos_y);
+		j = 0;
+		while (j < map->nums_in_line)
+		{
+			set_pos(point, j, &pos_x);
+			point[(i * map->nums_in_line) + j].x = pos_x + point->move_x;
+			point[(i * map->nums_in_line) + j].y = pos_y + point->move_y;
+			j++;
+		}
+		i++;
+	}
+	return (point);
+}
+
 void	map_to_mlx(t_map *map, t_point *point)
 {
-	mlx_t	*obj;
-	t_image	*img_size;
+	mlx_t		*obj;
+	t_image		*img_size;
 	mlx_image_t	*img;
 	mlx_image_t	*gui;
 
@@ -98,7 +99,11 @@ void	map_to_mlx(t_map *map, t_point *point)
 		mlx_terminate(obj);
 	img = mlx_new_image(obj, WIN_WIDTH, WIN_HEIGHT);
 	point = fill_image(img, map, point);
-	to_2d(img, map, point);
+	if (!to_2d(img, map, point))
+	{
+		mlx_terminate(obj);
+		exit (1);
+	}
 	img_size = set_size(obj, img, point, map);
 	gui = draw_gui(obj);
 	mlx_image_to_window(obj, gui, 0, 0);

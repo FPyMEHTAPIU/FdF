@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/04 12:50:44 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:35:25 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,6 @@ static void	to_isometry(t_point *point, t_isom *isom)
 	isom->y = (point->x + point->y) / 2 - point->z + 150;
 	isom->color = point->color;
 }
-
-/*static void	to_perspective(t_point *point, t_isom *isom)
-{
-	if (point->z != 0)
-	{
-		isom->x = point->x / point->z;
-		isom->y = point->y / point->z;
-	}
-	else
-	{
-		isom->x = 0;
-		isom->y = 0;
-	}
-}*/
 
 void	change_perspective(mlx_image_t *img, t_point *point, t_isom *isom)
 {
@@ -59,8 +45,15 @@ void	change_perspective(mlx_image_t *img, t_point *point, t_isom *isom)
 	}
 }
 	
+static bool	print_err(t_map *map, t_point *point)
+{
+	ft_printf("Error in creation t_isom!\n");
+	free_ret(map, point);
+	return (false);
+}
 
-t_isom	*to_2d(mlx_image_t *img, t_map *map, t_point *point)
+
+bool	to_2d(mlx_image_t *img, t_map *map, t_point *point)
 {
 	t_isom	*isom;
 	int		i;
@@ -68,17 +61,8 @@ t_isom	*to_2d(mlx_image_t *img, t_map *map, t_point *point)
 
 	isom = malloc(sizeof(t_isom) * img->count);
 	if (!isom)
-	{
-		ft_printf("Error in creation t_isom!\n");
-		return (NULL);
-	}
+		return (print_err(map, point));
 	change_perspective(img, point, isom);
-	/*i = 0;
-	while ((size_t)i < img->count)
-	{
-		to_isometry(&point[i], &isom[i]);
-		i++;
-	}*/
 	i = 0;
 	while (i < map->lines)
 	{
@@ -102,5 +86,5 @@ t_isom	*to_2d(mlx_image_t *img, t_map *map, t_point *point)
 		i++;
 	}
 	free(isom);
-	return (NULL);
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/04 12:19:42 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:32:05 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # ifndef WIN_HEIGHT
 #  define WIN_HEIGHT 1000
 # endif
+
 /*--------------------STRUCTS--------------------*/
 
 typedef struct	s_map
@@ -105,7 +106,7 @@ typedef struct s_matrix
 
 /*--------------------MAP HANDLING--------------------*/
 
-t_map		*free_map(t_map *map);
+void		free_map(t_map *map);
 t_map		*parse_map(int fd);
 int			check_map(t_map *map);
 int			count_nums(char *map_str);
@@ -114,7 +115,7 @@ void		free_arr(int **arr, int index);
 t_point		*convert_map(t_map *map, t_point *point);
 void		map_to_mlx(t_map *map, t_point *point);
 t_point		*fill_image(mlx_image_t *img, t_map *map, t_point *point);
-t_isom		*to_2d(mlx_image_t *img, t_map *map, t_point *point);
+bool		to_2d(mlx_image_t *img, t_map *map, t_point *point);
 void		draw_line_row(mlx_image_t *img, t_isom *isom);
 void		draw_line_col(mlx_image_t *img, t_isom *isom, int nums_in_line);
 uint32_t	gradient(int fst_color, int lst_color, int steps, int cur_step);
@@ -131,5 +132,6 @@ void		rotate_obj(t_point	*point, t_map *map, char type, t_image *img);
 double		to_rad(double angle);
 mlx_image_t	*draw_gui(mlx_t *obj);
 void		draw_instructions(mlx_t *obj);
+int			free_ret(t_map *map, t_point *point);
 
 #endif

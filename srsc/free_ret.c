@@ -1,23 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   free_ret.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:11:30 by msavelie          #+#    #+#             */
-/*   Updated: 2024/08/05 15:19:41 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:16:08 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-t_map	*free_map(t_map *map)
+void	free_arr(int **arr, int index)
+{
+	if (!arr)
+		return ;
+	while (index >= 0)
+	{
+		free(arr[index]);
+		arr[index] = NULL;
+		index--;
+	}
+	free(arr);
+	arr = NULL;
+}
+
+void	free_map(t_map *map)
 {
 	if (!map)
-		return (NULL);
-	if (map->alloc_lines > 0)
-		// free strs
+		return ;
+	/*if (map->strs && *map->strs && map->alloc_lines > 0)
+		ft_free_strs(map->strs, map->alloc_lines - 1);*/
 	free(map);
-	return (NULL);
+}
+
+int	free_ret(t_map *map, t_point *point)
+{
+	if (point)
+		free(point);
+	free_map(map);
+	return (1);
 }

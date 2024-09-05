@@ -6,11 +6,19 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/03 14:12:21 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:17:43 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+static void	set_def_values(t_point *point)
+{
+	point->move_x = 0.0;
+	point->move_y = 0.0;
+	point->angle_x = 0.0;
+	point->angle_y = 0.0;
+}
 
 static t_point *alloc_and_convert(char **strs, int num_count, t_point *point)
 {
@@ -32,10 +40,7 @@ static t_point *alloc_and_convert(char **strs, int num_count, t_point *point)
 			point->z = ft_atoi(strs[i]);
 			point->color = set_color(point->z);
 		}
-		point->move_x = 0.0;
-		point->move_y = 0.0;
-		point->angle_x = 0.0;
-		point->angle_y = 0.0;
+		set_def_values(point);
 		i++;
 		point++;
 	}
@@ -57,7 +62,7 @@ t_point	*convert_map(t_map *map, t_point *point)
 		{
 			ft_printf("Lines aren't equal!\n");
 			ft_free_strs(strs, count_nums(map->strs[i]));
-			//free_arr(arr, i);
+			free_ret(map, point);
 			exit (1);
 		}
 		point = alloc_and_convert(strs, map->nums_in_line, point);
