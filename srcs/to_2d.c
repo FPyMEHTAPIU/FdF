@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 15:42:14 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/06 13:59:36 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,11 @@ static bool	print_err(t_map *map, t_point *point, t_isom *isom, int n)
 	}
 }
 
-bool	to_2d(mlx_image_t *img, t_map *map, t_point *point)
+static void	draw_lines(mlx_image_t *img, t_map *map, t_isom *isom)
 {
-	t_isom	*isom;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
-	isom = malloc(sizeof(t_isom) * img->count);
-	if (!isom)
-		return (print_err(map, point, isom, 0));
-	change_perspective(img, point, isom);
 	i = 0;
 	while (i < map->lines)
 	{
@@ -83,8 +78,20 @@ bool	to_2d(mlx_image_t *img, t_map *map, t_point *point)
 	{
 		j = 0;
 		while (j < map->lines - 1)
-			draw_line_col(img, &isom[i + map->nums_in_line * j++], map->nums_in_line);
+			draw_line_col(img, &isom[i + map->nums_in_line * j++],
+				map->nums_in_line);
 		i++;
 	}
+}
+
+bool	to_2d(mlx_image_t *img, t_map *map, t_point *point)
+{
+	t_isom	*isom;
+
+	isom = malloc(sizeof(t_isom) * img->count);
+	if (!isom)
+		return (print_err(map, point, isom, 0));
+	change_perspective(img, point, isom);
+	draw_lines(img, map, isom);
 	return (print_err(map, point, isom, 1));
 }

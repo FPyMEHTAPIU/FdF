@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 15:43:40 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:03:08 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static void	set_pos(t_point *point, int n, double *pos)
 		*pos = n;
 }
 
-static t_image	*set_size(mlx_t *obj, mlx_image_t *img, t_point *point, t_map *map)
+static t_image	*set_size(mlx_t *obj, mlx_image_t *img,
+	t_point *point, t_map *map)
 {
 	t_image	*t_img;
 

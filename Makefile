@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/05 15:19:44 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/06 14:20:00 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,11 @@ SRCS = \
 	${SRC_DIR}/map_to_mlx.c \
 	${SRC_DIR}/draw_line.c \
 	${SRC_DIR}/to_2d.c \
-	${SRC_DIR}/colors.c \
+	${SRC_DIR}/calculate_colors.c \
+	${SRC_DIR}/set_colors.c \
 	${SRC_DIR}/actions.c \
 	${SRC_DIR}/rotate.c \
 	${SRC_DIR}/point_handle.c \
-	${SRC_DIR}/utils.c \
 	${SRC_DIR}/gui.c \
 	${SRC_DIR}/hooks.c
 

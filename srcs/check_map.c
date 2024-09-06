@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:41:04 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/06 12:24:08 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:11:20 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ static int	check_chars(t_map *map)
 				if (!ft_isdigit(map->strs[lines][i + 1]))
 					return (1);
 			if (check_color(map->strs, lines, &i))
-					return (1);
-			if (!ft_isdigit(map->strs[lines][i]) && map->strs[lines][i] != '-' 
+				return (1);
+			if (!ft_isdigit(map->strs[lines][i]) && map->strs[lines][i] != '-'
 				&& map->strs[lines][i] != ' ' && map->strs[lines][i] != '\n')
 				return (1);
 			i++;
@@ -88,5 +88,5 @@ int	check_map(t_map *map)
 		ft_printf("The map is not properly formatted\n");
 		return (1);
 	}
-	return (0);	
+	return (0);
 }
