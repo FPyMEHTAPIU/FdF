@@ -6,39 +6,75 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 15:29:18 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:45:29 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static bool	does_rotate(double *angle, t_image *img)
+static bool	does_rotate_x(double *angle, t_image *img)
 {
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
 	{
 		*angle = -0.01;
-		/*if (img->point[0].angle_x <= -3.0)
+		if (img->point[0].angle_x <= -3.0)
 		{
 			img->point[0].angle_x = 0.0;
 			*angle = 0.01;
 		}
 		else if (img->point[0].angle_x <= -1.5)
-			*angle = 0.01;*/
+			*angle = 0.01;
 		return (true);
 	}
 	else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
 	{
 		*angle = 0.01;
-		/*if (img->point[0].angle_x >= 3.0)
+		if (img->point[0].angle_x >= 3.0)
 		{
 			img->point[0].angle_x = 0.0;
 			*angle = -0.01;
 		}
-		else if (img->point[0].angle_x >= -1.5)
-			*angle = -0.01;*/
+		else if (img->point[0].angle_x >= 1.5)
+			*angle = -0.01;
 		return (true);
 	}
 	return (false);
+}
+
+static bool	does_rotate_y(double *angle, t_image *img)
+{
+	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
+	{
+		*angle = -0.01;
+		if (img->point[0].angle_y <= -3.0)
+		{
+			img->point[0].angle_y = 0.0;
+			*angle = 0.01;
+		}
+		else if (img->point[0].angle_y <= -1.5)
+			*angle = 0.01;
+		return (true);
+	}
+	else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
+	{
+		*angle = 0.01;
+		if (img->point[0].angle_y >= 3.0)
+		{
+			img->point[0].angle_y = 0.0;
+			*angle = -0.01;
+		}
+		else if (img->point[0].angle_y >= 1.5)
+			*angle = -0.01;
+		return (true);
+	}
+	return (false);
+}
+
+static bool	does_rotate(double *angle, t_image *img, char type)
+{
+	if (type == 'x')
+		return (does_rotate_x(angle, img));
+	return (does_rotate_y(angle, img));
 }
 
 static void	multiply_matrix(t_point *point, t_image *img, t_matrix mtx, double *center, char type)
@@ -75,12 +111,13 @@ void	rotate_obj(t_point	*point, t_map *map, char type, t_image *img)
 	double		center[3];
 
 	center[2] = 0.0;
-	draw = does_rotate(&center[2], img);
+	draw = does_rotate(&center[2], img, type);
 	if (draw)
 	{
 		if (map->nums_in_line % 2 == 0)
 		{
-			center[0] = (img->orig_point[map->nums_in_line / 2].x + img->orig_point[map->nums_in_line / 2 - 1].x) / 2.0;
+			center[0] = (img->orig_point[map->nums_in_line / 2].x \
+				+ img->orig_point[map->nums_in_line / 2 - 1].x) / 2.0;
 			center[1] = (img->orig_point[(map->lines / 2) * map->nums_in_line].y \
 				+ img->orig_point[(map->lines / 2 - 1) * map->nums_in_line].y) / 2.0;
 		}
