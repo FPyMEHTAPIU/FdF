@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 13:54:08 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:15:35 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	main(int argc, char **argv)
 		return (free_ret(map, NULL));
 	point = malloc(sizeof(t_point) * map->lines * map->nums_in_line);
 	if (!point)
+	{
+		ft_free_strs(map->strs, map->alloc_lines - 1);
 		return (free_ret(map, NULL));
+	}
 	point = convert_map(map, point);
 	map_to_mlx(map, point);
 	free_ret(map, point);

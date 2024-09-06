@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 15:45:31 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:10:44 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
 
 # ifndef WIN_HEIGHT
 #  define WIN_HEIGHT 1000
+# endif
+
+# ifndef HEX_LEN
+#  define HEX_LEN 8
 # endif
 
 /*--------------------STRUCTS--------------------*/

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 11:57:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 14:12:09 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:27:15 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,17 @@ static t_map	*realloc_map(t_map *map)
 	return (map);
 }
 
+static t_map	*check_ret(t_map *map, int i)
+{
+	if (check_map(map))
+	{
+		ft_free_strs(map->strs, --i);
+		free_ret(map, NULL);
+		return (NULL);
+	}
+	return (map);
+}
+
 t_map	*parse_map(int fd)
 {
 	t_map	*map;
@@ -93,5 +104,5 @@ t_map	*parse_map(int fd)
 	}
 	map->strs[i] = NULL;
 	map->space_incr = 0;
-	return (map);
+	return (check_ret(map, i));
 }
