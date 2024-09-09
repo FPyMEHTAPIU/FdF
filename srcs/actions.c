@@ -6,11 +6,12 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/05 15:26:28 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/09 11:02:30 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+//Danger
 #include <stdio.h>
 
 void	clear_img(mlx_image_t *img)
@@ -21,10 +22,10 @@ void	clear_img(mlx_image_t *img)
 	if (img)
 	{
 		y = 0;
-		while (y++ < img->height)
+		while (y++ < img->height - 1)
 		{
 			x = 0;
-			while (x++ < img->width)
+			while (x++ < img->width - 1)
 				mlx_put_pixel(img, x, y, 0);
 		}
 	}
@@ -49,6 +50,9 @@ void	move_img(int x, int y, t_image *img, char dir)
 
 void	zoom_img(t_image *img, double space)
 {
+	double	old_space;
+
+	old_space = img->map->space_incr;
 	if (img->point->space + img->map->space_incr >= 500.0 && space > 0.0)
 		;
 	else if (img->point->space <= 0.4 && space < 0.0)
@@ -56,6 +60,10 @@ void	zoom_img(t_image *img, double space)
 	else
 		img->map->space_incr += space;
 	clear_img(img->img);
+	if (old_space < img->map->space_incr)
+		mlx_resize_image(img->img, img->img->width + 25, img->img->height + 25);
+	else if (old_space > img->map->space_incr)
+		mlx_resize_image(img->img, img->img->width - 25, img->img->height - 25);
 	img->point = fill_image(img->img, img->map, img->point);
 	to_2d(img->img, img->map, img->point);
 }

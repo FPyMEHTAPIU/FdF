@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/06 14:20:00 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/09 10:28:41 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRCS = \
 
 OBJS = ${SRCS:.c=.o}
 
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra -Wpedantic
 
 LIBFT_NAME = ./libft/libft.a
 LIBFT_DIR = ./libft

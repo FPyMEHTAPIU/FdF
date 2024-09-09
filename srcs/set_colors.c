@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 14:09:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/06 14:09:57 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/09 10:04:11 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ uint32_t	set_pos_color(int num)
 		color = 0x2B00FFFF;
 	else if (num > 30 && num <= 50)
 		color = 0xD900FFFF;
-	else if (num > 50)
+	else
 		color = 0xFF00EAFF;
 	return (color);
 }
@@ -45,7 +45,7 @@ uint32_t	set_neg_color(int num)
 		color = 0xFF5100FF;
 	else if (num < -30 && num >= -50)
 		color = 0xFF0400FF;
-	else if (num < -50)
+	else
 		color = 0xFF0000FF;
 	return (color);
 }
