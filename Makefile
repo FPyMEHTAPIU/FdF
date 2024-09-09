@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/09 10:28:41 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/09 14:27:49 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ WHITE = \033[0;97m
 NAME = fdf
 
 SRC_DIR = ./srcs
+BONUS_DIR = ./bonus
 
 SRCS = \
 	${SRC_DIR}/main.c \
@@ -37,13 +38,27 @@ SRCS = \
 	${SRC_DIR}/to_2d.c \
 	${SRC_DIR}/calculate_colors.c \
 	${SRC_DIR}/set_colors.c \
-	${SRC_DIR}/actions.c \
-	${SRC_DIR}/rotate.c \
-	${SRC_DIR}/point_handle.c \
-	${SRC_DIR}/gui.c \
 	${SRC_DIR}/hooks.c
 
+BONUS_SRCS = \
+	${BONUS_DIR}/main_bonus.c \
+	${BONUS_DIR}/check_map_bonus.c \
+	${BONUS_DIR}/free_ret_bonus.c \
+	${BONUS_DIR}/parse_map_bonus.c \
+	${BONUS_DIR}/convert_map_bonus.c \
+	${BONUS_DIR}/map_to_mlx_bonus.c \
+	${BONUS_DIR}/draw_line_bonus.c \
+	${BONUS_DIR}/to_2d_bonus.c \
+	${BONUS_DIR}/calculate_colors_bonus.c \
+	${BONUS_DIR}/set_colors_bonus.c \
+	${BONUS_DIR}/actions_bonus.c \
+	${BONUS_DIR}/rotate_bonus.c \
+	${BONUS_DIR}/point_handle_bonus.c \
+	${BONUS_DIR}/gui_bonus.c \
+	${BONUS_DIR}/hooks_bonus.c
+
 OBJS = ${SRCS:.c=.o}
+BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 
 CFLAGS = -g -Wall -Werror -Wextra -Wpedantic
 
@@ -56,7 +71,7 @@ RM = rm -rf
 AR = ar -rcs
 LIB = ranlib
 
-.PHONY = all clean fclean re
+.PHONY = all clean fclean re bonus
 
 all: ${LIBFT_NAME} ${NAME}
 
@@ -79,6 +94,7 @@ ${NAME}: ${OBJS}
 clean:
 	@echo "$(YELLOW)🚽 Deleting object files... 🚽$(DEF_COLOR)"
 	@${RM} ${OBJS}
+	@${RM} ${BONUS_OBJS}
 	@echo "$(YELLOW)🚽 Deleting object files in libft dir... 🚽$(DEF_COLOR)"
 	@make clean -C ${LIBFT_DIR} --no-print-directory
 
@@ -91,5 +107,15 @@ fclean: clean
 	@echo "$(RED)🪦  Deleting mlx... 🪦$(DEF_COLOR)"
 	@${RM} libmlx42.a
 	@echo "$(RED)☣️  CLEAR ☣️$(DEF_COLOR)"
+	@${RM} .bonus
 
 re: fclean all
+
+bonus: all .bonus
+
+.bonus: ${BONUS_OBJS} ${LIBFT_NAME}
+	@touch .bonus
+	@${RM} ${NAME}
+	@echo "$(BLUE)🛠  Compiling FdF with bonus... 🛠$(DEF_COLOR)"
+	@cc ${CFLAGS} ${BONUS_OBJS} libft.a libmlx42.a -ldl -lglfw -pthread -lm -o ${NAME}
+	@echo "$(GREEN)🥳 Success!🥳$(DEF_COLOR)"

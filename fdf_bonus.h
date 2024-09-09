@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/09 15:13:35 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:08:23 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # include "./MLX42/include/MLX42/MLX42.h"
 # include "./libft/libft.h"
@@ -56,6 +56,11 @@ typedef struct s_point
 	double		z;
 	uint32_t	color;
 	double		space;
+	double		move_x;
+	double		move_y;
+	double		angle_x;
+	double		angle_y;
+	char		type;
 }	t_point;
 
 typedef struct s_color
@@ -87,9 +92,11 @@ typedef struct s_image
 	int			y;
 	uint32_t	width;
 	uint32_t	height;
+	float		zoom;
 	mlx_t		*obj;
 	mlx_image_t	*img;
 	t_point		*point;
+	t_point		*orig_point;
 	t_map		*map;
 }	t_image;
 
@@ -128,9 +135,19 @@ t_point		*fill_image(mlx_image_t *img, t_map *map, t_point *point);
 bool		to_2d(mlx_image_t *img, t_map *map, t_point *point);
 void		draw_line_row(mlx_image_t *img, t_isom *isom);
 void		draw_line_col(mlx_image_t *img, t_isom *isom, int nums_in_line);
+mlx_image_t	*draw_gui(mlx_t *obj);
+void		draw_instructions(mlx_t *obj);
+void		redraw(t_image *img, char type);
 
 /*--------------------HOOKS--------------------*/
 
 void		fdf_keys(void *obj);
+void		zoom(double xdelta, double ydelta, void *param);
+
+/*--------------------ACTIONS--------------------*/
+
+void		move_img(int x, int y, t_image *img, char dir);
+void		zoom_img(t_image *img, double space);
+void		rotate_obj(t_point	*point, t_map *map, char type, t_image *img);
 
 #endif

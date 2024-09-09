@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_ret.c                                         :+:      :+:    :+:   */
+/*   free_ret_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:11:30 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/09 14:37:30 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:08:57 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../fdf_bonus.h"
 
 void	free_arr(int **arr, int index)
 {
@@ -45,5 +45,7 @@ void	free_img(t_image *img)
 {
 	if (!img)
 		return ;
+	if (img->orig_point)
+		free(img->orig_point);
 	free(img);
 }
