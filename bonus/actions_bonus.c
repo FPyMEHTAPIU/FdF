@@ -6,13 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/09 15:09:05 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:10:42 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf_bonus.h"
-//Danger
-#include <stdio.h>
+#include "../include/fdf_bonus.h"
 
 void	clear_img(mlx_image_t *img)
 {

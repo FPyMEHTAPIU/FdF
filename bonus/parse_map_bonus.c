@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 11:57:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/09 14:09:07 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:11:16 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf_bonus.h"
+#include "../include/fdf_bonus.h"
 
 int	count_nums(char *map_str)
 {

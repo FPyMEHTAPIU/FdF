@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:21:56 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/09 14:08:55 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:10:54 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf_bonus.h"
+#include "../include/fdf_bonus.h"
 
 static int	set_step(double dx, double dy)
 {

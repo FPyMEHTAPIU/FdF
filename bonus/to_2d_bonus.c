@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/09 14:09:16 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:11:34 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf_bonus.h"
+#include "../include/fdf_bonus.h"
 
 static void	to_isometry(t_point *point, t_isom *isom)
 {

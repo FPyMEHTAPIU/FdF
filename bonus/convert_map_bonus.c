@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/09 14:42:41 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:10:50 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf_bonus.h"
+#include "../include/fdf_bonus.h"
 
 static void	set_def_values(t_point *point)
 {

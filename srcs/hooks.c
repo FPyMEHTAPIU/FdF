@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:51:50 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/09 14:23:33 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:09:56 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../include/fdf.h"
 
 void	fdf_keys(void *obj)
 {

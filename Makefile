@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/09 14:27:49 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/10 12:00:26 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,34 +62,40 @@ BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 
 CFLAGS = -g -Wall -Werror -Wextra -Wpedantic
 
-LIBFT_NAME = ./libft/libft.a
 LIBFT_DIR = ./libft
+LIBFT_NAME = ${LIBFT_DIR}/libft.a
+MLX_DIR = ./MLX42
+MLX_NAME = ${MLX_DIR}/build/libmlx42.a
 
-MLX_DIR = ./MLX42/build
+HEADERS	= -I ./include -I $(LIBMLX)/include
+LIBS = ${LIBFT_NAME} ${MLX_NAME} -ldl -lglfw -pthread -lm
 
 RM = rm -rf
 AR = ar -rcs
 LIB = ranlib
 
-.PHONY = all clean fclean re bonus
+.PHONY = all clean fclean re bonus libmlx
 
-all: ${LIBFT_NAME} ${NAME}
+all: libmlx ${LIBFT_NAME} ${NAME}
 
 ${LIBFT_NAME}:
 	@echo "$(CYAN)🛠  Compiling libft... 🛠$(DEF_COLOR)"
 	@make -C ${LIBFT_DIR} --no-print-directory
 
+libmlx: .mlx
+
+.mlx:
+	@touch .mlx
+	@git clone https://github.com/codam-coding-college/MLX42.git ${MLX_DIR}
+	@cmake ${MLX_DIR} -B ${MLX_DIR}/build && cmake --build ${MLX_DIR}/build -j4
+
 ${NAME}: ${OBJS}
-	@echo "$(MAGENTA)🗂  Copying libft 🗂$(DEF_COLOR)"
-	@cp ${LIBFT_DIR}/libft.a .
-	@echo "$(MAGENTA)🗂  Copying mlx 🗂$(DEF_COLOR)"
-	@cp ${MLX_DIR}/libmlx42.a .
 	@echo "$(BLUE)🛠  Compiling FdF... 🛠$(DEF_COLOR)"
-	@cc ${CFLAGS} ${OBJS} libft.a libmlx42.a -ldl -lglfw -pthread -lm -o ${NAME}
+	@cc ${CFLAGS} ${OBJS} ${LIBS} ${HEADERS} -o ${NAME}
 	@echo "$(GREEN)🥳 Success!🥳$(DEF_COLOR)"
 
 %.o: %.c
-	@cc $(CFLAGS) -Iinclude -c $< -o $@
+	@cc $(CFLAGS) -c $< -o $@ ${HEADERS}
 
 clean:
 	@echo "$(YELLOW)🚽 Deleting object files... 🚽$(DEF_COLOR)"
@@ -103,11 +109,11 @@ fclean: clean
 	@${RM} ${NAME}
 	@echo "$(RED)🪦  Deleting libft... 🪦$(DEF_COLOR)"
 	@make fclean -C ${LIBFT_DIR} --no-print-directory
-	@${RM} libft.a
 	@echo "$(RED)🪦  Deleting mlx... 🪦$(DEF_COLOR)"
-	@${RM} libmlx42.a
 	@echo "$(RED)☣️  CLEAR ☣️$(DEF_COLOR)"
 	@${RM} .bonus
+	@${RM} -rf MLX42
+	@${RM} .mlx
 
 re: fclean all
 
@@ -117,5 +123,5 @@ bonus: all .bonus
 	@touch .bonus
 	@${RM} ${NAME}
 	@echo "$(BLUE)🛠  Compiling FdF with bonus... 🛠$(DEF_COLOR)"
-	@cc ${CFLAGS} ${BONUS_OBJS} libft.a libmlx42.a -ldl -lglfw -pthread -lm -o ${NAME}
+	@cc ${CFLAGS} ${BONUS_OBJS} ${LIBS} ${HEADERS} -o ${NAME}
 	@echo "$(GREEN)🥳 Success!🥳$(DEF_COLOR)"

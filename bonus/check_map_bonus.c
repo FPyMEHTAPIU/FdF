@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:41:04 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/09 14:08:51 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:10:47 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf_bonus.h"
+#include "../include/fdf_bonus.h"
 
 static int	compare_base(char c)
 {

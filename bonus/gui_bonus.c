@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:31:15 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/09 14:08:59 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:11:04 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf_bonus.h"
+#include "../include/fdf_bonus.h"
 
 static void	draw_back(mlx_image_t *image)
 {

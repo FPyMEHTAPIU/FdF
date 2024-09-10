@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:26:29 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/09 14:08:49 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:10:45 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf_bonus.h"
+#include "../include/fdf_bonus.h"
 
 uint32_t	rgb_to_rgba(uint32_t color)
 {

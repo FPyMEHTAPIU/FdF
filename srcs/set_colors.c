@@ -6,11 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 14:09:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/09 10:04:11 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:09:44 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../include/fdf.h"
 
 uint32_t	set_pos_color(int num)
 {
