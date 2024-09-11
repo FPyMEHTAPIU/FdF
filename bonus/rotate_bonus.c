@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/10 11:31:00 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:07:31 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ static bool	does_rotate_x(double *angle, t_image *img)
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
 	{
 		*angle = -0.01;
-		if (img->point[0].angle_x <= -3.0)
+		/*if (img->point[0].angle_x <= -3.0)
 		{
 			img->point[0].angle_x = 0.0;
 			*angle = 0.01;
 		}
 		else if (img->point[0].angle_x <= -1.5)
-			*angle = 0.01;
+			*angle = 0.01;*/
 		return (true);
 	}
 	else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
 	{
 		*angle = 0.01;
-		if (img->point[0].angle_x >= 3.0)
+		/*if (img->point[0].angle_x >= 3.0)
 		{
 			img->point[0].angle_x = 0.0;
 			*angle = -0.01;
 		}
 		else if (img->point[0].angle_x >= 1.5)
-			*angle = -0.01;
+			*angle = -0.01;*/
 		return (true);
 	}
 	return (false);
@@ -46,25 +46,25 @@ static bool	does_rotate_y(double *angle, t_image *img)
 	if (mlx_is_key_down(img->obj, MLX_KEY_LEFT))
 	{
 		*angle = -0.01;
-		if (img->point[0].angle_y <= -3.0)
+		/*if (img->point[0].angle_y <= -3.0)
 		{
 			img->point[0].angle_y = 0.0;
 			*angle = 0.01;
 		}
 		else if (img->point[0].angle_y <= -1.5)
-			*angle = 0.01;
+			*angle = 0.01;*/
 		return (true);
 	}
 	else if (mlx_is_key_down(img->obj, MLX_KEY_RIGHT))
 	{
 		*angle = 0.01;
-		if (img->point[0].angle_y >= 3.0)
+		/*if (img->point[0].angle_y >= 3.0)
 		{
 			img->point[0].angle_y = 0.0;
 			*angle = -0.01;
 		}
 		else if (img->point[0].angle_y >= 1.5)
-			*angle = -0.01;
+			*angle = -0.01;*/
 		return (true);
 	}
 	return (false);

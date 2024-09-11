@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/10 11:59:17 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:01:25 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ typedef struct s_image
 	int			y;
 	uint32_t	width;
 	uint32_t	height;
-	float		zoom;
 	mlx_t		*obj;
 	mlx_image_t	*img;
 	t_point		*point;

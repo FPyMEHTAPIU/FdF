@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/10 11:10:42 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:07:46 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ void	move_img(int x, int y, t_image *img, char dir)
 		y = 0;
 	img->point->move_x += x;
 	img->point->move_y += y;
-	clear_img(img->img);
-	img->point = fill_image(img->img, img->map, img->point);
-	to_2d(img->img, img->map, img->point);
+	redraw(img, img->point->type);
 }
 
 void	zoom_img(t_image *img, double space)
@@ -57,10 +55,8 @@ void	zoom_img(t_image *img, double space)
 		;
 	else
 		img->map->space_incr += space;
-	clear_img(img->img);
 	mlx_resize_image(img->img, img->width + 50, img->height + 50);
-	img->point = fill_image(img->img, img->map, img->point);
-	to_2d(img->img, img->map, img->point);
+	redraw(img, img->point->type);
 }
 
 void	redraw(t_image *img, char type)
