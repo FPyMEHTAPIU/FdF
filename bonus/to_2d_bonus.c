@@ -6,92 +6,98 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/10 11:11:34 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:23:20 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf_bonus.h"
 
-static void	to_isometry(t_point *point, t_isom *isom)
+static void	to_isometry(size_t i, t_map *map)//, t_isom *isom)
 {
-	isom->x = point->x - point->y + 550;
-	isom->y = (point->x + point->y) / 2 - point->z + 150;
-	isom->color = point->color;
+	double	temp_x;
+
+	temp_x = map->point[i].x;
+	map->point[i].x = (temp_x - map->point[i].y) * \
+		cos(0.523599);
+	map->point[i].y = (temp_x + map->point[i].y) * \
+		sin(0.523599) - map->point[i].z;
+	//isom->x = map->point[i].x;
+	//isom->y = map->point[i].y;
+	/*isom->x = point->x - point->y;// + 550;
+	isom->y = (point->x + point->y) / 2 - point->z; // + 150;*/
+	//isom->color = map->point[i].color;
 }
 
-void	change_perspective(mlx_image_t *img, t_point *point, t_isom *isom)
+void	change_perspective(t_map *map)//, t_isom *isom)
 {
 	size_t	i;
 
 	i = 0;
-	if (point->type == 'P')
+	if (map->persp == 'P')
 	{
-		while (i < img->count)
+		while (i < map->img->count)
 		{
-			isom[i].x = point[i].x + 400;
-			isom[i].y = point[i].y + 150;
-			isom[i].color = point[i].color;
+			/*isom[i].x = map->point[i].x; // + 400;
+			isom[i].y = map->point[i].y; // + 150;
+			isom[i].color = map->point[i].color;*/
 			i++;
 		}
 	}
 	else
 	{
-		while (i < img->count)
+		while (i < map->img->count)
 		{
-			to_isometry(&point[i], &isom[i]);
+			to_isometry(i, map);//, &isom[i]);
 			i++;
 		}
 	}
 }
 
-static bool	print_err(t_map *map, t_point *point, t_isom *isom, int n)
+static bool	print_err(t_map *map, /*t_isom *isom,*/ int n)
 {
 	if (n == 0)
 	{
 		ft_printf("Error in creation t_isom!\n");
-		free_ret(map, point);
+		free_ret(map, map->point);
 		return (false);
 	}
-	else
+	/*if (isom)
+		free(isom);*/
+	return (true);
+}
+
+static void	draw_lines(t_map *map)//, t_isom *isom)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < map->height)
 	{
-		if (isom)
-			free(isom);
-		return (true);
+		x = 0;
+		while (x < map->width - 1)
+			draw_line_row(map, &map->point[y * map->width + x++]);
+		y++;
+	}
+	y = 0;
+	while (y < map->width)
+	{
+		x = 0;
+		while (x < map->height - 1)
+			draw_line_col(map, &map->point[y + map->width * x++],
+				map->width);
+		y++;
 	}
 }
 
-static void	draw_lines(mlx_image_t *img, t_map *map, t_isom *isom)
+bool	to_2d(t_map *map)
 {
-	int	i;
-	int	j;
+	/*t_isom	*isom;
 
-	i = 0;
-	while (i < map->lines)
-	{
-		j = 0;
-		while (j < map->nums_in_line - 1)
-			draw_line_row(img, &isom[i * map->nums_in_line + j++]);
-		i++;
-	}
-	i = 0;
-	while (i < map->nums_in_line)
-	{
-		j = 0;
-		while (j < map->lines - 1)
-			draw_line_col(img, &isom[i + map->nums_in_line * j++],
-				map->nums_in_line);
-		i++;
-	}
-}
-
-bool	to_2d(mlx_image_t *img, t_map *map, t_point *point)
-{
-	t_isom	*isom;
-
-	isom = malloc(sizeof(t_isom) * img->count);
+	isom = malloc(sizeof(t_isom) * map->img->count);
 	if (!isom)
-		return (print_err(map, point, isom, 0));
-	change_perspective(img, point, isom);
-	draw_lines(img, map, isom);
-	return (print_err(map, point, isom, 1));
+		return (print_err(map, isom, 0));*/
+	change_perspective(map);//, isom);
+	draw_lines(map);//, isom);
+	return (print_err(map, 1));
 }

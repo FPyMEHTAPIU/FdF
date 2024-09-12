@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/11 14:07:46 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:23:43 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,40 +29,44 @@ void	clear_img(mlx_image_t *img)
 	}
 }
 
-void	move_img(int x, int y, t_image *img, char dir)
+void	move_img(int x, int y, t_map *map, char dir)
 {
-	if (mlx_is_key_down(img->obj, MLX_KEY_Z)
-		|| mlx_is_key_down(img->obj, MLX_KEY_X)
-		|| mlx_is_key_down(img->obj, MLX_KEY_C))
+	if (mlx_is_key_down(map->obj, MLX_KEY_Z)
+		|| mlx_is_key_down(map->obj, MLX_KEY_X)
+		|| mlx_is_key_down(map->obj, MLX_KEY_C))
 		return ;
-	if ((dir == 'u' || dir == 'd') && img->point->type == 'P')
+	if ((dir == 'u' || dir == 'd') && map->persp == 'P')
 		x = 0;
-	else if ((dir == 'l' || dir == 'r') && img->point->type == 'P')
+	else if ((dir == 'l' || dir == 'r') && map->persp == 'P')
 		y = 0;
-	img->point->move_x += x;
-	img->point->move_y += y;
-	redraw(img, img->point->type);
+	map->move_x += x;
+	map->move_y += y;
+	redraw(map, map->persp);
 }
 
-void	zoom_img(t_image *img, double space)
+void	zoom_img(t_map *map, double incr_zoom)
 {
-	double	old_space;
-
-	old_space = img->map->space_incr;
-	if (img->point->space + img->map->space_incr >= 500.0 && space > 0.0)
+	if (map->zoom >= 500.0 && incr_zoom > 0.0)
 		;
-	else if (img->point->space <= 0.4 && space < 0.0)
+	else if (map->zoom <= 0.4 && incr_zoom < 0.0)
 		;
 	else
-		img->map->space_incr += space;
-	mlx_resize_image(img->img, img->width + 50, img->height + 50);
-	redraw(img, img->point->type);
+		map->zoom += incr_zoom;
+	mlx_resize_image(map->img, map->img->width + 50, map->img->height + 50);
+	redraw(map, map->persp);
 }
 
-void	redraw(t_image *img, char type)
+void	redraw(t_map *map, char type)
 {
-	img->point->type = type;
-	clear_img(img->img);
-	img->point = fill_image(img->img, img->map, img->point);
-	to_2d(img->img, img->map, img->point);
+	t_point	min;
+
+	map->point->type = type;
+	clear_img(map->img);
+	map->point = fill_image(map);
+	scale_z(map);
+	rotate_all(map);
+	to_2d(map);
+	find_min_coordinates(map, &min);
+	move_coordinates(map, -min.x, -min.y);
+	center_map(map);
 }
