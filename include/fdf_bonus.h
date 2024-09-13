@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 12:19:45 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:39:29 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # endif
 
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH 2600
+#  define WIN_WIDTH 2000
 # endif
 
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 1500
+#  define WIN_HEIGHT 1000
 # endif
 
 # ifndef GUI_WIDTH

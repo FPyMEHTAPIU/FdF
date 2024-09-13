@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 12:03:25 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:41:19 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,14 @@ void	clear_img(mlx_image_t *img)
 	}
 }
 
-void	move_img(int x, int y, t_map *map)//, char dir)
+void	move_img(int x, int y, t_map *map)
 {
 	if (mlx_is_key_down(map->obj, MLX_KEY_Z)
 		|| mlx_is_key_down(map->obj, MLX_KEY_X)
 		|| mlx_is_key_down(map->obj, MLX_KEY_C))
 		return ;
-	/*if ((dir == 'u' || dir == 'd') && map->persp == 'P')
-		x = 0;
-	else if ((dir == 'l' || dir == 'r') && map->persp == 'P')
-		y = 0;*/
 	map->move_x += x;
 	map->move_y += y;
-	printf("move_x = %f\tmove_y = %f\n", map->move_x, map->move_y);
 	redraw(map, map->persp);
 }
 
@@ -58,9 +53,6 @@ void	zoom_img(t_map *map, double incr_zoom)
 		;
 	else
 		map->zoom += incr_zoom;
-	//mlx_resize_image(map->img, map->img->width + incr_zoom * 10, map->img->height + incr_zoom * 10);
-	//ft_printf("width = %d\theight = %d\n", map->img->width, map->img->height);
-	//printf("zoom = %f\n", map->zoom);
 	redraw(map, map->persp);
 }
 

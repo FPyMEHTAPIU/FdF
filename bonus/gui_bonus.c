@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:31:15 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/12 12:46:13 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:44:01 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,27 @@ static void	put_fdf(mlx_t *obj)
 	mlx_image_t	*img;
 	int			start_point;
 
-	start_point = 600;
-	img = mlx_put_string(obj, "FFFFF DDDDD   FFFFF", 135, start_point);
-	mlx_image_to_window(obj, img, 135, start_point);
+	start_point = 800;
+	img = mlx_put_string(obj, "FFFFF DDDDD   FFFFF", 140, start_point);
+	mlx_image_to_window(obj, img, 140, start_point);
 	start_point += 10;
-	img = mlx_put_string(obj, "F     D    D  F", 135, start_point);
-	mlx_image_to_window(obj, img, 135, start_point);
+	img = mlx_put_string(obj, "F     D    D  F", 140, start_point);
+	mlx_image_to_window(obj, img, 140, start_point);
 	start_point += 10;
-	img = mlx_put_string(obj, "F     D     D F", 135, start_point);
-	mlx_image_to_window(obj, img, 135, start_point);
+	img = mlx_put_string(obj, "F     D     D F", 140, start_point);
+	mlx_image_to_window(obj, img, 140, start_point);
 	start_point += 10;
-	img = mlx_put_string(obj, "FFFF  D     D FFFF", 135, start_point);
-	mlx_image_to_window(obj, img, 135, start_point);
+	img = mlx_put_string(obj, "FFFF  D     D FFFF", 140, start_point);
+	mlx_image_to_window(obj, img, 140, start_point);
 	start_point += 10;
-	img = mlx_put_string(obj, "F     D     D F", 135, start_point);
-	mlx_image_to_window(obj, img, 135, start_point);
+	img = mlx_put_string(obj, "F     D     D F", 140, start_point);
+	mlx_image_to_window(obj, img, 140, start_point);
 	start_point += 10;
-	img = mlx_put_string(obj, "F     D    D  F", 135, start_point);
-	mlx_image_to_window(obj, img, 135, start_point);
+	img = mlx_put_string(obj, "F     D    D  F", 140, start_point);
+	mlx_image_to_window(obj, img, 140, start_point);
 	start_point += 10;
-	img = mlx_put_string(obj, "F     DDDDD   F", 135, start_point);
-	mlx_image_to_window(obj, img, 135, start_point);
+	img = mlx_put_string(obj, "F     DDDDD   F", 140, start_point);
+	mlx_image_to_window(obj, img, 140, start_point);
 }
 
 void	draw_instructions(mlx_t *obj)

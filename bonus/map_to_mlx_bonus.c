@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 12:19:51 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:41:50 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,4 @@ void	map_to_mlx(t_map *map)
 	mlx_loop_hook(map->obj, fdf_keys, map);
 	mlx_loop(map->obj);
 	mlx_terminate(map->obj);
-	//free_img(img_size);
 }
