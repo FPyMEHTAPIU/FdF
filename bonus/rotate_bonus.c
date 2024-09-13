@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/12 12:45:25 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/13 10:27:07 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,4 +214,5 @@ void	change_angles(t_map *map)
 			map->angle_y -= 0.01;
 	}
 	rotate_all(map);
+	redraw(map, 'I');
 }

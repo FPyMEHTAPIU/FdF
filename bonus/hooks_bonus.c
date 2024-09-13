@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:51:50 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/12 12:47:12 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/13 11:02:08 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	fdf_keys(void *obj)
 	if (mlx_is_key_down(map->obj, MLX_KEY_ESCAPE))
 		mlx_close_window(map->obj);
 	if (mlx_is_key_down(map->obj, MLX_KEY_UP))
-		move_img(-5, -5, map, 'u');
+		move_img(0, -5, map); //, 'u');
 	if (mlx_is_key_down(map->obj, MLX_KEY_RIGHT))
-		move_img(5, -5, map, 'r');
+		move_img(5, 0, map); //, 'r');
 	if (mlx_is_key_down(map->obj, MLX_KEY_DOWN))
-		move_img(5, 5, map, 'd');
+		move_img(0, 5, map); //, 'd');
 	if (mlx_is_key_down(map->obj, MLX_KEY_LEFT))
-		move_img(-5, 5, map, 'l');
+		move_img(-5, 0, map); //, 'l');
 	if (mlx_is_key_down(map->obj, MLX_KEY_EQUAL))
 		zoom_img(map, 0.2);
 	if (mlx_is_key_down(map->obj, MLX_KEY_MINUS))

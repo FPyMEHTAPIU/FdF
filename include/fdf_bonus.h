@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/12 13:21:23 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/13 11:02:25 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ void		zoom(double xdelta, double ydelta, void *param);
 
 /*--------------------ACTIONS--------------------*/
 
-void		move_img(int x, int y, t_map *img, char dir);
+void		move_img(int x, int y, t_map *img); //, char dir);
 void		zoom_img(t_map *map, double space);
 //void		rotate_obj(t_point *point, t_map *map, char type, t_image *img);
 
