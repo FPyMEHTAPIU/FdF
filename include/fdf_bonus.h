@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/11 14:01:25 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:19:45 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,19 @@
 # endif
 
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH 2000
+#  define WIN_WIDTH 2600
 # endif
 
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 1000
+#  define WIN_HEIGHT 1500
+# endif
+
+# ifndef GUI_WIDTH
+#  define GUI_WIDTH (WIN_WIDTH / 4)
+# endif
+
+# ifndef GUI_HEIGHT
+#  define GUI_HEIGHT WIN_HEIGHT
 # endif
 
 # ifndef HEX_LEN
@@ -39,15 +47,6 @@
 # endif
 
 /*--------------------STRUCTS--------------------*/
-
-typedef struct s_map
-{
-	char	**strs;
-	int		alloc_lines;
-	int		lines;
-	int		nums_in_line;
-	double	space_incr;
-}	t_map;
 
 typedef struct s_point
 {
@@ -62,6 +61,29 @@ typedef struct s_point
 	double		angle_y;
 	char		type;
 }	t_point;
+
+typedef struct s_map
+{
+	char		**strs;
+	int			alloc_lines;
+	int			height;
+	int			width;
+	double		space_incr;
+	t_point		*point;
+	t_point		*orig_point;
+	mlx_t		*obj;
+	mlx_image_t	*img;
+	int			min_z;
+	int			max_z;
+	double		angle_x;
+	double		angle_y;
+	double		angle_z;
+	double		move_x;
+	double		move_y;
+	double		zoom;
+	char		persp;
+	int			steps;
+}	t_map;
 
 typedef struct s_color
 {
@@ -86,7 +108,7 @@ typedef struct s_isom
 	int			steps;
 }	t_isom;
 
-typedef struct s_image
+/*typedef struct s_image
 {
 	int			x;
 	int			y;
@@ -97,7 +119,7 @@ typedef struct s_image
 	t_point		*point;
 	t_point		*orig_point;
 	t_map		*map;
-}	t_image;
+}	t_image;*/
 
 /*--------------------MAP HANDLING--------------------*/
 
@@ -115,7 +137,7 @@ t_point		*copy_point(t_point *point, t_map *map);
 /*--------------------CLEANING--------------------*/
 
 void		free_arr(int **arr, int index);
-void		free_img(t_image *img);
+//void		free_map(t_map *img);
 int			free_ret(t_map *map, t_point *point);
 void		clear_img(mlx_image_t *img);
 
@@ -129,14 +151,16 @@ uint32_t	set_color(int num);
 
 /*--------------------WORK WITH AN IMAGE--------------------*/
 
-void		map_to_mlx(t_map *map, t_point *point);
-t_point		*fill_image(mlx_image_t *img, t_map *map, t_point *point);
-bool		to_2d(mlx_image_t *img, t_map *map, t_point *point);
-void		draw_line_row(mlx_image_t *img, t_isom *isom);
-void		draw_line_col(mlx_image_t *img, t_isom *isom, int nums_in_line);
-mlx_image_t	*draw_gui(mlx_t *obj);
+void		map_to_mlx(t_map *map);
+t_point		*fill_image(t_map *map);
+bool		to_2d(t_map *map);
+void		draw_line_row(t_map *map, t_point *point);
+void		draw_line_col(t_map *map, t_point *point, int width);
+//void		draw_line_row(mlx_image_t *img, t_isom *isom);
+//void		draw_line_col(mlx_image_t *img, t_isom *isom, int width);
+void		draw_gui(t_map *map);
 void		draw_instructions(mlx_t *obj);
-void		redraw(t_image *img, char type);
+void		redraw(t_map *map, char type);
 
 /*--------------------HOOKS--------------------*/
 
@@ -145,8 +169,19 @@ void		zoom(double xdelta, double ydelta, void *param);
 
 /*--------------------ACTIONS--------------------*/
 
-void		move_img(int x, int y, t_image *img, char dir);
-void		zoom_img(t_image *img, double space);
-void		rotate_obj(t_point	*point, t_map *map, char type, t_image *img);
+void		move_img(int x, int y, t_map *img); //, char dir);
+void		zoom_img(t_map *map, double space);
+//void		rotate_obj(t_point *point, t_map *map, char type, t_image *img);
+
+void	rotate_all(t_map *map);
+void	change_angles(t_map *map);
+void	set_scale(t_map *map);
+void	scale_coordinates(t_map *map, double scale);
+void	find_min_coordinates(t_map *map, t_point *min);
+void	find_max_coordinates(t_map *map, t_point *min);
+void	scale_z(t_map *map);
+void	move_coordinates(t_map *map, double move_x, double move_y);
+void	center_map(t_map *map);
+void	draw_lines(t_map *map);
 
 #endif

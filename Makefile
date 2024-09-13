@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/10 12:00:26 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/12 12:47:36 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,8 @@ BONUS_SRCS = \
 	${BONUS_DIR}/rotate_bonus.c \
 	${BONUS_DIR}/point_handle_bonus.c \
 	${BONUS_DIR}/gui_bonus.c \
-	${BONUS_DIR}/hooks_bonus.c
+	${BONUS_DIR}/hooks_bonus.c \
+	${BONUS_DIR}/scale_bonus.c
 
 OBJS = ${SRCS:.c=.o}
 BONUS_OBJS = ${BONUS_SRCS:.c=.o}

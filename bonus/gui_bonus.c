@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:31:15 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/11 12:44:05 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/12 12:46:13 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 static void	draw_back(mlx_image_t *image)
 {
-	uint32_t	i;
-	uint32_t	j;
+	uint32_t	x;
+	uint32_t	y;
 
-	i = 0;
-	while (i < image->height)
+	y = 0;
+	while (y < image->height)
 	{
-		j = 0;
-		while (j < image->width)
+		x = 0;
+		while (x < image->width)
 		{
-			mlx_put_pixel(image, j, i, 0x9003FCFF);
-			j++;
+			mlx_put_pixel(image, x, y, 0x9003FCFF);
+			x++;
 		}
-		i++;
+		y++;
 	}
 }
 
@@ -86,15 +86,12 @@ void	draw_instructions(mlx_t *obj)
 	put_fdf(obj);
 }
 
-mlx_image_t	*draw_gui(mlx_t *obj)
+void	draw_gui(t_map *map)
 {
-	int			gui_width;
-	int			gui_height;
 	mlx_image_t	*image;
 
-	gui_width = WIN_WIDTH / 4;
-	gui_height = WIN_HEIGHT;
-	image = mlx_new_image(obj, gui_width, gui_height);
+	image = mlx_new_image(map->obj, GUI_WIDTH, GUI_HEIGHT);
 	draw_back(image);
-	return (image);
+	mlx_image_to_window(map->obj, image, 0, 0);
+	draw_instructions(map->obj);
 }
