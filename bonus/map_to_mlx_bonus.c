@@ -6,11 +6,12 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 10:55:29 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:19:51 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf_bonus.h"
+#include <stdio.h>
 
 t_point	*fill_image(t_map *map)
 {
@@ -75,7 +76,7 @@ void	scale_z(t_map *map)
 		x = 0;
 		while (x < map->width)
 		{
-			map->point[y * map->width + x].z = map->orig_point[y * map->width + x].z * scale * 0.5;
+			map->point[y * map->width + x].z = map->orig_point[y * map->width + x].z * scale * 0.3;
 			x++;
 		}
 		y++;
@@ -110,8 +111,8 @@ void	center_map(t_map *map)
 	double	cx;
 	double	cy;
 
-	cx = map->point[(map->height * map->width - 1) / 2].x;
-	cy = map->point[(map->height * map->width - 1) / 2].y;
+	cx = map->point[(map->height * map->width) / 2].x;
+	cy = map->point[(map->height * map->width) / 2].y;
 	y = 0;
 	while (y < map->height)
 	{
@@ -120,10 +121,12 @@ void	center_map(t_map *map)
 		{
 			map->point[y * map->width + x].x -= cx;
 			map->point[y * map->width + x].y -= cy;
-			map->point[y * map->width + x].x += map->img->width / 2 + GUI_WIDTH;
+			map->point[y * map->width + x].x += map->img->width / 2;
 			map->point[y * map->width + x].y += map->img->height / 2;
-			map->point[y * map->width + x].x += cx;//map->move_x;
-			map->point[y * map->width + x].y += cy;//map->move_y;
+			map->point[y * map->width + x].x += map->move_x;
+			map->point[y * map->width + x].y += map->move_y;
+			//map->point[y * map->width + x].x += cx;
+			//map->point[y * map->width + x].y += cy;
 			x++;
 		}
 		y++;
@@ -132,18 +135,16 @@ void	center_map(t_map *map)
 
 void	map_to_mlx(t_map *map)
 {
-	//mlx_t		*obj;
-	//t_image		*img_size;
-	//mlx_image_t	*img;
-	//mlx_image_t	*gui;
 	t_point	min;
 
 	map->obj = mlx_init(WIN_WIDTH, WIN_HEIGHT, "FDF", 1);
 	if (!map->obj)
 		mlx_terminate(map->obj);
-	map->img = mlx_new_image(map->obj, WIN_WIDTH, WIN_HEIGHT);
+	map->img = mlx_new_image(map->obj, map->obj->width - GUI_WIDTH, map->obj->height);
+	//ft_printf("win_width = %d\twin_height = %d\n", map->obj->width, map->obj->height);
+	ft_printf("img_width = %d\timg_height = %d\n", map->img->width, map->img->height);
 	map->orig_point = copy_point(map->point, map);
-	//mlx_set_setting(MLX_STRETCH_IMAGE, 1);
+	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	scale_z(map);
 	map->point = fill_image(map);
 	set_scale(map);
@@ -153,14 +154,12 @@ void	map_to_mlx(t_map *map)
 		mlx_terminate(map->obj);
 		exit (1);
 	}
-	//img_size = set_size(obj, img, point, map);
 	find_min_coordinates(map, &min);
 	move_coordinates(map, -min.x, -min.y);
+	center_map(map);
+	draw_lines(map);
 	draw_gui(map);
-	//mlx_image_to_window(obj, gui, 0, 0);
-	//draw_instructions(obj);
 	mlx_image_to_window(map->obj, map->img, GUI_WIDTH, 0);
-	//mlx_set_instance_depth(map->img->instances, depth - 1);
 	mlx_scroll_hook(map->obj, zoom, map);
 	mlx_loop_hook(map->obj, fdf_keys, map);
 	mlx_loop(map->obj);

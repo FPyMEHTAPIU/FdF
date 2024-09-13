@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 11:02:25 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:19:45 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # endif
 
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH 2000
+#  define WIN_WIDTH 2600
 # endif
 
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 1000
+#  define WIN_HEIGHT 1500
 # endif
 
 # ifndef GUI_WIDTH
@@ -182,5 +182,6 @@ void	find_max_coordinates(t_map *map, t_point *min);
 void	scale_z(t_map *map);
 void	move_coordinates(t_map *map, double move_x, double move_y);
 void	center_map(t_map *map);
+void	draw_lines(t_map *map);
 
 #endif

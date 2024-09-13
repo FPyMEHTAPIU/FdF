@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 10:58:21 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/13 11:56:59 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static bool	print_err(t_map *map, int n)
 	return (true);
 }
 
-static void	draw_lines(t_map *map)
+void	draw_lines(t_map *map)
 {
 	int	x;
 	int	y;
@@ -84,6 +84,5 @@ static void	draw_lines(t_map *map)
 bool	to_2d(t_map *map)
 {
 	change_perspective(map);
-	draw_lines(map);
 	return (print_err(map, 1));
 }
