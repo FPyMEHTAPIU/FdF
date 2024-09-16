@@ -6,11 +6,31 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 11:05:52 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:03:04 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf_bonus.h"
+
+void	set_center(t_map *map, double *cx, double *cy)
+{
+	if (map->axis == 'x' || map->axis == 'y')
+	{
+		if (map->width % 2 == 0)
+		{
+			*cx = (map->point[map->width / 2].x \
+				+ map->point[map->width / 2 - 1].x) / 2.0;
+			*cy = (map->point[(map->height / 2) * map->width].y
+					+ map->point[(map->height / 2 - 1)
+					* map->width].y) / 2.0;
+		}
+		else
+		{
+			*cx = map->point[map->width / 2].x;
+			*cy = map->point[(map->height / 2) * map->width].y;
+		}
+	}
+}
 
 static void	rotate_z(int x, int y, t_map *map)
 {
@@ -26,10 +46,20 @@ static void	rotate_z(int x, int y, t_map *map)
 static void	rotate_y(int x, int y, t_map *map)
 {
 	double	tmp_x;
+	// double	cx;
 
-	tmp_x = map->point[y * map->width + x].x;
+	// if (map->width % 2 == 0)
+	// {
+	// 	cx = (map->point[map->width / 2].x \
+	// 			+ map->point[map->width / 2 - 1].x) / 2.0;
+	// }
+	// else
+	// 	cx = map->point[map->width / 2].x;
+	if (map->persp == 'P')
+		return ;
+	tmp_x = map->point[y * map->width + x].x;// - cx;
 	map->point[y * map->width + x].x = tmp_x * cos(map->angle_y) + \
-		map->point[y * map->width + x].z * sin(map->angle_y);
+		map->point[y * map->width + x].z * sin(map->angle_y);// + cx;
 	map->point[y * map->width + x].z = map->point[y * map->width + x].z * \
 		cos(map->angle_y) - tmp_x * sin(map->angle_y);
 }
@@ -37,10 +67,21 @@ static void	rotate_y(int x, int y, t_map *map)
 static void	rotate_x(int x, int y, t_map *map)
 {
 	double	tmp_y;
-
-	tmp_y = map->point[y * map->width + x].y;
+	// double	cy;
+	
+	// if (map->width % 2 == 0)
+	// {
+	// 	cy = (map->point[(map->height / 2) * map->width].y
+	// 				+ map->point[(map->height / 2 - 1)
+	// 				* map->width].y) / 2.0;
+	// }
+	// else
+	// 	cy = map->point[(map->height / 2) * map->width].y;
+	if (map->persp == 'P')
+		return ;
+	tmp_y = map->point[y * map->width + x].y; // - cy;
 	map->point[y * map->width + x].y = tmp_y * cos(map->angle_x) - \
-		map->point[y * map->width + x].z * sin(map->angle_x);
+		map->point[y * map->width + x].z * sin(map->angle_x);// + cy;
 	map->point[y * map->width + x].z = tmp_y * sin(map->angle_x) + \
 		map->point[y * map->width + x].z * cos(map->angle_x);
 }
@@ -70,24 +111,27 @@ void	change_angles(t_map *map)
 	if (mlx_is_key_down(map->obj, MLX_KEY_Z))
 	{
 		if (mlx_is_key_down(map->obj, MLX_KEY_RIGHT))
-			map->angle_z += 0.01;
+			map->angle_z += 0.02;
 		else if (mlx_is_key_down(map->obj, MLX_KEY_LEFT))
-			map->angle_z -= 0.01;
+			map->angle_z -= 0.02;
+		map->axis = 'z';
 	}
 	else if (mlx_is_key_down(map->obj, MLX_KEY_X))
 	{
 		if (mlx_is_key_down(map->obj, MLX_KEY_RIGHT))
-			map->angle_x += 0.01;
+			map->angle_x += 0.02;
 		else if (mlx_is_key_down(map->obj, MLX_KEY_LEFT))
-			map->angle_x -= 0.01;
+			map->angle_x -= 0.02;
+		map->axis = 'x';
 	}
 	else if (mlx_is_key_down(map->obj, MLX_KEY_C))
 	{
 		if (mlx_is_key_down(map->obj, MLX_KEY_RIGHT))
-			map->angle_y += 0.01;
+			map->angle_y += 0.02;
 		else if (mlx_is_key_down(map->obj, MLX_KEY_LEFT))
-			map->angle_y -= 0.01;
+			map->angle_y -= 0.02;
+		map->axis = 'y';
 	}
 	rotate_all(map);
-	redraw(map, 'I');
+	redraw(map, map->persp);
 }

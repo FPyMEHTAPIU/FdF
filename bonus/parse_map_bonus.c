@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 11:57:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 12:01:35 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:10:09 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ void	init_map(t_map *map)
 	map->move_x = 0.0;
 	map->move_y = 0.0;
 	map->persp = 'I';
+	map->axis = 'z';
+	map->side = 't';
 }
 
 t_map	*parse_map(int fd)
@@ -120,6 +122,5 @@ t_map	*parse_map(int fd)
 	}
 	map->strs[i] = NULL;
 	init_map(map);
-	//map->space_incr = 0;
 	return (check_ret(map, i));
 }

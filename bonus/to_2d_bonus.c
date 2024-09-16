@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 11:56:59 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:09:17 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,26 @@ static void	to_isometry(size_t i, t_map *map)
 	map->point[i].y = (temp_x + map->point[i].y) / 2 - map->point[i].z;
 }
 
+static void	to_ortography(size_t i, t_map *map)
+{
+	if (map->side == 't')
+	{
+		map->point[i].x = map->point[i].x;
+		map->point[i].y = map->point[i].y;
+		//map->point[i].color = map->point[i].color;
+	}
+	else if (map->side == 'r')
+	{
+		map->point[i].x = map->point[i].y;
+		map->point[i].y = -map->point[i].z;
+	}
+	else if (map->side == 'f')
+	{
+		map->point[i].x = map->point[i].x;
+		map->point[i].y = -map->point[i].z;
+	}
+}
+
 void	change_perspective(t_map *map)
 {
 	size_t	i;
@@ -30,9 +50,7 @@ void	change_perspective(t_map *map)
 	{
 		while (i < map->img->count)
 		{
-			map->point[i].x = map->point[i].x;
-			map->point[i].y = map->point[i].y;
-			map->point[i].color = map->point[i].color;
+			to_ortography(i, map);
 			i++;
 		}
 	}

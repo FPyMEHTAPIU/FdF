@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 12:39:29 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:25:14 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,6 @@ typedef struct s_point
 	double		y;
 	double		z;
 	uint32_t	color;
-	double		space;
-	double		move_x;
-	double		move_y;
-	double		angle_x;
-	double		angle_y;
-	char		type;
 }	t_point;
 
 typedef struct s_map
@@ -83,6 +77,8 @@ typedef struct s_map
 	double		zoom;
 	char		persp;
 	int			steps;
+	char		axis;
+	char		side;
 }	t_map;
 
 typedef struct s_color
@@ -99,27 +95,6 @@ typedef struct s_color
 	uint8_t		b_end;
 	uint32_t	cur_color;
 }	t_color;
-
-typedef struct s_isom
-{
-	double		x;
-	double		y;
-	uint32_t	color;
-	int			steps;
-}	t_isom;
-
-/*typedef struct s_image
-{
-	int			x;
-	int			y;
-	uint32_t	width;
-	uint32_t	height;
-	mlx_t		*obj;
-	mlx_image_t	*img;
-	t_point		*point;
-	t_point		*orig_point;
-	t_map		*map;
-}	t_image;*/
 
 /*--------------------MAP HANDLING--------------------*/
 
@@ -169,9 +144,8 @@ void		zoom(double xdelta, double ydelta, void *param);
 
 /*--------------------ACTIONS--------------------*/
 
-void		move_img(int x, int y, t_map *img); //, char dir);
+void		move_img(t_map *img);
 void		zoom_img(t_map *map, double space);
-//void		rotate_obj(t_point *point, t_map *map, char type, t_image *img);
 
 void	rotate_all(t_map *map);
 void	change_angles(t_map *map);
@@ -183,5 +157,6 @@ void	scale_z(t_map *map);
 void	move_coordinates(t_map *map, double move_x, double move_y);
 void	center_map(t_map *map);
 void	draw_lines(t_map *map);
+void	set_orto_side(t_map *map);
 
 #endif

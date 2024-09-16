@@ -6,11 +6,12 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 12:41:19 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:25:04 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf_bonus.h"
+//Danger
 #include <stdio.h>
 
 void	clear_img(mlx_image_t *img)
@@ -34,14 +35,20 @@ void	clear_img(mlx_image_t *img)
 	}
 }
 
-void	move_img(int x, int y, t_map *map)
+void	move_img(t_map *map)
 {
 	if (mlx_is_key_down(map->obj, MLX_KEY_Z)
 		|| mlx_is_key_down(map->obj, MLX_KEY_X)
 		|| mlx_is_key_down(map->obj, MLX_KEY_C))
 		return ;
-	map->move_x += x;
-	map->move_y += y;
+	if (mlx_is_key_down(map->obj, MLX_KEY_UP))
+		map->move_y -= 5;
+	if (mlx_is_key_down(map->obj, MLX_KEY_RIGHT))
+		map->move_x += 5;
+	if (mlx_is_key_down(map->obj, MLX_KEY_DOWN))
+		map->move_y += 5;
+	if (mlx_is_key_down(map->obj, MLX_KEY_LEFT))
+		map->move_x -= 5;
 	redraw(map, map->persp);
 }
 
@@ -71,4 +78,16 @@ void	redraw(t_map *map, char type)
 	move_coordinates(map, -min.x, -min.y);
 	center_map(map);
 	draw_lines(map);
+}
+
+void	set_orto_side(t_map *map)
+{
+	map->persp = 'P';
+	if (mlx_is_key_down(map->obj, MLX_KEY_T))
+		map->side = 't';
+	else if (mlx_is_key_down(map->obj, MLX_KEY_R))
+		map->side = 'r';
+	else if (mlx_is_key_down(map->obj, MLX_KEY_F))
+		map->side = 'f';
+	redraw(map, map->persp);
 }

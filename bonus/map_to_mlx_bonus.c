@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 12:41:50 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:50:18 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,38 @@ void	move_coordinates(t_map *map, double move_x, double move_y)
 	}
 }
 
+// static void	set_center(t_map *map, double *cx, double *cy)
+// {
+// 	if (map->axis == 'y')
+// 	{
+// 		if (map->width % 2 == 0)
+// 		{
+// 			*cx = (map->orig_point[map->width / 2].x \
+// 					+ map->orig_point[map->width / 2 - 1].x) / 2.0;
+// 		}
+// 		else
+// 			*cx = map->orig_point[map->width / 2].x;
+// 		*cy = map->orig_point[(map->height * map->width) / 2].y;
+// 	}
+// 	else if (map->axis == 'x')
+// 	{
+// 		if (map->width % 2 == 0)
+// 		{
+// 			*cy = (map->orig_point[(map->height / 2) * map->width].y
+// 						+ map->orig_point[(map->height / 2 - 1)
+// 						* map->width].y) / 2.0;
+// 		}
+// 		else
+// 			*cy = map->orig_point[(map->height / 2) * map->width].y;
+// 		*cx = map->orig_point[(map->height * map->width) / 2].x;
+// 	}
+// 	else
+// 	{
+// 		*cx = map->point[(map->height * map->width) / 2].x;
+// 		*cy = map->point[(map->height * map->width) / 2].y;
+// 	}
+// }
+
 void	center_map(t_map *map)
 {
 	int		x;
@@ -125,8 +157,6 @@ void	center_map(t_map *map)
 			map->point[y * map->width + x].y += map->img->height / 2;
 			map->point[y * map->width + x].x += map->move_x;
 			map->point[y * map->width + x].y += map->move_y;
-			//map->point[y * map->width + x].x += cx;
-			//map->point[y * map->width + x].y += cy;
 			x++;
 		}
 		y++;
@@ -141,8 +171,6 @@ void	map_to_mlx(t_map *map)
 	if (!map->obj)
 		mlx_terminate(map->obj);
 	map->img = mlx_new_image(map->obj, map->obj->width - GUI_WIDTH, map->obj->height);
-	//ft_printf("win_width = %d\twin_height = %d\n", map->obj->width, map->obj->height);
-	ft_printf("img_width = %d\timg_height = %d\n", map->img->width, map->img->height);
 	map->orig_point = copy_point(map->point, map);
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	scale_z(map);
