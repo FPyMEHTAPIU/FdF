@@ -6,11 +6,12 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/16 10:50:18 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:00:02 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf_bonus.h"
+//Danger
 #include <stdio.h>
 
 t_point	*fill_image(t_map *map)
@@ -34,7 +35,7 @@ t_point	*fill_image(t_map *map)
 	return (map->point);
 }
 
-void	find_min_max_z(t_map *map)
+void	find_z_range(t_map *map)
 {
 	int	x;
 	int	y;
@@ -63,7 +64,7 @@ void	scale_z(t_map *map)
 	int	x;
 	int	y;
 
-	find_min_max_z(map);
+	find_z_range(map);
 	scale = map->max_z - map->min_z;
 	if (scale == 0)
 		scale = 1;
