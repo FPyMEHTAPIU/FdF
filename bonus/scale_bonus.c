@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 12:34:04 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/12 12:50:31 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:47:29 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	scale_coordinates(t_map *map, double scale)
 		x = 0;
 		while (x < map->width)
 		{
-			map->point[y * map->width + x].x *= scale / 2;
-			map->point[y * map->width + x].y *= scale / 2;
+			map->point[y * map->width + x].x *= scale;// / 2;
+			map->point[y * map->width + x].y *= scale;// / 2;
 			x++;
 		}
 		y++;

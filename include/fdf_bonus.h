@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/16 11:25:14 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:32:47 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int			count_nums(char *map_str);
 /*--------------------POINT HANDLING--------------------*/
 
 t_point		*convert_map(t_map *map, t_point *point);
-void		reset_point(t_point *orig_point, t_point *point, t_map *map);
+//void		reset_point(t_point *orig_point, t_point *point, t_map *map);
 t_point		*copy_point(t_point *point, t_map *map);
 
 /*--------------------CLEANING--------------------*/
@@ -131,8 +131,6 @@ t_point		*fill_image(t_map *map);
 bool		to_2d(t_map *map);
 void		draw_line_row(t_map *map, t_point *point);
 void		draw_line_col(t_map *map, t_point *point, int width);
-//void		draw_line_row(mlx_image_t *img, t_isom *isom);
-//void		draw_line_col(mlx_image_t *img, t_isom *isom, int width);
 void		draw_gui(t_map *map);
 void		draw_instructions(mlx_t *obj);
 void		redraw(t_map *map, char type);
