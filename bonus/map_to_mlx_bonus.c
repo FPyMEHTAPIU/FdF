@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/16 14:00:02 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/17 14:51:23 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,37 +105,22 @@ void	move_coordinates(t_map *map, double move_x, double move_y)
 	}
 }
 
-// static void	set_center(t_map *map, double *cx, double *cy)
-// {
-// 	if (map->axis == 'y')
-// 	{
-// 		if (map->width % 2 == 0)
-// 		{
-// 			*cx = (map->orig_point[map->width / 2].x \
-// 					+ map->orig_point[map->width / 2 - 1].x) / 2.0;
-// 		}
-// 		else
-// 			*cx = map->orig_point[map->width / 2].x;
-// 		*cy = map->orig_point[(map->height * map->width) / 2].y;
-// 	}
-// 	else if (map->axis == 'x')
-// 	{
-// 		if (map->width % 2 == 0)
-// 		{
-// 			*cy = (map->orig_point[(map->height / 2) * map->width].y
-// 						+ map->orig_point[(map->height / 2 - 1)
-// 						* map->width].y) / 2.0;
-// 		}
-// 		else
-// 			*cy = map->orig_point[(map->height / 2) * map->width].y;
-// 		*cx = map->orig_point[(map->height * map->width) / 2].x;
-// 	}
-// 	else
-// 	{
-// 		*cx = map->point[(map->height * map->width) / 2].x;
-// 		*cy = map->point[(map->height * map->width) / 2].y;
-// 	}
-// }
+static void	set_center(t_map *map, double *cx, double *cy)
+{
+	int	total;
+
+	total = map->height * map->width;
+	if (total % 2 == 0)
+	{
+		*cx = map->point[total / 2 + (map->width / 2)].x;
+		*cy = map->point[total / 2 + (map->width / 2)].y;
+	}
+	else
+	{
+		*cx = map->point[total / 2].x;
+		*cy = map->point[total / 2].y;
+	}
+}
 
 void	center_map(t_map *map)
 {
@@ -144,8 +129,11 @@ void	center_map(t_map *map)
 	double	cx;
 	double	cy;
 
-	cx = map->point[(map->height * map->width) / 2].x;
-	cy = map->point[(map->height * map->width) / 2].y;
+	// cx = map->point[(map->height * map->width) / 2].x;
+	// cy = map->point[(map->height * map->width) / 2].y;
+	cx = 0;
+	cy = 0;
+	set_center(map, &cx, &cy);
 	y = 0;
 	while (y < map->height)
 	{
