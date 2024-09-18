@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 11:12:51 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:35:24 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@
 
 # ifndef WIN_HEIGHT
 #  define WIN_HEIGHT 1000
-# endif
-
-# ifndef GUI_WIDTH
-#  define GUI_WIDTH (WIN_WIDTH / 4)
-# endif
-
-# ifndef GUI_HEIGHT
-#  define GUI_HEIGHT WIN_HEIGHT
 # endif
 
 # ifndef HEX_LEN
@@ -102,13 +94,19 @@ int			count_nums(char *map_str);
 /*--------------------POINT HANDLING--------------------*/
 
 t_point		*convert_map(t_map *map, t_point *point);
-//void		reset_point(t_point *orig_point, t_point *point, t_map *map);
 t_point		*copy_point(t_point *point, t_map *map);
+void		set_scale(t_map *map);
+void		scale_coordinates(t_map *map, double scale);
+void		find_min_coordinates(t_map *map, t_point *min);
+void		find_max_coordinates(t_map *map, t_point *min);
+void		scale_z(t_map *map);
+void		move_coordinates(t_map *map, double move_x, double move_y);
+void		center_map(t_map *map);
+void		find_z_range(t_map *map);
 
 /*--------------------CLEANING--------------------*/
 
 void		free_arr(int **arr, int index);
-//void		free_map(t_map *img);
 int			free_ret(t_map *map, t_point *point);
 void		clear_img(mlx_image_t *img);
 
@@ -125,6 +123,7 @@ uint32_t	set_color(int num);
 void		map_to_mlx(t_map *map);
 t_point		*fill_image(t_map *map);
 bool		to_2d(t_map *map);
+void		draw_lines(t_map *map);
 void		draw_line_row(t_map *map, t_point *point);
 void		draw_line_col(t_map *map, t_point *point, int width);
 void		draw_gui(t_map *map);
@@ -140,17 +139,8 @@ void		zoom(double xdelta, double ydelta, void *param);
 
 void		move_img(t_map *img);
 void		zoom_img(t_map *map, double space);
-
-void	rotate_all(t_map *map);
-void	change_angles(t_map *map);
-void	set_scale(t_map *map);
-void	scale_coordinates(t_map *map, double scale);
-void	find_min_coordinates(t_map *map, t_point *min);
-void	find_max_coordinates(t_map *map, t_point *min);
-void	scale_z(t_map *map);
-void	move_coordinates(t_map *map, double move_x, double move_y);
-void	center_map(t_map *map);
-void	draw_lines(t_map *map);
-void	set_orto_side(t_map *map);
+void		rotate_all(t_map *map);
+void		change_angles(t_map *map);
+void		set_orto_side(t_map *map);
 
 #endif

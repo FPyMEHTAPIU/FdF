@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:31:15 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 12:44:01 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:30:46 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	draw_gui(t_map *map)
 {
 	mlx_image_t	*image;
 
-	image = mlx_new_image(map->obj, GUI_WIDTH, GUI_HEIGHT);
+	image = mlx_new_image(map->obj, WIN_WIDTH / 4, WIN_HEIGHT);
 	draw_back(image);
 	mlx_image_to_window(map->obj, image, 0, 0);
 	draw_instructions(map->obj);

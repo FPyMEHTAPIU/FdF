@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:21:56 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 12:36:19 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:24:31 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,30 @@ static int	set_step(double dx, double dy)
 		return (ft_abs(dx));
 	else
 		return (ft_abs(dy));
+}
+
+void	draw_lines(t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width - 1)
+			draw_line_row(map, &map->point[y * map->width + x++]);
+		y++;
+	}
+	y = 0;
+	while (y < map->width)
+	{
+		x = 0;
+		while (x < map->height - 1)
+			draw_line_col(map, &map->point[y + map->width * x++],
+				map->width);
+		y++;
+	}
 }
 
 void	draw_line_row(t_map *map, t_point *point)

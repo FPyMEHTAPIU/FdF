@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 10:26:02 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:24:53 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ static void	rotate_z(int x, int y, t_map *map)
 
 	tmp_x = map->point[y * map->width + x].x;
 	tmp_y = map->point[y * map->width + x].y;
-	map->point[y * map->width + x].x = tmp_x * cos(map->angle_z) - tmp_y * sin(map->angle_z);
-	map->point[y * map->width + x].y = tmp_x * sin(map->angle_z) + tmp_y * cos(map->angle_z);
+	map->point[y * map->width + x].x = tmp_x * \
+		cos(map->angle_z) - tmp_y * sin(map->angle_z);
+	map->point[y * map->width + x].y = tmp_x * \
+		sin(map->angle_z) + tmp_y * cos(map->angle_z);
 }
 
 static void	rotate_y(int x, int y, t_map *map)

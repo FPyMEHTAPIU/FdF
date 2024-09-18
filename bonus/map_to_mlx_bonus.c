@@ -6,13 +6,11 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 10:51:05 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:32:08 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf_bonus.h"
-//Danger
-#include <stdio.h>
 
 t_point	*fill_image(t_map *map)
 {
@@ -35,121 +33,6 @@ t_point	*fill_image(t_map *map)
 	return (map->point);
 }
 
-void	find_z_range(t_map *map)
-{
-	int	x;
-	int	y;
-
-	map->max_z = map->orig_point[0].z;
-	map->min_z = map->orig_point[0].z;
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			if (map->orig_point[y * map->width + x].z > map->max_z)
-				map->max_z = map->orig_point[y * map->width + x].z;
-			if (map->orig_point[y * map->width + x].z < map->min_z)
-				map->min_z = map->orig_point[y * map->width + x].z;
-			x++;
-		}
-		y++;
-	}
-}
-
-void	scale_z(t_map *map)
-{
-	int	scale;
-	int	x;
-	int	y;
-
-	find_z_range(map);
-	scale = map->max_z - map->min_z;
-	if (scale == 0)
-		scale = 1;
-	scale = ((map->img->height / 10) + (map->img->width / 10)) / scale;
-	if (scale == 0)
-		scale = 1;
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			map->point[y * map->width + x].z = map->orig_point[y * map->width + x].z * scale * 0.3;
-			x++;
-		}
-		y++;
-	}
-}
-
-void	move_coordinates(t_map *map, double move_x, double move_y)
-{
-	int		x;
-	int		y;
-
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			map->point[y * map->width + x].x *= map->zoom;
-			map->point[y * map->width + x].y *= map->zoom;
-			map->point[y * map->width + x].x += move_x;
-			map->point[y * map->width + x].y += move_y;
-			x++;
-		}
-		y++;
-	}
-}
-
-static void	set_center(t_map *map, double *cx, double *cy)
-{
-	int	total;
-
-	total = map->height * map->width;
-	if (total % 2 == 0)
-	{
-		*cx = map->point[total / 2 + (map->width / 2)].x;
-		*cy = map->point[total / 2 + (map->width / 2)].y;
-	}
-	else
-	{
-		*cx = map->point[total / 2].x;
-		*cy = map->point[total / 2].y;
-	}
-}
-
-void	center_map(t_map *map)
-{
-	int		x;
-	int		y;
-	double	cx;
-	double	cy;
-
-	cx = 0;
-	cy = 0;
-	set_center(map, &cx, &cy);
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			map->point[y * map->width + x].x -= cx;
-			map->point[y * map->width + x].y -= cy;
-			map->point[y * map->width + x].x += map->img->width / 2;
-			map->point[y * map->width + x].y += map->img->height / 2;
-			map->point[y * map->width + x].x += map->move_x;
-			map->point[y * map->width + x].y += map->move_y;
-			x++;
-		}
-		y++;
-	}
-}
-
 void	map_to_mlx(t_map *map)
 {
 	t_point	min;
@@ -157,24 +40,21 @@ void	map_to_mlx(t_map *map)
 	map->obj = mlx_init(WIN_WIDTH, WIN_HEIGHT, "FDF", 1);
 	if (!map->obj)
 		mlx_terminate(map->obj);
-	map->img = mlx_new_image(map->obj, map->obj->width - GUI_WIDTH, map->obj->height);
+	map->img = mlx_new_image(map->obj, map->obj->width - \
+		WIN_WIDTH / 4, map->obj->height);
 	map->orig_point = copy_point(map->point, map);
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	scale_z(map);
 	map->point = fill_image(map);
 	set_scale(map);
 	rotate_all(map);
-	if (!to_2d(map))
-	{
-		mlx_terminate(map->obj);
-		exit (1);
-	}
+	to_2d(map);
 	find_min_coordinates(map, &min);
 	move_coordinates(map, -min.x, -min.y);
 	center_map(map);
 	draw_lines(map);
 	draw_gui(map);
-	mlx_image_to_window(map->obj, map->img, GUI_WIDTH, 0);
+	mlx_image_to_window(map->obj, map->img, WIN_WIDTH / 4, 0);
 	mlx_scroll_hook(map->obj, zoom, map);
 	mlx_loop_hook(map->obj, fdf_keys, map);
 	mlx_loop(map->obj);

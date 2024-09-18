@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/12 12:39:21 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:12:45 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int argc, char **argv)
 	int		fd;
 
 	if (argc != 2)
+		return (0);
+	if (!ft_strnstr(argv[1], ".fdf", ft_strlen(argv[1])))
 		return (0);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)

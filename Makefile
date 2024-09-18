@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/18 11:08:36 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/18 12:32:47 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,10 @@ SRCS = \
 	${SRC_DIR}/set_colors.c \
 	${SRC_DIR}/hooks.c \
 	${SRC_DIR}/point_handle.c \
-	${SRC_DIR}/scale.c
+	${SRC_DIR}/scale.c \
+	${SRC_DIR}/align.c \
+	${SRC_DIR}/find_ranges.c \
+	${SRC_DIR}/utils.c
 
 BONUS_SRCS = \
 	${BONUS_DIR}/main_bonus.c \
@@ -58,7 +61,10 @@ BONUS_SRCS = \
 	${BONUS_DIR}/point_handle_bonus.c \
 	${BONUS_DIR}/gui_bonus.c \
 	${BONUS_DIR}/hooks_bonus.c \
-	${BONUS_DIR}/scale_bonus.c
+	${BONUS_DIR}/scale_bonus.c \
+	${BONUS_DIR}/align_bonus.c \
+	${BONUS_DIR}/find_ranges_bonus.c \
+	${BONUS_DIR}/utils_bonus.c
 
 OBJS = ${SRCS:.c=.o}
 BONUS_OBJS = ${BONUS_SRCS:.c=.o}

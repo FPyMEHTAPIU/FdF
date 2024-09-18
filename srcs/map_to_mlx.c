@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 11:05:39 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:59:50 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,117 +31,6 @@ t_point	*fill_image(t_map *map)
 		y++;
 	}
 	return (map->point);
-}
-
-void	find_z_range(t_map *map)
-{
-	int	x;
-	int	y;
-
-	map->max_z = map->orig_point[0].z;
-	map->min_z = map->orig_point[0].z;
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			if (map->orig_point[y * map->width + x].z > map->max_z)
-				map->max_z = map->orig_point[y * map->width + x].z;
-			if (map->orig_point[y * map->width + x].z < map->min_z)
-				map->min_z = map->orig_point[y * map->width + x].z;
-			x++;
-		}
-		y++;
-	}
-}
-
-void	scale_z(t_map *map)
-{
-	int	scale;
-	int	x;
-	int	y;
-
-	find_z_range(map);
-	scale = map->max_z - map->min_z;
-	if (scale == 0)
-		scale = 1;
-	scale = ((map->img->height / 10) + (map->img->width / 10)) / scale;
-	if (scale == 0)
-		scale = 1;
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			map->point[y * map->width + x].z = map->orig_point[y * map->width + x].z * scale * 0.3;
-			x++;
-		}
-		y++;
-	}
-}
-
-void	move_coordinates(t_map *map, double move_x, double move_y)
-{
-	int		x;
-	int		y;
-
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			map->point[y * map->width + x].x += move_x;
-			map->point[y * map->width + x].y += move_y;
-			x++;
-		}
-		y++;
-	}
-}
-
-static void	set_center(t_map *map, double *cx, double *cy)
-{
-	int	total;
-
-	total = map->height * map->width;
-	if (total % 2 == 0)
-	{
-		*cx = map->point[total / 2 + (map->width / 2)].x;
-		*cy = map->point[total / 2 + (map->width / 2)].y;
-	}
-	else
-	{
-		*cx = map->point[total / 2].x;
-		*cy = map->point[total / 2].y;
-	}
-}
-
-void	center_map(t_map *map)
-{
-	int		x;
-	int		y;
-	double	cx;
-	double	cy;
-
-	cx = 0;
-	cy = 0;
-	set_center(map, &cx, &cy);
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			map->point[y * map->width + x].x -= cx;
-			map->point[y * map->width + x].y -= cy;
-			map->point[y * map->width + x].x += map->img->width / 2;
-			map->point[y * map->width + x].y += map->img->height / 2;
-			x++;
-		}
-		y++;
-	}
 }
 
 void	map_to_mlx(t_map *map)
