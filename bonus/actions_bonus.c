@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 12:37:01 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:43:17 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,11 @@ void	redraw(t_map *map, char type)
 
 void	set_orto_side(t_map *map)
 {
-	map->persp = 'P';
 	if (mlx_is_key_down(map->obj, MLX_KEY_T))
 		map->side = 't';
 	else if (mlx_is_key_down(map->obj, MLX_KEY_R))
 		map->side = 'r';
 	else if (mlx_is_key_down(map->obj, MLX_KEY_F))
 		map->side = 'f';
-	redraw(map, map->persp);
+	redraw(map, 'O');
 }

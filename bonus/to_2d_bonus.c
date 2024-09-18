@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 12:27:31 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:42:44 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	change_perspective(t_map *map)
 	size_t	i;
 
 	i = 0;
-	if (map->persp == 'P')
+	if (map->persp == 'O')
 	{
 		while (i < map->img->count)
 		{
