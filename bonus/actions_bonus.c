@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 13:43:17 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:25:58 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	redraw(t_map *map, char type)
 	set_scale(map);
 	rotate_all(map);
 	to_2d(map);
-	find_min_coordinates(map, &min);
+	find_min_xy(map, &min);
 	move_coordinates(map, -min.x, -min.y);
 	center_map(map);
 	draw_lines(map);

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 12:32:08 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:25:39 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	map_to_mlx(t_map *map)
 	set_scale(map);
 	rotate_all(map);
 	to_2d(map);
-	find_min_coordinates(map, &min);
+	find_min_xy(map, &min);
 	move_coordinates(map, -min.x, -min.y);
 	center_map(map);
 	draw_lines(map);

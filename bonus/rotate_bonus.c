@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:06:28 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 13:47:28 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:22:35 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	rotate_y(int x, int y, t_map *map)
 {
 	double	tmp_x;
 
-	if (map->persp == 'P')
+	if (map->persp == 'O')
 		return ;
 	tmp_x = map->point[y * map->width + x].x;
 	map->point[y * map->width + x].x = tmp_x * cos(map->angle_y) + \
@@ -42,7 +42,7 @@ static void	rotate_x(int x, int y, t_map *map)
 {
 	double	tmp_y;
 
-	if (map->persp == 'P')
+	if (map->persp == 'O')
 		return ;
 	tmp_y = map->point[y * map->width + x].y;
 	map->point[y * map->width + x].y = tmp_y * cos(map->angle_x) - \

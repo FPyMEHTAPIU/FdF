@@ -6,13 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:27:49 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 12:28:39 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:25:15 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf_bonus.h"
 
-void	find_min_coordinates(t_map *map, t_point *min)
+void	find_min_xy(t_map *map, t_point *min)
 {
 	int	x;
 	int	y;
@@ -35,7 +35,7 @@ void	find_min_coordinates(t_map *map, t_point *min)
 	}
 }
 
-void	find_max_coordinates(t_map *map, t_point *max)
+void	find_max_xy(t_map *map, t_point *max)
 {
 	int	x;
 	int	y;
