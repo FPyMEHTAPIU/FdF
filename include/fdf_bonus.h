@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 12:35:24 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:52:26 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_map
 	double		zoom;
 	char		persp;
 	int			steps;
-	char		axis;
+	char		axis; //???
 	char		side;
 }	t_map;
 

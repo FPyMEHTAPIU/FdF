@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:31:15 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 12:30:46 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:32:27 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,56 +33,38 @@ static void	draw_back(mlx_image_t *image)
 static void	put_fdf(mlx_t *obj)
 {
 	mlx_image_t	*img;
-	int			start_point;
 
-	start_point = 800;
-	img = mlx_put_string(obj, "FFFFF DDDDD   FFFFF", 140, start_point);
-	mlx_image_to_window(obj, img, 140, start_point);
-	start_point += 10;
-	img = mlx_put_string(obj, "F     D    D  F", 140, start_point);
-	mlx_image_to_window(obj, img, 140, start_point);
-	start_point += 10;
-	img = mlx_put_string(obj, "F     D     D F", 140, start_point);
-	mlx_image_to_window(obj, img, 140, start_point);
-	start_point += 10;
-	img = mlx_put_string(obj, "FFFF  D     D FFFF", 140, start_point);
-	mlx_image_to_window(obj, img, 140, start_point);
-	start_point += 10;
-	img = mlx_put_string(obj, "F     D     D F", 140, start_point);
-	mlx_image_to_window(obj, img, 140, start_point);
-	start_point += 10;
-	img = mlx_put_string(obj, "F     D    D  F", 140, start_point);
-	mlx_image_to_window(obj, img, 140, start_point);
-	start_point += 10;
-	img = mlx_put_string(obj, "F     DDDDD   F", 140, start_point);
-	mlx_image_to_window(obj, img, 140, start_point);
+	img = mlx_put_string(obj, "FFFFF DDDDD   FFFFF", 145, 800);
+	img = mlx_put_string(obj, "F     D    D  F", 145, 810);
+	img = mlx_put_string(obj, "F     D     D F", 145, 820);
+	img = mlx_put_string(obj, "FFFF  D     D FFFF", 145, 830);
+	img = mlx_put_string(obj, "F     D     D F", 145, 840);
+	img = mlx_put_string(obj, "F     D    D  F", 145, 850);
+	img = mlx_put_string(obj, "F     DDDDD   F", 145, 860);
+	mlx_image_to_window(obj, img, 145, 860);
 }
 
 void	draw_instructions(mlx_t *obj)
 {
-	int			line_gap;
-	int			start_point;
 	mlx_image_t	*img;
 
-	start_point = 50;
-	line_gap = 50;
-	img = mlx_put_string(obj, "Instructions:", 25, start_point);
-	mlx_image_to_window(obj, img, 25, start_point);
-	start_point += line_gap;
-	img = mlx_put_string(obj, "- Arrows to move", 25, start_point);
-	mlx_image_to_window(obj, img, 25, start_point);
-	start_point += line_gap;
-	img = mlx_put_string(obj, "- '=', '-' and mouse wheel to zoom",
-			25, start_point);
-	mlx_image_to_window(obj, img, 25, start_point);
-	start_point += line_gap;
-	img = mlx_put_string(obj, "- Hold 'x' or 'c' and use <- or -> to rotate",
-			25, start_point);
-	mlx_image_to_window(obj, img, 25, start_point);
-	start_point += line_gap;
-	img = mlx_put_string(obj, "- Press 'P' or 'I' to change projection",
-			25, start_point);
-	mlx_image_to_window(obj, img, 25, start_point);
+	img = mlx_put_string(obj, "Instructions:", 25, 50);
+	img = mlx_put_string(obj, "- Arrows to move", 25, 125);
+	img = mlx_put_string(obj, "- '=', '-' or mouse wheel to zoom",
+			25, 175);
+	img = mlx_put_string(obj, "- Hold 'z', 'x' or 'c' and use <- or ->",
+			25, 225);
+	img = mlx_put_string(obj, "to rotate around 'z', 'x' or 'y' axies",
+			25, 250);
+	img = mlx_put_string(obj, "- Press 'T' to see the map in top-down view",
+			25, 300);
+	img = mlx_put_string(obj, "- Press 'R' to see the map in ride-side view",
+			25, 325);
+	img = mlx_put_string(obj, "- Press 'F' to see the map in front-side view",
+			25, 350);
+	img = mlx_put_string(obj, "- Press 'I' to return in isometric projection",
+			25, 375);
+	mlx_image_to_window(obj, img, 25, 375);
 	put_fdf(obj);
 }
 
