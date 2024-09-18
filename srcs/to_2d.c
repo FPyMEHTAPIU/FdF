@@ -6,73 +6,65 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/10 11:09:42 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:02:18 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void	to_isometry(t_point *point, t_isom *isom)
+static void	to_isometry(size_t i, t_map *map)
 {
-	isom->x = point->x - point->y + 800;
-	isom->y = (point->x + point->y) / 2 - point->z + 150;
-	isom->color = point->color;
+	double	temp_x;
+
+	temp_x = map->point[i].x;
+	map->point[i].x = (temp_x - map->point[i].y);
+	map->point[i].y = (temp_x + map->point[i].y) / 2 - map->point[i].z;
 }
 
-static bool	print_err(t_map *map, t_point *point, t_isom *isom, int n)
+static bool	print_err(t_map *map, int n)
 {
 	if (n == 0)
 	{
 		ft_printf("Error in creation t_isom!\n");
-		free_ret(map, point);
+		free_ret(map, map->point);
 		return (false);
 	}
-	else
+	return (true);
+}
+
+void	draw_lines(t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < map->height)
 	{
-		if (isom)
-			free(isom);
-		return (true);
+		x = 0;
+		while (x < map->width - 1)
+			draw_line_row(map, &map->point[y * map->width + x++]);
+		y++;
+	}
+	y = 0;
+	while (y < map->width)
+	{
+		x = 0;
+		while (x < map->height - 1)
+			draw_line_col(map, &map->point[y + map->width * x++],
+				map->width);
+		y++;
 	}
 }
 
-static void	draw_lines(mlx_image_t *img, t_map *map, t_isom *isom)
+bool	to_2d(t_map *map)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < map->lines)
-	{
-		j = 0;
-		while (j < map->nums_in_line - 1)
-			draw_line_row(img, &isom[i * map->nums_in_line + j++]);
-		i++;
-	}
-	i = 0;
-	while (i < map->nums_in_line)
-	{
-		j = 0;
-		while (j < map->lines - 1)
-			draw_line_col(img, &isom[i + map->nums_in_line * j++],
-				map->nums_in_line);
-		i++;
-	}
-}
-
-bool	to_2d(mlx_image_t *img, t_map *map, t_point *point)
-{
-	t_isom	*isom;
 	size_t	i;
 
-	isom = malloc(sizeof(t_isom) * img->count);
-	if (!isom)
-		return (print_err(map, point, isom, 0));
 	i = 0;
-	while (i < img->count)
+	while (i < map->img->count)
 	{
-		to_isometry(&point[i], &isom[i]);
+		to_isometry(i, map);
 		i++;
 	}
-	draw_lines(img, map, isom);
-	return (print_err(map, point, isom, 1));
+	return (print_err(map, 1));
 }

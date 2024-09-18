@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/16 11:32:47 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:12:51 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@
 
 # ifndef MAP_LINES
 #  define MAP_LINES 10
-# endif
-
-# ifndef SPACE
-#  define SPACE 20
 # endif
 
 # ifndef WIN_WIDTH

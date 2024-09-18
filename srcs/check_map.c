@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:41:04 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/10 11:10:09 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:09:05 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	check_chars(t_map *map)
 	int	line_len;
 
 	lines = 0;
-	while (lines < map->lines)
+	while (lines < map->height)
 	{
 		line_len = ft_strlen(map->strs[lines]);
 		i = 0;

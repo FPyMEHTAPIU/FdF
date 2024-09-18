@@ -1,45 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_ret.c                                         :+:      :+:    :+:   */
+/*   point_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 13:11:30 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 11:05:52 by msavelie         ###   ########.fr       */
+/*   Created: 2024/09/18 11:07:18 by msavelie          #+#    #+#             */
+/*   Updated: 2024/09/18 11:07:35 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	free_arr(int **arr, int index)
+t_point	*copy_point(t_point *point, t_map *map)
 {
-	if (!arr)
-		return ;
-	while (index >= 0)
+	t_point	*copy;
+	int		i;
+	int		total;
+
+	total = map->height * map->width;
+	copy = malloc(sizeof(t_point) * total);
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < total)
 	{
-		free(arr[index]);
-		arr[index] = NULL;
-		index--;
+		copy[i].x = point[i].x;
+		copy[i].y = point[i].y;
+		copy[i].z = point[i].z;
+		copy[i].color = point[i].color;
+		i++;
 	}
-	free(arr);
-	arr = NULL;
-}
-
-void	free_map(t_map *map)
-{
-	if (!map)
-		return ;
-	if (map->orig_point)
-		free(map->orig_point);
-	map->orig_point = NULL;
-	free(map);
-}
-
-int	free_ret(t_map *map, t_point *point)
-{
-	if (point)
-		free(point);
-	free_map(map);
-	return (1);
+	return (copy);
 }

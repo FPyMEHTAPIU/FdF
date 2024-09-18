@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/12 12:47:36 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/18 11:08:36 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,9 @@ SRCS = \
 	${SRC_DIR}/to_2d.c \
 	${SRC_DIR}/calculate_colors.c \
 	${SRC_DIR}/set_colors.c \
-	${SRC_DIR}/hooks.c
+	${SRC_DIR}/hooks.c \
+	${SRC_DIR}/point_handle.c \
+	${SRC_DIR}/scale.c
 
 BONUS_SRCS = \
 	${BONUS_DIR}/main_bonus.c \

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 11:57:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/10 11:09:46 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:52:21 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static t_map	*create_map(void)
 		return (NULL);
 	}
 	map->alloc_lines = MAP_LINES;
-	map->lines = 0;
+	map->height = 0;
 	return (map);
 }
 
@@ -60,7 +60,7 @@ static t_map	*realloc_map(t_map *map)
 		return (NULL);
 	}
 	i = 0;
-	while (i < map->lines)
+	while (i < map->height)
 	{
 		strs[i] = map->strs[i];
 		i++;
@@ -81,6 +81,15 @@ static t_map	*check_ret(t_map *map, int i)
 	return (map);
 }
 
+void	init_map(t_map *map)
+{
+	map->space_incr = 0.0;
+	map->point = NULL;
+	map->orig_point = NULL;
+	map->obj = NULL;
+	map->img = NULL;
+}
+
 t_map	*parse_map(int fd)
 {
 	t_map	*map;
@@ -92,17 +101,17 @@ t_map	*parse_map(int fd)
 		return (NULL);
 	i = 0;
 	temp = get_next_line(fd);
-	map->nums_in_line = count_nums(temp);
+	map->width = count_nums(temp);
 	while (temp)
 	{
-		if (map->alloc_lines == map->lines)
+		if (map->alloc_lines == map->height)
 			map = realloc_map(map);
 		map->strs[i] = temp;
 		i++;
-		map->lines++;
+		map->height++;
 		temp = get_next_line(fd);
 	}
 	map->strs[i] = NULL;
-	map->space_incr = 0;
+	init_map(map);
 	return (check_ret(map, i));
 }

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/10 11:59:14 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:12:57 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@
 
 # ifndef MAP_LINES
 #  define MAP_LINES 10
-# endif
-
-# ifndef SPACE
-#  define SPACE 20
 # endif
 
 # ifndef WIN_WIDTH
@@ -40,23 +36,29 @@
 
 /*--------------------STRUCTS--------------------*/
 
-typedef struct s_map
-{
-	char	**strs;
-	int		alloc_lines;
-	int		lines;
-	int		nums_in_line;
-	double	space_incr;
-}	t_map;
-
 typedef struct s_point
 {
 	double		x;
 	double		y;
 	double		z;
 	uint32_t	color;
-	double		space;
 }	t_point;
+
+typedef struct s_map
+{
+	char		**strs;
+	int			alloc_lines;
+	int			height;
+	int			width;
+	double		space_incr;
+	t_point		*point;
+	t_point		*orig_point;
+	mlx_t		*obj;
+	mlx_image_t	*img;
+	int			min_z;
+	int			max_z;
+	int			steps;
+}	t_map;
 
 typedef struct s_color
 {
@@ -73,26 +75,6 @@ typedef struct s_color
 	uint32_t	cur_color;
 }	t_color;
 
-typedef struct s_isom
-{
-	double		x;
-	double		y;
-	uint32_t	color;
-	int			steps;
-}	t_isom;
-
-typedef struct s_image
-{
-	int			x;
-	int			y;
-	uint32_t	width;
-	uint32_t	height;
-	mlx_t		*obj;
-	mlx_image_t	*img;
-	t_point		*point;
-	t_map		*map;
-}	t_image;
-
 /*--------------------MAP HANDLING--------------------*/
 
 void		free_map(t_map *map);
@@ -103,13 +85,15 @@ int			count_nums(char *map_str);
 /*--------------------POINT HANDLING--------------------*/
 
 t_point		*convert_map(t_map *map, t_point *point);
-void		reset_point(t_point *orig_point, t_point *point, t_map *map);
 t_point		*copy_point(t_point *point, t_map *map);
+void		scale_coordinates(t_map *map, double scale);
+void		set_scale(t_map *map);
+void		find_min_coordinates(t_map *map, t_point *min);
+void		find_max_coordinates(t_map *map, t_point *max);
 
 /*--------------------CLEANING--------------------*/
 
 void		free_arr(int **arr, int index);
-void		free_img(t_image *img);
 int			free_ret(t_map *map, t_point *point);
 void		clear_img(mlx_image_t *img);
 
@@ -123,11 +107,12 @@ uint32_t	set_color(int num);
 
 /*--------------------WORK WITH AN IMAGE--------------------*/
 
-void		map_to_mlx(t_map *map, t_point *point);
-t_point		*fill_image(mlx_image_t *img, t_map *map, t_point *point);
-bool		to_2d(mlx_image_t *img, t_map *map, t_point *point);
-void		draw_line_row(mlx_image_t *img, t_isom *isom);
-void		draw_line_col(mlx_image_t *img, t_isom *isom, int nums_in_line);
+void		map_to_mlx(t_map *map);
+t_point		*fill_image(t_map *map);
+bool		to_2d(t_map *map);
+void		draw_lines(t_map *map);
+void		draw_line_row(t_map *map, t_point *point);
+void		draw_line_col(t_map *map, t_point *point, int width);
 
 /*--------------------HOOKS--------------------*/
 

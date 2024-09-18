@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/10 11:10:06 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:50:04 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,20 @@ t_point	*convert_map(t_map *map, t_point *point)
 	strs = ft_split(map->strs[i], ' ');
 	while (map->strs[i])
 	{
-		if (count_nums(map->strs[i]) != map->nums_in_line)
+		if (count_nums(map->strs[i]) != map->width)
 		{
 			ft_printf("Lines aren't equal!\n");
 			ft_free_strs(strs, count_nums(map->strs[i]));
-			ft_free_strs(map->strs, map->lines);
+			ft_free_strs(map->strs, map->height);
 			free_ret(map, temp);
 			exit (1);
 		}
-		point = alloc_and_convert(strs, map->nums_in_line, point);
-		ft_free_strs(strs, map->nums_in_line);
+		point = alloc_and_convert(strs, map->width, point);
+		ft_free_strs(strs, map->width);
 		i++;
 		if (map->strs[i])
 			strs = ft_split(map->strs[i], ' ');
 	}
-	ft_free_strs(map->strs, map->lines);
+	ft_free_strs(map->strs, map->height);
 	return (temp);
 }

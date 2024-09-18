@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 10:21:49 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:51:05 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,6 @@ void	center_map(t_map *map)
 	double	cx;
 	double	cy;
 
-	// cx = map->point[(map->height * map->width) / 2].x;
-	// cy = map->point[(map->height * map->width) / 2].y;
 	cx = 0;
 	cy = 0;
 	set_center(map, &cx, &cy);
