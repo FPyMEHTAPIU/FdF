@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 16:25:26 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:47:56 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ typedef struct s_map
 	double		zoom;
 	char		persp;
 	int			steps;
-	char		axis; //???
 	char		side;
 }	t_map;
 
@@ -96,7 +95,7 @@ int			count_nums(char *map_str);
 t_point		*convert_map(t_map *map, t_point *point);
 t_point		*copy_point(t_point *point, t_map *map);
 void		set_scale(t_map *map);
-void		scale_coordinates(t_map *map, double scale);
+void		scale_xy(t_map *map, double scale);
 void		find_min_xy(t_map *map, t_point *min);
 void		find_max_xy(t_map *map, t_point *min);
 void		scale_z(t_map *map);

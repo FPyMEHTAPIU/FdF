@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 12:19:47 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:48:38 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ int			count_nums(char *map_str);
 
 t_point		*convert_map(t_map *map, t_point *point);
 t_point		*copy_point(t_point *point, t_map *map);
-void		scale_coordinates(t_map *map, double scale);
+void		scale_xy(t_map *map, double scale);
 void		set_scale(t_map *map);
-void		find_min_coordinates(t_map *map, t_point *min);
-void		find_max_coordinates(t_map *map, t_point *max);
+void		find_min_xy(t_map *map, t_point *min);
+void		find_max_xy(t_map *map, t_point *max);
 void		find_z_range(t_map *map);
 void		scale_z(t_map *map);
 void		move_coordinates(t_map *map, double move_x, double move_y);

@@ -6,13 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 12:34:04 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 12:31:19 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:43:49 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf_bonus.h"
 
-void	scale_coordinates(t_map *map, double scale)
+void	scale_xy(t_map *map, double scale)
 {
 	int	x;
 	int	y;
@@ -45,11 +45,11 @@ void	set_scale(t_map *map)
 	double	scale_x;
 	double	scale_y;
 
-	find_min_coordinates(map, &min);
-	find_max_coordinates(map, &max);
+	find_min_xy(map, &min);
+	find_max_xy(map, &max);
 	scale_x = (max.x - min.x) / (map->img->width / 2);
 	scale_y = (max.y - min.y) / (map->img->height / 2);
-	scale_coordinates(map, fmin(1 / scale_x, 1 / scale_y));
+	scale_xy(map, fmin(1 / scale_x, 1 / scale_y));
 }
 
 void	scale_z(t_map *map)
