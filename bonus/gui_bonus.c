@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:31:15 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 13:32:27 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:21:28 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ void	draw_instructions(mlx_t *obj)
 			25, 350);
 	img = mlx_put_string(obj, "- Press 'I' to return in isometric projection",
 			25, 375);
-	mlx_image_to_window(obj, img, 25, 375);
+	img = mlx_put_string(obj, "- Hold SPACE and press UP or DOWN arrows",
+			25, 425);
+	img = mlx_put_string(obj, "to change map height",
+			25, 450);
+	mlx_image_to_window(obj, img, 25, 450);
 	put_fdf(obj);
 }
 

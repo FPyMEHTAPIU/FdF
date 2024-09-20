@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 12:34:04 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/19 12:43:49 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:19:24 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	scale_xy(t_map *map, double scale)
 	}
 }
 
-void	set_scale(t_map *map)
+void	set_xy(t_map *map)
 {
 	t_point	min;
 	t_point	max;
@@ -52,7 +52,7 @@ void	set_scale(t_map *map)
 	scale_xy(map, fmin(1 / scale_x, 1 / scale_y));
 }
 
-void	scale_z(t_map *map)
+void	set_z(t_map *map)
 {
 	int	scale;
 	int	x;
@@ -72,7 +72,7 @@ void	scale_z(t_map *map)
 		while (x < map->width)
 		{
 			map->point[y * map->width + x].z = \
-				map->orig_point[y * map->width + x].z * scale * 0.3;
+				map->orig_point[y * map->width + x].z * scale * map->z_val;
 			x++;
 		}
 		y++;

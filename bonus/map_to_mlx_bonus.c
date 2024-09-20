@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 16:25:39 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:00:45 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	map_to_mlx(t_map *map)
 		WIN_WIDTH / 4, map->obj->height);
 	map->orig_point = copy_point(map->point, map);
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
-	scale_z(map);
+	set_z(map);
 	map->point = fill_image(map);
-	set_scale(map);
+	set_xy(map);
 	rotate_all(map);
 	to_2d(map);
 	find_min_xy(map, &min);
-	move_coordinates(map, -min.x, -min.y);
+	move_boundaries(map, -min.x, -min.y);
 	center_map(map);
 	draw_lines(map);
 	draw_gui(map);

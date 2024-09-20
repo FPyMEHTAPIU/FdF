@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:40:24 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 16:25:58 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:19:55 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	move_img(t_map *map)
 {
 	if (mlx_is_key_down(map->obj, MLX_KEY_Z)
 		|| mlx_is_key_down(map->obj, MLX_KEY_X)
-		|| mlx_is_key_down(map->obj, MLX_KEY_C))
+		|| mlx_is_key_down(map->obj, MLX_KEY_C)
+		|| mlx_is_key_down(map->obj, MLX_KEY_SPACE))
 		return ;
 	if (mlx_is_key_down(map->obj, MLX_KEY_UP))
 		map->move_y -= 5;
@@ -50,14 +51,25 @@ void	move_img(t_map *map)
 	redraw(map, map->persp);
 }
 
-void	zoom_img(t_map *map, double incr_zoom)
+void	zoom_img(t_map *map)
 {
-	if (map->zoom >= 500.0 && incr_zoom > 0.0)
-		;
-	else if (map->zoom <= 0.4 && incr_zoom < 0.0)
-		;
-	else
-		map->zoom += incr_zoom;
+	if (mlx_is_key_down(map->obj, MLX_KEY_SPACE))
+	{
+		if (mlx_is_key_down(map->obj, MLX_KEY_UP) && map->z_val < 1.5)
+			map->z_val += 0.02;
+		else if (mlx_is_key_down(map->obj, MLX_KEY_DOWN) && map->z_val > 0.1)
+			map->z_val -= 0.02;
+	}
+	if (mlx_is_key_down(map->obj, MLX_KEY_EQUAL))
+	{
+		if (map->zoom < 500)
+			map->zoom += 0.1;
+	}
+	else if (mlx_is_key_down(map->obj, MLX_KEY_MINUS))
+	{
+		if (map->zoom > 0.4)
+			map->zoom -= 0.1;
+	}
 	redraw(map, map->persp);
 }
 
@@ -67,13 +79,13 @@ void	redraw(t_map *map, char type)
 
 	map->persp = type;
 	clear_img(map->img);
-	scale_z(map);
+	set_z(map);
 	map->point = fill_image(map);
-	set_scale(map);
+	set_xy(map);
 	rotate_all(map);
 	to_2d(map);
 	find_min_xy(map, &min);
-	move_coordinates(map, -min.x, -min.y);
+	move_boundaries(map, -min.x, -min.y);
 	center_map(map);
 	draw_lines(map);
 }

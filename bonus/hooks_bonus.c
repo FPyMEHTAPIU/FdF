@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:51:50 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 10:03:21 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:22:29 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	fdf_keys(void *obj)
 		|| mlx_is_key_down(map->obj, MLX_KEY_DOWN)
 		|| mlx_is_key_down(map->obj, MLX_KEY_LEFT))
 		move_img(map);
-	if (mlx_is_key_down(map->obj, MLX_KEY_EQUAL))
-		zoom_img(map, 0.1);
-	if (mlx_is_key_down(map->obj, MLX_KEY_MINUS))
-		zoom_img(map, -0.1);
+	if ((mlx_is_key_down(map->obj, MLX_KEY_EQUAL))
+		|| (mlx_is_key_down(map->obj, MLX_KEY_MINUS))
+		|| (mlx_is_key_down(map->obj, MLX_KEY_SPACE)))
+		zoom_img(map);
 	if (mlx_is_key_down(map->obj, MLX_KEY_I))
 		redraw(map, 'I');
 	if (mlx_is_key_down(map->obj, MLX_KEY_T)
@@ -43,7 +43,13 @@ void	fdf_keys(void *obj)
 void	zoom(double xdelta, double ydelta, void *param)
 {
 	t_map	*map;
+	double	changer;
 
 	map = (t_map *) param;
-	zoom_img(map, 0.2 * ydelta + xdelta);
+	changer = 0.2 * ydelta + xdelta;
+	if (map->zoom < 500 && changer > 0)
+		map->zoom += changer;
+	else if (map->zoom > 0.4 && changer < 0)
+		map->zoom += changer;
+	redraw(map, 'I');
 }

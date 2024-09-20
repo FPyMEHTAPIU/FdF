@@ -6,13 +6,13 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:59:58 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 12:00:11 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:03:03 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	move_coordinates(t_map *map, double move_x, double move_y)
+void	move_boundaries(t_map *map, double move_x, double move_y)
 {
 	int		x;
 	int		y;
