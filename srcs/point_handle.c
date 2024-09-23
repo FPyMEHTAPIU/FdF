@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:07:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 11:07:35 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:45:40 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ t_point	*copy_point(t_point *point, t_map *map)
 	total = map->height * map->width;
 	copy = malloc(sizeof(t_point) * total);
 	if (!copy)
-		return (NULL);
+	{
+		ft_printf("Error when trying to copy point struct\n");
+		free_ret(map, map->point);
+		exit(1);	
+	}
 	i = 0;
 	while (i < total)
 	{
