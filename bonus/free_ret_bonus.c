@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:11:30 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/13 12:42:23 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:31:35 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ void	free_map(t_map *map)
 	if (map->orig_point)
 		free(map->orig_point);
 	map->orig_point = NULL;
+	if (map->alloc_lines > 0)
+	{
+		ft_free_strs(map->strs, map->alloc_lines - 1);
+		*map->strs = NULL;
+		map->strs = NULL;
+	}
 	free(map);
 }
 
@@ -42,4 +48,14 @@ int	free_ret(t_map *map, t_point *point)
 		free(point);
 	free_map(map);
 	return (1);
+}
+
+void	check_realloc(t_map *map, char *gnl_str)
+{
+	if (!map)
+	{
+		if (gnl_str)
+			free(gnl_str);
+		exit(1);
+	}	
 }

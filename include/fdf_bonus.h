@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/20 11:15:20 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:31:28 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_map
 	int			alloc_lines;
 	int			height;
 	int			width;
-	double		space_incr;
 	t_point		*point;
 	t_point		*orig_point;
 	mlx_t		*obj;
@@ -90,6 +89,7 @@ void		free_map(t_map *map);
 t_map		*parse_map(int fd);
 int			check_map(t_map *map);
 int			count_nums(char *map_str);
+char		**split_and_check(char *str, char del, t_map *map);
 
 /*--------------------POINT HANDLING--------------------*/
 
@@ -109,6 +109,7 @@ void		find_z_range(t_map *map);
 void		free_arr(int **arr, int index);
 int			free_ret(t_map *map, t_point *point);
 void		clear_img(mlx_image_t *img);
+void		check_realloc(t_map *map, char *gnl_str);
 
 /*--------------------COLORS--------------------*/
 

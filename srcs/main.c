@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:09:21 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 12:12:53 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:11:14 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 		return (free_ret(map, NULL));
 	}
 	map->point = convert_map(map, map->point);
+	map->alloc_lines = 0;
 	map_to_mlx(map);
 	free_ret(map, map->point);
 	return (0);

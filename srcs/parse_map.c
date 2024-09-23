@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 11:57:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 12:19:22 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:19:16 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static t_map	*check_ret(t_map *map, int i)
 
 void	init_map(t_map *map)
 {
-	map->space_incr = 0.0;
 	map->point = NULL;
 	map->orig_point = NULL;
 	map->obj = NULL;
@@ -88,7 +87,10 @@ t_map	*parse_map(int fd)
 	while (temp)
 	{
 		if (map->alloc_lines == map->height)
+		{
 			map = realloc_map(map);
+			check_realloc(map, temp);
+		}
 		map->strs[i] = temp;
 		i++;
 		map->height++;
