@@ -6,7 +6,7 @@
 #    By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 14:20:18 by msavelie          #+#    #+#              #
-#    Updated: 2024/09/23 14:13:50 by msavelie         ###   ########.fr        #
+#    Updated: 2024/09/23 14:28:26 by msavelie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,8 @@ BONUS_SRCS = \
 	${BONUS_DIR}/scale_bonus.c \
 	${BONUS_DIR}/align_bonus.c \
 	${BONUS_DIR}/find_ranges_bonus.c \
-	${BONUS_DIR}/utils_bonus.c
+	${BONUS_DIR}/utils_bonus.c \
+	${BONUS_DIR}/crop_line_bonus.c
 
 OBJS = ${SRCS:.c=.o}
 BONUS_OBJS = ${BONUS_SRCS:.c=.o}

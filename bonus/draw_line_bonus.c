@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:21:56 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 12:24:31 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:27:50 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	draw_line_row(t_map *map, t_point *point)
 	double	x;
 	double	y;
 
+	crop_line(&point[0].x, &point[1].x, &point[0].y, &point[1].y);
 	dx = point[1].x - point[0].x;
 	dy = point[1].y - point[0].y;
 	step = set_step(dx, dy);
@@ -80,6 +81,7 @@ void	draw_line_col(t_map *map, t_point *point, int width)
 	double	x;
 	double	y;
 
+	crop_line(&point[0].x, &point[width].x, &point[0].y, &point[width].y);
 	dx = point[width].x - point[0].x;
 	dy = point[width].y - point[0].y;
 	step = set_step(dx, dy);

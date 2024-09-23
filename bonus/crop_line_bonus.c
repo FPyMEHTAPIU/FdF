@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   crop_line.c                                        :+:      :+:    :+:   */
+/*   crop_line_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 12:58:05 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/23 14:25:48 by msavelie         ###   ########.fr       */
+/*   Created: 2024/09/23 14:26:25 by msavelie          #+#    #+#             */
+/*   Updated: 2024/09/23 14:33:43 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../include/fdf_bonus.h"
 
 /*This function calculates the position of the point in relation to window
 0b0000 = INSIDE 0

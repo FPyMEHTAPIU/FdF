@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/23 11:31:28 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:28:59 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,16 @@ typedef struct s_color
 	uint32_t	cur_color;
 }	t_color;
 
+typedef struct s_sides
+{
+	double	*x1;
+	double	*x2;
+	double	*y1;
+	double	*y2;
+	int	start_pos;
+	int	end_pos;
+}	t_sides;
+
 /*--------------------MAP HANDLING--------------------*/
 
 void		free_map(t_map *map);
@@ -103,6 +113,8 @@ void		set_z(t_map *map);
 void		move_boundaries(t_map *map, double move_x, double move_y);
 void		center_map(t_map *map);
 void		find_z_range(t_map *map);
+
+void		crop_line(double *x1, double *x2, double *y1, double *y2);
 
 /*--------------------CLEANING--------------------*/
 
