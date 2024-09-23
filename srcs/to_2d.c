@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 11:02:18 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:52:30 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,6 @@ static bool	print_err(t_map *map, int n)
 		return (false);
 	}
 	return (true);
-}
-
-void	draw_lines(t_map *map)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width - 1)
-			draw_line_row(map, &map->point[y * map->width + x++]);
-		y++;
-	}
-	y = 0;
-	while (y < map->width)
-	{
-		x = 0;
-		while (x < map->height - 1)
-			draw_line_col(map, &map->point[y + map->width * x++],
-				map->width);
-		y++;
-	}
 }
 
 bool	to_2d(t_map *map)
