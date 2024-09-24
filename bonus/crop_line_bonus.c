@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:26:25 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/23 14:40:24 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:41:44 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ static void	recalculate_pos(t_sides *sides)
 	}
 	else if (out_pos & 2)
 	{
-		y = *sides->y1 + (*sides->y2 - *sides->y1) * (WIN_WIDTH - (WIN_WIDTH / 4) - *sides->x1) / (*sides->x2 - *sides->x1);
-		x = WIN_WIDTH - (WIN_WIDTH / 4);
+		y = *sides->y1 + (*sides->y2 - *sides->y1) * (WIN_WIDTH - *sides->x1) / (*sides->x2 - *sides->x1);
+		x = WIN_WIDTH;
 	}
 	else if (out_pos & 1)
 	{
-		y = *sides->y1 + (*sides->y2 - *sides->y1) * (WIN_WIDTH / 4 - *sides->x1) / (*sides->x2 - *sides->x1);
-		x = WIN_WIDTH / 4;
+		y = *sides->y1 + (*sides->y2 - *sides->y1) * (0 - *sides->x1) / (*sides->x2 - *sides->x1);
+		x = 0;
 	}
 	if (out_pos == sides->start_pos)
 	{
