@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/23 12:52:30 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:12:51 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,7 @@ static void	to_isometry(size_t i, t_map *map)
 	map->point[i].y = (temp_x + map->point[i].y) / 2 - map->point[i].z;
 }
 
-static bool	print_err(t_map *map, int n)
-{
-	if (n == 0)
-	{
-		ft_printf("Error in creation t_isom!\n");
-		free_ret(map, map->point);
-		return (false);
-	}
-	return (true);
-}
-
-bool	to_2d(t_map *map)
+void	to_2d(t_map *map)
 {
 	size_t	i;
 
@@ -42,5 +31,4 @@ bool	to_2d(t_map *map)
 		to_isometry(i, map);
 		i++;
 	}
-	return (print_err(map, 1));
 }

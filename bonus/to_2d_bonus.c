@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:37:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/18 13:42:44 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:16:09 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	to_ortography(size_t i, t_map *map)
 	}
 }
 
-void	change_perspective(t_map *map)
+void	to_2d(t_map *map)
 {
 	size_t	i;
 
@@ -61,29 +61,4 @@ void	change_perspective(t_map *map)
 			i++;
 		}
 	}
-}
-
-static bool	print_err(t_map *map, int n)
-{
-	if (n == 0)
-	{
-		ft_printf("Error in creation t_isom!\n");
-		free_ret(map, map->point);
-		return (false);
-	}
-	return (true);
-}
-
-bool	to_2d(t_map *map)
-{
-	bool	ret;
-
-	change_perspective(map);
-	ret = print_err(map, 1);
-	if (!ret)
-	{
-		mlx_terminate(map->obj);
-		exit (1);
-	}
-	return (ret);
 }

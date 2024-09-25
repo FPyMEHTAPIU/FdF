@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/25 13:44:22 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:14:51 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ uint32_t	set_color(int num);
 
 void		map_to_mlx(t_map *map);
 t_point		*fill_image(t_map *map);
-bool		to_2d(t_map *map);
+void		to_2d(t_map *map);
 void		draw_lines(t_map *map);
 void		draw_line_row(t_map *map, t_point *point);
 void		draw_line_col(t_map *map, t_point *point, int width);

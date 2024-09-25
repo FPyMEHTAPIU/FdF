@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:01:51 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/23 11:45:08 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:12:26 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,7 @@ void	map_to_mlx(t_map *map)
 	set_z(map);
 	map->point = fill_image(map);
 	set_xy(map);
-	if (!to_2d(map))
-	{
-		mlx_terminate(map->obj);
-		exit (1);
-	}
+	to_2d(map);
 	find_min_xy(map, &min);
 	move_boundaries(map, -min.x, -min.y);
 	center_map(map);
