@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:11:30 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/23 11:20:02 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/25 13:40:06 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ void	free_map(t_map *map)
 	map->orig_point = NULL;
 	if (map->alloc_lines > 0)
 	{
-		ft_free_strs(map->strs, map->alloc_lines - 1);
+		ft_free_strs(map->strs, map->height);
 		*map->strs = NULL;
 		map->strs = NULL;
+		map->alloc_lines = 0;
 	}
 	free(map);
 }

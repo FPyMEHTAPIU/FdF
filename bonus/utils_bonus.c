@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:22:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/23 11:31:18 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/25 13:43:45 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,11 @@ int	count_nums(char *map_str)
 char	**split_and_check(char *str, char del, t_map *map)
 {
 	char	**strs;
-	
+
 	strs = ft_split(str, del);
 	if (!strs)
 	{
 		ft_printf("Split error!\n");
-		ft_free_strs(map->strs, map->height);
 		free_ret(map, map->point);
 		exit (1);
 	}

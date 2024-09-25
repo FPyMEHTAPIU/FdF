@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 11:57:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/23 11:19:16 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/25 13:41:27 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ static t_map	*realloc_map(t_map *map)
 	char	**strs;
 	int		i;
 
-	map->alloc_lines *= 2;
-	strs = (char **)malloc(sizeof(char *) * map->alloc_lines);
+	strs = (char **)malloc(sizeof(char *) * (map->alloc_lines * 2));
 	if (!strs)
 	{
 		free_map(map);
 		return (NULL);
 	}
+	map->alloc_lines *= 2;
 	i = 0;
 	while (i < map->height)
 	{
@@ -53,11 +53,10 @@ static t_map	*realloc_map(t_map *map)
 	return (map);
 }
 
-static t_map	*check_ret(t_map *map, int i)
+static t_map	*check_ret(t_map *map)
 {
 	if (check_map(map))
 	{
-		ft_free_strs(map->strs, --i);
 		free_ret(map, NULL);
 		return (NULL);
 	}
@@ -98,5 +97,5 @@ t_map	*parse_map(int fd)
 	}
 	map->strs[i] = NULL;
 	init_map(map);
-	return (check_ret(map, i));
+	return (check_ret(map));
 }
