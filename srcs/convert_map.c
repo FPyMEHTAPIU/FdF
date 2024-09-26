@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/26 11:30:30 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:22:37 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void	check_range(t_map *map, char **strs, t_point *temp, int i)
 {
 	if ((map->point->z == -1 && \
 		ft_strncmp(strs[i], "-1", ft_strlen(strs[i])) != 0)
-		|| (map->point->z == 0 && ft_strncmp(strs[i], "0", 1) != 0))
+		|| (map->point->z == 0 && ((ft_strncmp(strs[i], "\n", 1) != 0)
+		&& ft_strncmp(strs[i], "0", 1) != 0)))
 	{
 		ft_printf("A number in the map is out of range!\n");
 		ft_free_strs(strs, map->width);
