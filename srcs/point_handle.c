@@ -6,11 +6,19 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:07:18 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/25 13:41:48 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:23:46 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+static void	check_z_val(double *z)
+{
+	if (*z > 1000)
+		*z = 1000;
+	else if (*z < -1000)
+		*z = -1000;
+}
 
 t_point	*copy_point(t_point *point, t_map *map)
 {
@@ -31,8 +39,7 @@ t_point	*copy_point(t_point *point, t_map *map)
 	{
 		copy[i].x = point[i].x;
 		copy[i].y = point[i].y;
-		if (point[i].z > 1000)
-			point[i].z = 1000;
+		check_z_val(&point[i].z);
 		copy[i].z = point[i].z;
 		copy[i].color = point[i].color;
 		i++;

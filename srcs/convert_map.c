@@ -6,13 +6,27 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/25 13:41:11 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:30:30 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static t_point	*alloc_and_convert(char **strs, int num_count, t_map *map)
+static void	check_range(t_map *map, char **strs, t_point *temp, int i)
+{
+	if ((map->point->z == -1 && \
+		ft_strncmp(strs[i], "-1", ft_strlen(strs[i])) != 0)
+		|| (map->point->z == 0 && ft_strncmp(strs[i], "0", 1) != 0))
+	{
+		ft_printf("A number in the map is out of range!\n");
+		ft_free_strs(strs, map->width);
+		free_ret(map, temp);
+		exit (1);
+	}
+}
+
+static t_point	*alloc_and_convert(char **strs, int num_count,
+	t_map *map, t_point *temp)
 {
 	int		i;
 	char	**num_color;
@@ -33,6 +47,7 @@ static t_point	*alloc_and_convert(char **strs, int num_count, t_map *map)
 			map->point->z = ft_atoi(strs[i]);
 			map->point->color = set_color(map->point->z);
 		}
+		check_range(map, strs, temp, i);
 		i++;
 		(map->point)++;
 	}
@@ -57,7 +72,7 @@ t_point	*convert_map(t_map *map, t_point *point)
 			free_ret(map, temp);
 			exit (1);
 		}
-		point = alloc_and_convert(strs, map->width, map);
+		point = alloc_and_convert(strs, map->width, map, temp);
 		ft_free_strs(strs, map->width);
 		i++;
 		if (map->strs[i])
