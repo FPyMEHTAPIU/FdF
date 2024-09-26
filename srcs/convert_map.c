@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/26 14:22:37 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:02:04 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,13 @@ static t_point	*alloc_and_convert(char **strs, int num_count,
 		}
 		else
 		{
-			map->point->z = ft_atoi(strs[i]);
-			map->point->color = set_color(map->point->z);
+			if (ft_strncmp(strs[i], "\n", 1) == 0)
+				;
+			else
+			{
+				map->point->z = ft_atoi(strs[i]);
+				map->point->color = set_color(map->point->z);
+			}
 		}
 		check_range(map, strs, temp, i);
 		i++;
@@ -79,6 +84,11 @@ t_point	*convert_map(t_map *map, t_point *point)
 		if (map->strs[i])
 			strs = split_and_check(map->strs[i], ' ', map);
 	}
+	strs = split_and_check(map->strs[i - 1], ' ', map);
+	if (strs && *strs && ft_strncmp(strs[map->width - 1], "\n", 1) == 0)
+		map->width--;
+	if (strs && *strs)
+		ft_free_strs(strs, map->width + 1);
 	ft_free_strs(map->strs, map->height);
 	map->alloc_lines = 0;
 	return (temp);
