@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/26 15:02:04 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:49:37 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	check_range(t_map *map, char **strs, t_point *temp, int i)
 	if ((map->point->z == -1 && \
 		ft_strncmp(strs[i], "-1", ft_strlen(strs[i])) != 0)
 		|| (map->point->z == 0 && ((ft_strncmp(strs[i], "\n", 1) != 0)
-		&& ft_strncmp(strs[i], "0", 1) != 0)))
+				&& ft_strncmp(strs[i], "0", 1) != 0)))
 	{
 		ft_printf("A number in the map is out of range!\n");
 		ft_free_strs(strs, map->width);
@@ -45,13 +45,8 @@ static t_point	*alloc_and_convert(char **strs, int num_count,
 		}
 		else
 		{
-			if (ft_strncmp(strs[i], "\n", 1) == 0)
-				;
-			else
-			{
-				map->point->z = ft_atoi(strs[i]);
-				map->point->color = set_color(map->point->z);
-			}
+			map->point->z = ft_atoi(strs[i]);
+			map->point->color = set_color(map->point->z);
 		}
 		check_range(map, strs, temp, i);
 		i++;
@@ -60,35 +55,43 @@ static t_point	*alloc_and_convert(char **strs, int num_count,
 	return (map->point);
 }
 
+static char	**trim_and_check(t_map *map, char *map_str,
+	char **trim_str, int num)
+{
+	char	**strs;
+
+	if (map_str)
+		*trim_str = ft_strtrim(map_str, " \n");
+	strs = NULL;
+	if (num == 1 && *trim_str && \
+		ft_strlen(map_str) - 1 != ft_strlen(*trim_str))
+		map->width--;
+	if (map_str)
+		strs = split_and_check(*trim_str, ' ', map);
+	return (strs);
+}
+
 t_point	*convert_map(t_map *map, t_point *point)
 {
 	char	**strs;
 	int		i;
 	t_point	*temp;
+	char	*trim_str;
 
 	i = 0;
 	temp = point;
-	strs = split_and_check(map->strs[i], ' ', map);
+	trim_str = NULL;
+	strs = trim_and_check(map, map->strs[i], &trim_str, 1);
 	while (map->strs[i])
 	{
-		if (count_nums(map->strs[i]) != map->width)
-		{
-			ft_printf("Lines aren't equal!\n");
-			ft_free_strs(strs, count_nums(map->strs[i]));
-			free_ret(map, temp);
-			exit (1);
-		}
+		if (count_nums(trim_str) != map->width)
+			convert_error(map, strs, temp, trim_str);
 		point = alloc_and_convert(strs, map->width, map, temp);
+		if (trim_str)
+			free(trim_str);
 		ft_free_strs(strs, map->width);
-		i++;
-		if (map->strs[i])
-			strs = split_and_check(map->strs[i], ' ', map);
+		strs = trim_and_check(map, map->strs[++i], &trim_str, 0);
 	}
-	strs = split_and_check(map->strs[i - 1], ' ', map);
-	if (strs && *strs && ft_strncmp(strs[map->width - 1], "\n", 1) == 0)
-		map->width--;
-	if (strs && *strs)
-		ft_free_strs(strs, map->width + 1);
 	ft_free_strs(map->strs, map->height);
 	map->alloc_lines = 0;
 	return (temp);

@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:11:30 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/25 13:34:19 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:41:27 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,14 @@ void	check_realloc(t_map *map, char *gnl_str)
 			free(gnl_str);
 		exit(1);
 	}	
+}
+
+void	convert_error(t_map *map, char **strs, t_point *temp, char *trim_str)
+{
+	ft_printf("Lines aren't equal!\n");
+	ft_free_strs(strs, count_nums(trim_str));
+	if (trim_str)
+		free(trim_str);
+	free_ret(map, temp);
+	exit (1);
 }

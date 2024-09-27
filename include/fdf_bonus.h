@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:53:35 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/25 16:14:51 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:50:08 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void		free_arr(int **arr, int index);
 int			free_ret(t_map *map, t_point *point);
 void		clear_img(mlx_image_t *img);
 void		check_realloc(t_map *map, char *gnl_str);
+void		convert_error(t_map *map, char **strs,
+				t_point *temp, char *trim_str);
 
 /*--------------------COLORS--------------------*/
 
