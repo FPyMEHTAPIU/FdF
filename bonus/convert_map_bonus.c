@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/27 10:49:49 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:38:21 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	**trim_and_check(t_map *map, char *map_str,
 		*trim_str = ft_strtrim(map_str, " \n");
 	strs = NULL;
 	if (num == 1 && *trim_str && \
-		ft_strlen(map_str) - 1 != ft_strlen(*trim_str))
+		map_str[ft_strlen(map_str) - 2] == ' ')
 		map->width--;
 	if (map_str)
 		strs = split_and_check(*trim_str, ' ', map);

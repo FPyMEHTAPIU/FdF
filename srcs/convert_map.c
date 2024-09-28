@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:16:52 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/27 10:49:37 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:39:54 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void	check_range(t_map *map, char **strs, t_point *temp, int i)
 {
 	if ((map->point->z == -1 && \
 		ft_strncmp(strs[i], "-1", ft_strlen(strs[i])) != 0)
-		|| (map->point->z == 0 && ((ft_strncmp(strs[i], "\n", 1) != 0)
-				&& ft_strncmp(strs[i], "0", 1) != 0)))
+		|| (map->point->z == 0 && ft_strncmp(strs[i], "0", 1) != 0))
 	{
 		ft_printf("A number in the map is out of range!\n");
 		ft_free_strs(strs, map->width);
@@ -64,7 +63,7 @@ static char	**trim_and_check(t_map *map, char *map_str,
 		*trim_str = ft_strtrim(map_str, " \n");
 	strs = NULL;
 	if (num == 1 && *trim_str && \
-		ft_strlen(map_str) - 1 != ft_strlen(*trim_str))
+		map_str[ft_strlen(map_str) - 2] == ' ')
 		map->width--;
 	if (map_str)
 		strs = split_and_check(*trim_str, ' ', map);

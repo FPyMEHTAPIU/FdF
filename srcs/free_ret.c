@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:11:30 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/27 10:47:24 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/28 14:32:26 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	check_realloc(t_map *map, char *gnl_str)
 		if (gnl_str)
 			free(gnl_str);
 		exit(1);
-	}	
+	}
 }
 
 void	convert_error(t_map *map, char **strs, t_point *temp, char *trim_str)
