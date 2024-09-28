@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:22:53 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/25 16:14:59 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:57:28 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**split_and_check(char *str, char del, t_map *map)
 	strs = ft_split(str, del);
 	if (!strs || !*strs)
 	{
-		ft_printf("Split error!\n");
+		ft_putstr_fd("Split error!\n", 1);
 		free_ret(map, map->point);
 		exit (1);
 	}

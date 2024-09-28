@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:41:04 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/12 12:39:46 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:55:52 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	check_map(t_map *map)
 {
 	if (check_chars(map))
 	{
-		ft_printf("The map is not properly formatted\n");
+		ft_putstr_fd("The map is not properly formatted\n", 1);
 		return (1);
 	}
 	return (0);

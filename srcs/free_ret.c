@@ -6,7 +6,7 @@
 /*   By: msavelie <msavelie@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:11:30 by msavelie          #+#    #+#             */
-/*   Updated: 2024/09/28 14:32:26 by msavelie         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:56:53 by msavelie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	check_realloc(t_map *map, char *gnl_str)
 
 void	convert_error(t_map *map, char **strs, t_point *temp, char *trim_str)
 {
-	ft_printf("Lines aren't equal!\n");
+	ft_putstr_fd("Lines aren't equal!\n", 1);
 	ft_free_strs(strs, count_nums(trim_str));
 	if (trim_str)
 		free(trim_str);
